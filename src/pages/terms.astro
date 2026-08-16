@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { BRAND, CONTACT, SITE } from '../config';
+import { graph, organization, website, webPage, breadcrumbs } from '../lib/schema';
+
+const path = '/terms/';
+const title = 'Terms of Service | 615 Septic Tank Pumping, Nashville TN';
+const description =
+  'Terms of service for the 615 Septic Tank Pumping website — how estimates, published cost ranges and site content should be understood.';
+const trail = [{ name: 'Home', path: '/' }, { name: 'Terms of Service', path }];
+const schema = graph([organization(), website(), webPage({ path, title, description }), breadcrumbs(trail)]);
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs trail={trail} />
+  <section class="section">
+    <div class="container-site max-w-3xl">
+      <h1 class="font-display text-[2.25rem] leading-tight text-primary-dark sm:text-[2.75rem]">Terms of Service</h1>
+      <hr class="rule-accent" />
+      <p class="mt-4 text-sm text-ink-soft">Last updated {SITE.lastReviewed}</p>
+      <div class="prose-site mt-8 max-w-none">
+        <h2>Using this site</h2>
+        <p>
+          {SITE.domain} is operated by {BRAND.name}. Using it means accepting these terms. Contact
+          {' '}<a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> or {CONTACT.phoneDisplay} with any question about them.
+        </p>
+
+        <h2>Estimates are not quotes</h2>
+        <p>
+          The cost estimator and the published price ranges on this site produce estimates built from third-party
+          published data, cited on the pages where they appear. They are not offers, and they are not binding. The price
+          for a specific property depends on what is found on site — tank condition, actual capacity, access, hose
+          distance and disposal volume — and is confirmed before any work starts.
+        </p>
+
+        <h2>Guidance is general, not a diagnosis</h2>
+        <p>
+          Articles, guides and the urgency assessment on this site describe how septic systems generally behave. They
+          are not a substitute for an on-site inspection with the tank open, and they are not a substitute for the
+          requirements of the Tennessee Department of Environment and Conservation or the county environmental health
+          office. Do not rely on this site alone for a decision about repairing, replacing or permitting a system.
+        </p>
+        <p>
+          Where this site describes what a regulation requires, the regulation itself governs. Sources are linked so
+          they can be checked directly.
+        </p>
+
+        <h2>Safety</h2>
+        <p>
+          Nothing on this site is an instruction to open a septic tank. A septic tank is a confined space with an
+          oxygen-displacing atmosphere and people have died entering or leaning into one. Locating and marking a tank is
+          a homeowner task; opening it is not.
+        </p>
+
+        <h2>Content and ownership</h2>
+        <p>
+          Text, graphics, diagrams and layout on this site belong to {BRAND.name} unless stated otherwise. They may be
+          quoted with attribution and a link. They may not be republished wholesale or used to represent another
+          business.
+        </p>
+
+        <h2>Third-party links</h2>
+        <p>
+          Links to state regulations, code references and published cost data are provided so figures can be verified.
+          Those sites are not controlled by us and we are not responsible for their content or availability.
+        </p>
+
+        <h2>Limitation of liability</h2>
+        <p>
+          This site is provided as-is. To the extent permitted by Tennessee law, {BRAND.name} is not liable for
+          indirect or consequential loss arising from use of the site or reliance on general information published on
+          it. Nothing here limits liability for the actual services performed at a property, which are governed by the
+          agreement made for that work.
+        </p>
+
+        <h2>Governing law</h2>
+        <p>These terms are governed by the laws of the State of Tennessee.</p>
+
+        <h2>Changes</h2>
+        <p>Changes are published on this page with an updated date at the top.</p>
+      </div>
+    </div>
+  </section>
+</Base>

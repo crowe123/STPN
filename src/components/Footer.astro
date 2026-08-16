@@ -1,0 +1,100 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { BRAND, CONTACT, SITE, tel, hasStreetAddress } from '../config';
+import { coreServices, primaryCities } from '../lib/data';
+
+const topServices = coreServices.slice(0, 5);
+const year = new Date(SITE.lastReviewed).getFullYear();
+const copyright = year > SITE.copyrightStart ? `${SITE.copyrightStart}–${year}` : `${SITE.copyrightStart}`;
+---
+
+<footer class="bg-primary-dark text-white/85">
+  <div class="container-site grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <Logo variant="light" height={48} class="h-11 w-auto" />
+      <!-- Full NAP block. Every value comes from src/config.ts, byte-identical
+           to the header, contact page, schema and llms.txt. -->
+      <address class="mt-5 not-italic leading-relaxed">
+        <p class="font-display text-lg font-semibold uppercase tracking-wide text-white">{BRAND.name}</p>
+        {
+          hasStreetAddress ? (
+            <p>
+              {CONTACT.address.street}
+              <br />
+              {CONTACT.address.locality}, {CONTACT.address.region} {CONTACT.address.postalCode}
+            </p>
+          ) : (
+            <p>{CONTACT.address.locality}, {CONTACT.address.region}</p>
+          )
+        }
+        <p class="mt-3">
+          <a href={tel} class="link-row font-display text-2xl font-bold text-white hover:text-accent">{CONTACT.phoneDisplay}</a>
+        </p>
+        <p><a href={`mailto:${CONTACT.email}`} class="link-row text-white/85 underline hover:text-white">{CONTACT.email}</a></p>
+      </address>
+      <p class="mt-4 text-sm text-white/70">{CONTACT.hoursHuman}</p>
+    </div>
+
+    <div>
+      <p class="font-display text-lg font-bold uppercase tracking-wide text-white">Services</p>
+      <hr class="rule-accent" />
+      <ul class="mt-4 space-y-2">
+        {topServices.map((s) => (
+          <li><a href={`/${s.slug}/`} class="link-row text-white/85 hover:text-accent">{s.name}</a></li>
+        ))}
+        <li><a href="/services-menu/" class="link-row font-semibold text-white hover:text-accent">All services →</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="font-display text-lg font-bold uppercase tracking-wide text-white">Service Areas</p>
+      <hr class="rule-accent" />
+      <ul class="mt-4 space-y-2">
+        {primaryCities.map((c) => (
+          <li><a href={`/service-areas/${c.slug}/`} class="link-row text-white/85 hover:text-accent">{c.name}, {c.state}</a></li>
+        ))}
+        <li><a href="/service-areas/" class="link-row font-semibold text-white hover:text-accent">All service areas →</a></li>
+      </ul>
+      <p class="mt-4 text-sm text-white/70">Serving {CONTACT.serviceArea}.</p>
+    </div>
+
+    <div>
+      <p class="font-display text-lg font-bold uppercase tracking-wide text-white">Company</p>
+      <hr class="rule-accent" />
+      <ul class="mt-4 space-y-2">
+        <li><a href="/about/" class="link-row text-white/85 hover:text-accent">About</a></li>
+        <li><a href="/contact/" class="link-row text-white/85 hover:text-accent">Contact</a></li>
+        <li><a href="/guide/" class="link-row text-white/85 hover:text-accent">Septic guides</a></li>
+        <li><a href="/blog/" class="link-row text-white/85 hover:text-accent">Blog</a></li>
+        <li><a href="/tools/" class="link-row text-white/85 hover:text-accent">Free tools</a></li>
+        <li><a href="/resources/" class="link-row text-white/85 hover:text-accent">Free checklist</a></li>
+        <li><a href="/leave-a-review/" class="link-row text-white/85 hover:text-accent">Leave a review</a></li>
+      </ul>
+      <a href="/contact/" class="btn btn-accent mt-5 w-full">
+        <Icon name="phone" size={18} /> Get a Quote
+      </a>
+    </div>
+  </div>
+
+  <div class="border-t border-white/15">
+    <div class="container-site flex flex-col gap-3 py-6 text-sm text-white/65 md:flex-row md:items-center md:justify-between">
+      <p>© {copyright} {BRAND.legalName}. All rights reserved.</p>
+      <nav aria-label="Legal" class="flex flex-wrap gap-x-5 gap-y-2">
+        <a href="/privacy/" class="link-row hover:text-white">Privacy Policy</a>
+        <a href="/terms/" class="link-row hover:text-white">Terms of Service</a>
+        <a href="/sitemap-index.xml" class="link-row hover:text-white">Sitemap</a>
+        <a href="/llms.txt" class="link-row hover:text-white">llms.txt</a>
+      </nav>
+    </div>
+    <div class="container-site pb-8 text-xs leading-relaxed text-white/50">
+      <p>
+        Cost figures shown on this site are published market ranges for Tennessee and Davidson County, cited on the
+        pages where they appear. They are estimates, not quotes — the price for any specific property is confirmed
+        before work begins. Guidance on this site is general information about septic systems and is not a substitute
+        for an on-site inspection or for the requirements of the Tennessee Department of Environment and Conservation
+        and the county environmental health office.
+      </p>
+    </div>
+  </div>
+</footer>

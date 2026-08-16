@@ -1,0 +1,43 @@
+---
+/**
+ * DORMANT PROOF COMPONENT.
+ * Wired to src/data/proof.json → testimonials[]. Returns null on an empty array:
+ * no empty section, no heading with nothing under it, no "coming soon".
+ * Populating proof.json with genuinely-received reviews activates this section
+ * and the Review/AggregateRating schema together. Nothing here ships with
+ * sample, placeholder or commented-out review text.
+ */
+import { proof } from '../lib/data';
+const items = proof.testimonials;
+---
+{
+  items.length > 0 && (
+    <section class="section section-alt">
+      <div class="container-site">
+        <p class="eyebrow">What customers say</p>
+        <h2 class="mt-2 text-3xl md:text-4xl">Reviews from {proof.reviewPlatform.name || 'verified customers'}</h2>
+        <hr class="rule-accent" />
+        <ul class="mt-8 grid gap-5 md:grid-cols-3">
+          {items.map((t) => (
+            <li class="card p-6">
+              <blockquote class="text-[1.0625rem] leading-relaxed text-ink">“{t.text}”</blockquote>
+              <p class="mt-4 border-t border-line pt-3 text-sm font-semibold text-primary-dark">
+                {t.name}, {t.city}
+              </p>
+              <p class="text-sm text-ink-soft">
+                {t.source} · {t.date}
+              </p>
+            </li>
+          ))}
+        </ul>
+        {proof.reviewPlatform.url && (
+          <p class="mt-6">
+            <a href={proof.reviewPlatform.url} rel="noopener" target="_blank" class="font-semibold underline">
+              Read all reviews on {proof.reviewPlatform.name}
+            </a>
+          </p>
+        )}
+      </div>
+    </section>
+  )
+}

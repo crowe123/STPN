@@ -1,0 +1,81 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Icon from '../../components/Icon.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { CONTACT } from '../../config';
+import { graph, organization, website, webPage, breadcrumbs } from '../../lib/schema';
+
+const path = '/tools/';
+const title = 'Free Septic Tools for Nashville Homeowners | 615 Septic Tank Pumping';
+const description =
+  'Two free septic tools for Nashville, TN — a pumping cost estimator with the formula shown, and a nine-question urgency assessment. No contact details required.';
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Free Tools', path },
+];
+const schema = graph([organization(), website(), webPage({ path, title, description }), breadcrumbs(trail)]);
+
+const tools = [
+  {
+    href: '/tools/septic-pumping-cost-estimator/',
+    icon: 'calc',
+    name: 'Septic pumping cost estimator',
+    body: 'Three questions — tank capacity, lid access, and time since the last service — produce a price range built from published Tennessee data. The full formula and every multiplier is shown on screen.',
+    cta: 'Estimate the cost',
+  },
+  {
+    href: '/tools/septic-system-assessment/',
+    icon: 'list',
+    name: 'Septic urgency assessment',
+    body: 'Nine plain questions about what the system is doing right now, producing an urgency classification, what it means, and the specific next steps for that level.',
+    cta: 'Run the assessment',
+  },
+  {
+    href: '/resources/',
+    icon: 'doc',
+    name: 'Septic contractor pre-hire checklist',
+    body: 'A one-page printable of the questions worth asking before booking any septic contractor in Davidson County — including the truck-marking check that takes five seconds.',
+    cta: 'Get the checklist',
+  },
+];
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs trail={trail} />
+  <section class="bg-offwhite py-12 md:py-16">
+    <div class="container-site">
+      <p class="eyebrow">Free · no contact details required</p>
+      <h1 class="mt-2 font-display text-[2.4rem] leading-[1.06] text-primary-dark sm:text-5xl">
+        Free Septic Tools for Nashville Homeowners
+      </h1>
+      <hr class="rule-accent" />
+      <p class="mt-6 max-w-3xl text-xl leading-relaxed text-ink">
+        Both tools give the answer on screen before asking for anything. The estimator shows its formula and cites the
+        data behind it; the assessment tells you whether this is an emergency, a booking, or something to watch.
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container-site grid gap-6 lg:grid-cols-3">
+      {
+        tools.map((t) => (
+          <a href={t.href} class="card card-hover flex flex-col p-6">
+            <span class="flex h-12 w-12 items-center justify-center rounded bg-primary-tint text-primary">
+              <Icon name={t.icon} size={26} />
+            </span>
+            <h2 class="mt-4 text-2xl leading-tight text-primary-dark">{t.name}</h2>
+            <p class="mt-3 flex-1 text-[1.0625rem] leading-relaxed text-ink-soft">{t.body}</p>
+            <p class="mt-4 inline-flex items-center gap-2 font-display text-base font-bold uppercase tracking-wide text-accent-dark">
+              {t.cta} <Icon name="arrow" size={18} />
+            </p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+  <CtaBand
+    heading={`Prefer to just ask? Call ${CONTACT.phoneDisplay}.`}
+    body="A minute on the phone usually settles what a property needs faster than any tool."
+    secondaryLabel="Send property details"
+  />
+</Base>

@@ -1,0 +1,287 @@
+---
+/**
+ * CITY PAGES.
+ * Tier 1 (primary) ~1,250–1,400 words · tier 2 (secondary) ~1,000 ·
+ * tier 3 (sub-city) ~500–700 with a lighter template.
+ *
+ * Everything except localAngle, cityFaq, neighborhoods, landmarks, routes and
+ * the city-bearing H2s is template. Those are the variable slots, and they are
+ * hand-written per city in src/data/cities.json — a city with nothing real to
+ * say does not get a page.
+ */
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import TickerBar from '../../components/TickerBar.astro';
+import Icon from '../../components/Icon.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import PainGrid from '../../components/PainGrid.astro';
+import ServicesGrid from '../../components/ServicesGrid.astro';
+import WhyUs from '../../components/WhyUs.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import NeighborhoodChips from '../../components/NeighborhoodChips.astro';
+import LandmarkList from '../../components/LandmarkList.astro';
+import StaticMap from '../../components/StaticMap.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import LeadCaptureForm from '../../components/LeadCaptureForm.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { BRAND, CONTACT, SITE, tel, napify } from '../../config';
+import { cities, cityBySlug, serviceBySlug, type City } from '../../lib/data';
+import {
+  graph,
+  organization,
+  website,
+  webPage,
+  breadcrumbs,
+  faqPage,
+  cityLocationNode,
+} from '../../lib/schema';
+
+export function getStaticPaths() {
+  return cities.map((c) => ({ params: { city: c.slug }, props: { city: c } }));
+}
+
+const { city } = Astro.props as { city: City };
+const path = `/service-areas/${city.slug}/`;
+const isSub = city.tier === 3;
+const description = napify(city.description);
+
+const priority = city.priorityServices.map(serviceBySlug).filter(Boolean);
+const siblings = city.nearbyCities.map(cityBySlug).filter(Boolean) as City[];
+
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Service Areas', path: '/service-areas/' },
+  { name: city.name, path },
+];
+
+const schema = graph([
+  organization(),
+  website(),
+  webPage({ path, title: city.title, description }),
+  breadcrumbs(trail),
+  cityLocationNode(city),
+  faqPage(path, city.cityFaq),
+]);
+
+// City-specific process wording — the H2 and each step name the locality.
+const localProcess = [
+  { step: `Call from a ${city.name} address`, detail: `Address, approximate tank size if known, and what the system is doing. Unknown tank size is normal.` },
+  { step: 'Access assessed on arrival', detail: `${city.responseTime}. The tank is located and the access port opened; on lots where the lid is buried that is quoted before any digging.` },
+  { step: 'Pumped, inspected, photographed', detail: 'Liquid, scum and sludge removed to a visible floor. Baffles, filter and tank walls checked while it is empty.' },
+  { step: 'Findings and a dated interval', detail: `What was found, what it means for this property, and the date the next service is due — before we leave ${city.name}.` },
+];
+---
+
+<Base title={city.title} description={description} path={path} schema={schema}>
+  <Breadcrumbs trail={trail} />
+
+  <section class="bg-offwhite py-12 md:py-16">
+    <div class="container-site grid items-center gap-10 lg:grid-cols-[1.1fr_.9fr]">
+      <div>
+        <p class="eyebrow">{city.county}, {city.stateName} · ZIP {city.zips.join(', ')}</p>
+        <h1 class="mt-2 font-display text-[2.4rem] leading-[1.06] text-primary-dark sm:text-5xl">{city.h1}</h1>
+        <hr class="rule-accent" />
+        <p class="mt-6 max-w-2xl text-xl leading-relaxed text-ink">
+          <a href="/" class="font-semibold">{BRAND.name}</a> is a licensed septic tank pumping contractor serving
+          {' '}{city.name}, {city.state}. {city.responseTime}.
+        </p>
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+          <a href={tel} class="btn btn-accent" data-cta="city-hero-call">
+            <Icon name="phone" size={22} /> Call {CONTACT.phoneDisplay}
+          </a>
+          <a href="#book" class="btn btn-outline">Book in {city.name}</a>
+        </div>
+      </div>
+      <StaticMap
+        cityName={city.name}
+        state={city.state}
+        neighborhoods={city.neighborhoods}
+        routes={city.routes}
+      />
+    </div>
+  </section>
+
+  <TickerBar />
+
+  {
+    !isSub && (
+      <section class="section">
+        <div class="container-site">
+          <SectionHead
+            eyebrow="What brings us out"
+            heading={`Septic problems we are called to in ${city.name}`}
+            lede={`Any one of these is worth a call. Several together usually mean the system has already passed the point where waiting is the cheap option.`}
+          />
+          <div class="mt-10">
+            <PainGrid cityName={city.name} />
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class:list={['section', isSub ? '' : 'section-alt']}>
+    <div class="container-site">
+      <SectionHead
+        eyebrow="Services"
+        heading={`Septic services in ${city.name}`}
+        lede={`The work most ${city.name} properties need, in the order they are usually asked for.`}
+      />
+      <div class="mt-10">
+        <ServicesGrid list={priority} cityName={city.name} />
+      </div>
+      <p class="mt-6">
+        <a href="/services-menu/" class="btn btn-outline">All septic services →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── THE UNIQUENESS LAYER — hand-written per city ────────────────────── -->
+  <section class="section">
+    <div class="container-site grid gap-12 lg:grid-cols-[minmax(0,1fr)_19rem]">
+      <article class="prose-site max-w-none">
+        <p class="text-sm font-semibold uppercase tracking-wide text-ink-soft">Last updated: {SITE.lastReviewed}</p>
+        <h2>What septic systems in {city.name} actually deal with</h2>
+        {city.localAngle.map((p) => <p>{p}</p>)}
+
+        {
+          !isSub && (
+            <>
+              <h2>How we handle a {city.name} service call</h2>
+              <div class="not-prose my-8">
+                <ProcessSteps steps={localProcess} headingLevel={3} />
+              </div>
+            </>
+          )
+        }
+      </article>
+
+      <aside class="lg:sticky lg:top-28 lg:self-start">
+        <div class="card border-l-4 border-l-accent p-5">
+          <p class="font-display text-lg font-bold uppercase tracking-wide text-primary-dark">
+            {city.name} at a glance
+          </p>
+          <hr class="rule-accent" />
+          <dl class="mt-4 space-y-3 text-[0.98rem]">
+            <div>
+              <dt class="font-semibold text-primary-dark">County</dt>
+              <dd class="text-ink-soft">{city.county}, {city.stateName}</dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-primary-dark">ZIP codes</dt>
+              <dd class="text-ink-soft">{city.zips.join(', ')}</dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-primary-dark">Availability</dt>
+              <dd class="text-ink-soft">{city.responseTime}</dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-primary-dark">Typical pump-out</dt>
+              <dd class="text-ink-soft">$275–$525, published Tennessee range</dd>
+            </div>
+          </dl>
+          <a href={tel} class="btn btn-accent mt-5 w-full" data-cta="city-sidebar-call">
+            <Icon name="phone" size={20} /> {CONTACT.phoneDisplay}
+          </a>
+        </div>
+        <div class="card mt-6 p-5">
+          <p class="font-display text-lg font-bold uppercase tracking-wide text-primary-dark">Free tools</p>
+          <hr class="rule-accent" />
+          <ul class="mt-4 space-y-2">
+            <li><a href="/tools/septic-pumping-cost-estimator/" class="link-row font-semibold">Cost estimator →</a></li>
+            <li><a href="/tools/septic-system-assessment/" class="link-row font-semibold">Urgency assessment →</a></li>
+            <li><a href="/resources/" class="link-row font-semibold">Pre-hire checklist →</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {
+    !isSub && (
+      <section class="section section-alt">
+        <div class="container-site">
+          <SectionHead eyebrow="How we work" heading={`Why ${city.name} properties book us`} />
+          <div class="mt-10">
+            <WhyUs headingLevel={3} />
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section">
+    <div class="container-site">
+      <SectionHead
+        eyebrow="Coverage detail"
+        heading={`Neighbourhoods and landmarks around ${city.name}`}
+        lede={`Regular work across these parts of ${city.name}. Call to confirm coverage for a specific address.`}
+      />
+      <div class="mt-8">
+        <NeighborhoodChips items={city.neighborhoods} label={`${city.name} neighbourhoods served`} />
+      </div>
+      <div class="mt-10">
+        <LandmarkList
+          landmarks={city.landmarks}
+          routes={city.routes}
+          transit={city.transit}
+          cityName={city.name}
+          headingLevel={3}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container-site">
+      <SectionHead
+        eyebrow="Questions"
+        heading={`Septic questions from ${city.name} homeowners`}
+        lede="Including what a pump-out actually costs on this side of the county."
+      />
+      <div class="mt-8 max-w-4xl">
+        <FaqAccordion faqs={city.cityFaq} headingLevel={3} />
+      </div>
+    </div>
+  </section>
+
+  <section id="book" class="section">
+    <div class="container-site grid gap-10 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <SectionHead
+          eyebrow="Nearby"
+          heading={`Also serving near ${city.name}`}
+          lede="Same trucks, same coverage. If an address sits on the boundary, call and we will confirm it."
+        />
+        <ul class="mt-6 grid gap-4 sm:grid-cols-3">
+          {
+            siblings.map((s) => (
+              <li>
+                <a href={`/service-areas/${s.slug}/`} class="card card-hover block p-4">
+                  <h3 class="text-lg text-primary-dark">{s.name}</h3>
+                  <p class="mt-1 text-sm text-ink-soft">ZIP {s.zips.join(', ')}</p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-6">
+          <a href="/service-areas/" class="btn btn-outline">All service areas →</a>
+        </p>
+      </div>
+      <LeadCaptureForm
+        source={`city:${city.slug}`}
+        cityName={city.name}
+        submitLabel={`Book service in ${city.name}`}
+      />
+    </div>
+  </section>
+
+  <CtaBand
+    heading={`Septic tank pumping in ${city.name} — get on the schedule`}
+    body={`${city.responseTime}. Price confirmed before any work starts.`}
+    callLabel={`Call ${CONTACT.phoneDisplay}`}
+    secondaryLabel={`Book in ${city.name}`}
+    secondaryHref="#book"
+  />
+</Base>

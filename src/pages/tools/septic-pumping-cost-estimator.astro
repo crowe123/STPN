@@ -1,0 +1,79 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import RelatedGuides from '../../components/RelatedGuides.astro';
+import CostEstimator from '../../components/islands/CostEstimator.tsx';
+import { CONTACT, FORMS, tel } from '../../config';
+import { graph, organization, website, webPage, breadcrumbs, webApplication } from '../../lib/schema';
+
+const path = '/tools/septic-pumping-cost-estimator/';
+const title = 'Septic Pumping Cost Estimator for Nashville | 615 Septic Tank Pumping';
+const description =
+  'Free septic pumping cost estimator for Nashville, TN. Three questions, a price range from published Tennessee data, and the full formula shown. No email required.';
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Free Tools', path: '/tools/' },
+  { name: 'Cost estimator', path },
+];
+const schema = graph([
+  organization(),
+  website(),
+  webPage({ path, title, description }),
+  breadcrumbs(trail),
+  webApplication({
+    path,
+    name: 'Septic Pumping Cost Estimator (Nashville, TN)',
+    description:
+      'Estimates a septic tank pumping price range for a Nashville property from tank capacity, lid access and time since the last service, using published Tennessee pricing.',
+  }),
+]);
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs trail={trail} />
+  <section class="bg-offwhite py-10 md:py-14">
+    <div class="container-site">
+      <p class="eyebrow">Free tool · formula shown · no email required</p>
+      <h1 class="mt-2 font-display text-[2.4rem] leading-[1.06] text-primary-dark sm:text-5xl">
+        Septic Pumping Cost Estimator for Nashville
+      </h1>
+      <hr class="rule-accent" />
+      <p class="mt-6 max-w-3xl text-xl leading-relaxed text-ink">
+        Three questions produce a range built from the published Tennessee pumping band of $275 to $525, adjusted for
+        the three things that actually move the price on a specific property. Every multiplier applied is shown on
+        screen — nothing is hidden behind a form.
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container-site">
+      <CostEstimator
+        client:visible
+        formEndpoint={FORMS.endpoint}
+        formEnabled={FORMS.enabled}
+        phoneDisplay={CONTACT.phoneDisplay}
+        telHref={tel}
+        honeypot={FORMS.honeypotName}
+      />
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container-site">
+      <RelatedGuides
+        heading="The reading behind the numbers"
+        slugs={[
+          'septic-tank-pumping-cost-nashville',
+          'drain-field-replacement-cost-nashville',
+          'septic-pumping-vs-cleaning-difference',
+          'how-often-pump-septic-tank-nashville',
+        ]}
+      />
+    </div>
+  </section>
+  <CtaBand
+    heading="Turn the estimate into a confirmed price"
+    body="An estimate uses published averages. A call uses the actual property. Price is confirmed before work starts either way."
+    secondaryLabel="Run the urgency assessment"
+    secondaryHref="/tools/septic-system-assessment/"
+  />
+</Base>

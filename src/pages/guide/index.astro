@@ -1,0 +1,129 @@
+---
+/**
+ * GUIDE HUB.
+ * Organised as H2 category blocks named per service, each H2 linking to the
+ * money page — the hub is a link-equity distributor, not just an index.
+ */
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Icon from '../../components/Icon.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import TickerBar from '../../components/TickerBar.astro';
+import { CONTACT } from '../../config';
+import { services } from '../../lib/data';
+import { graph, organization, website, webPage, breadcrumbs } from '../../lib/schema';
+
+const path = '/guide/';
+const title = 'Septic Guides for Nashville Homeowners | 615 Septic Tank Pumping';
+const description =
+  'Septic guides for Nashville, TN — costs, Davidson County permits, what to do during a backup, and the decisions worth getting right. Cited figures. Call 24/7.';
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Guides', path },
+];
+const schema = graph([organization(), website(), webPage({ path, title, description }), breadcrumbs(trail)]);
+
+// Always read from the collection — never a hardcoded array.
+const guides = await getCollection('guides');
+
+// Group under the parent service, so each H2 sends equity to a money page.
+const groups = services
+  .map((s) => ({ service: s, items: guides.filter((g) => g.data.parentService === s.slug) }))
+  .filter((g) => g.items.length > 0);
+
+const orphans = guides.filter((g) => !services.some((s) => s.slug === g.data.parentService));
+const intents = [
+  { key: 'cost', label: 'Cost' },
+  { key: 'insurance-permits', label: 'Rules & permits' },
+  { key: 'urgency', label: 'What to do now' },
+  { key: 'vs-decision', label: 'Decisions' },
+] as const;
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs trail={trail} />
+  <section class="bg-offwhite py-12 md:py-16">
+    <div class="container-site">
+      <p class="eyebrow">{guides.length} guides · {CONTACT.serviceArea}</p>
+      <h1 class="mt-2 font-display text-[2.4rem] leading-[1.06] text-primary-dark sm:text-5xl">
+        Septic Guides for Nashville Homeowners
+      </h1>
+      <hr class="rule-accent" />
+      <p class="mt-6 max-w-3xl text-xl leading-relaxed text-ink">
+        Cost breakdowns with cited sources, what Davidson County actually requires on permits, what to do in the first
+        ten minutes of a backup, and the decisions that are worth getting right before money is committed. Every figure
+        here is a published third-party range, linked at the foot of the page it appears on.
+      </p>
+      <div class="mt-7 flex flex-wrap gap-2">
+        {
+          intents.map((i) => (
+            <a href={`#intent-${i.key}`} class="inline-flex min-h-11 items-center rounded-sm border border-primary px-4 py-2 font-display text-sm font-bold uppercase tracking-wide text-primary-dark hover:bg-primary hover:text-white">
+              {i.label} ({guides.filter((g) => g.data.intent === i.key).length})
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <TickerBar />
+
+  <section class="section">
+    <div class="container-site space-y-14">
+      {
+        groups.map((g) => (
+          <div id={`svc-${g.service.slug}`}>
+            <h2 class="text-2xl md:text-3xl">
+              <a href={`/${g.service.slug}/`} class="inline-flex min-h-11 items-center text-primary-dark hover:text-accent-dark">
+                {g.service.name}
+              </a>
+            </h2>
+            <hr class="rule-accent" />
+            <p class="mt-4 max-w-3xl text-lg text-ink-soft">{g.service.blurb}</p>
+            <ul class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {g.items.map((item) => (
+                <li id={`intent-${item.data.intent}`} class="card card-hover">
+                  <a href={`/guide/${item.id}/`} class="flex h-full flex-col p-5">
+                    <span class="font-display text-xs font-bold uppercase tracking-[0.14em] text-accent-dark">
+                      {item.data.badge}
+                    </span>
+                    <h3 class="mt-1.5 text-lg leading-snug text-primary-dark">{item.data.h1}</h3>
+                    <p class="mt-2 flex-1 text-[1rem] leading-relaxed text-ink-soft">{item.data.dek}</p>
+                    <p class="mt-3 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-widest text-primary-light">
+                      Read <Icon name="arrow" size={16} />
+                    </p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+
+      {
+        orphans.length > 0 && (
+          <div>
+            <h2 class="text-2xl md:text-3xl">More guides</h2>
+            <hr class="rule-accent" />
+            <ul class="mt-6 grid gap-4 md:grid-cols-3">
+              {orphans.map((item) => (
+                <li class="card card-hover">
+                  <a href={`/guide/${item.id}/`} class="block p-5">
+                    <h3 class="text-lg leading-snug text-primary-dark">{item.data.h1}</h3>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <CtaBand
+    heading="A guide gets you to a decision. A reading gets you a number."
+    body={`General figures are useful until they are not. ${CONTACT.serviceArea} — call and get the numbers for the actual property.`}
+    secondaryLabel="Run the cost estimator"
+    secondaryHref="/tools/septic-pumping-cost-estimator/"
+  />
+</Base>

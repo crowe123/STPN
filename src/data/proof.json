@@ -1,0 +1,27 @@
+{
+  "_readme": [
+    "DORMANT PROOF SLOTS. Every array below is empty on purpose.",
+    "The site has no operating history, no reviews and no certifications on file, so none are claimed anywhere.",
+    "The components that read this file return null on an empty array — no empty section, no heading with nothing",
+    "under it, no 'coming soon'. The layout is designed to read as complete without them.",
+    "",
+    "TO ACTIVATE, add real entries and rebuild. Rules that are not negotiable:",
+    "  • Only genuinely received, unincentivised reviews. Do not edit them beyond truncation.",
+    "  • testimonials[] populating is what switches the testimonial section AND its Review/AggregateRating",
+    "    schema on. Until then no rating markup is emitted at all.",
+    "  • credentials[] is for certifications that exist and can be produced on request.",
+    "  • stats[] is for counts that are true and countable (jobs completed, years operating).",
+    "  • team[] is for real named people who work here.",
+    "The FTC Consumer Review Rule carries penalties up to $53,088 per violation for fabricated reviews.",
+    "See HANDOFF.md → 'Dormant proof slots' and /leave-a-review/ for the collection kit."
+  ],
+  "testimonials": [],
+  "stats": [],
+  "credentials": [],
+  "team": [],
+  "awards": [],
+  "reviewPlatform": {
+    "name": "",
+    "url": ""
+  }
+}

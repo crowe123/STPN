@@ -1,0 +1,179 @@
+---
+/**
+ * ABOUT PAGE — written about the work, not a backstory.
+ * No founding year, no "since 20XX", no team photos, no invented owner.
+ * Every sentence here must be true, because this is the page an AI engine is
+ * most likely to quote.
+ */
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import TickerBar from '../components/TickerBar.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import WhyUs from '../components/WhyUs.astro';
+import CredentialList from '../components/CredentialList.astro';
+import TeamGrid from '../components/TeamGrid.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { BRAND, CONTACT, tel, hasStreetAddress } from '../config';
+import { KNOWS_ABOUT, coreServices } from '../lib/data';
+import { graph, organization, website, webPage, breadcrumbs } from '../lib/schema';
+
+const path = '/about/';
+const title = 'About 615 Septic Tank Pumping | Nashville, TN Septic Contractor';
+const description =
+  'About 615 Septic Tank Pumping — what the company does, the standards the work follows, the Davidson County service area, and how pricing works. Call 24/7.';
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'About', path },
+];
+const schema = graph([organization(), website(), webPage({ path, title, description }), breadcrumbs(trail)]);
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs trail={trail} />
+  <section class="bg-offwhite py-12 md:py-16">
+    <div class="container-site">
+      <p class="eyebrow">{CONTACT.serviceArea}</p>
+      <h1 class="mt-2 font-display text-[2.4rem] leading-[1.06] text-primary-dark sm:text-5xl">
+        About 615 Septic Tank Pumping
+      </h1>
+      <hr class="rule-accent" />
+      <p class="mt-6 max-w-3xl text-xl leading-relaxed text-ink">
+        {BRAND.name} is a licensed septic tank pumping contractor serving {CONTACT.serviceArea}. The work is residential
+        and commercial tank pumping and cleaning, documented inspection, drain field assessment, grease interceptor
+        service, and emergency response when a system stops accepting water.
+      </p>
+    </div>
+  </section>
+  <TickerBar />
+
+  <section class="section">
+    <div class="container-site grid gap-12 lg:grid-cols-[minmax(0,1fr)_20rem]">
+      <article class="prose-site max-w-none">
+        <h2>What the company does</h2>
+        <p>
+          Septic tank pumping is the core of it. A tank is emptied completely — the floating scum layer and the settled
+          sludge on the floor, not just the liquid in between — its inlet and outlet baffles are inspected while it is
+          open, its effluent filter is located and rinsed where one is fitted, and the household is left with written
+          findings and a dated interval for the next service.
+        </p>
+        <p>
+          Around that sit the services that follow from what a pump-out finds: documented inspection for property
+          transactions and insurers, drain field assessment before anyone commits to a five-figure replacement, baffle
+          repair, riser installation so a buried access port never has to be dug out again, tank locating on properties
+          where nobody knows where it is, and grease interceptor service for commercial kitchens.
+        </p>
+
+        <h2>The standards the work follows</h2>
+        <p>
+          Domestic septage removal in Tennessee is permitted through the Department of Environment and Conservation's
+          Division of Water Resources, under Chapter 0400-48-01 of the state rules. Vehicles engaged in septage removal
+          must display the firm name and address plus the removal permit number in lettering at least two inches high on
+          a contrasting background, along with a department-issued sticker — a check any homeowner can make from their
+          own driveway in five seconds, and one worth making.
+        </p>
+        <p>
+          Systems themselves are permitted through the county environmental health office. Davidson County is one of
+          Tennessee's contract counties, which can mean an additional county permit alongside the state process, and
+          reviews here are stricter than the state average because Middle Tennessee is karst country — soluble limestone
+          with a thin soil mantle and solution features that route water underground with very little filtration.
+        </p>
+
+        <h2>How pricing works</h2>
+        <p>
+          Published ranges appear on this site because the first question is always what it costs. A standard
+          residential pump-out runs $275 to $525 in Tennessee according to published pricing, and reported Davidson
+          County jobs span $199 to $796 depending on tank size and access. Those are third-party figures, cited on the
+          pages where they appear.
+        </p>
+        <p>
+          A price for a specific property is confirmed before any work starts. Anything that needs excavating, fitting
+          or replacing is quoted first — nothing is done on the assumption that a homeowner standing next to an open
+          tank will agree to it.
+        </p>
+
+        <h2>Service area</h2>
+        <p>
+          {CONTACT.serviceAreaLong}. That covers Bellevue, Antioch, Hermitage, Donelson and Madison as primary areas;
+          Green Hills, Goodlettsville, Old Hickory and Joelton; and the smaller communities where septic is the only
+          option — Whites Creek, Bells Bend, Forest Hills, Oak Hill, Una and Pasquo. Each area page sets out the ground
+          conditions and failure patterns specific to that part of the county.
+        </p>
+
+        <h2>What is not claimed on this site</h2>
+        <p>
+          There are no customer reviews, star ratings, testimonials, award badges or job counts anywhere on this site,
+          because there is no verified stock of them to publish. Fabricated reviews carry FTC penalties of up to
+          $53,088 per violation, and beyond the legal question, a review that was written by the company is not
+          evidence of anything.
+        </p>
+        <p>
+          What this site offers instead is checkable: published cost ranges with their sources linked, the specific
+          methods and standards the work follows, a cost estimator that shows its formula, and technical detail precise
+          enough that a reader can judge whether the person who wrote it knows the trade. Genuine reviews will be
+          published here as they are received, through the
+          <a href="/leave-a-review/"> review page</a>, and not before.
+        </p>
+      </article>
+
+      <aside class="lg:sticky lg:top-28 lg:self-start">
+        <div class="card p-5">
+          <p class="font-display text-lg font-bold uppercase tracking-wide text-primary-dark">Contact</p>
+          <hr class="rule-accent" />
+          <address class="mt-4 not-italic leading-relaxed">
+            <p class="font-semibold text-primary-dark">{BRAND.name}</p>
+            {
+              hasStreetAddress ? (
+                <p class="text-ink-soft">
+                  {CONTACT.address.street}<br />
+                  {CONTACT.address.locality}, {CONTACT.address.region} {CONTACT.address.postalCode}
+                </p>
+              ) : (
+                <p class="text-ink-soft">{CONTACT.address.locality}, {CONTACT.address.region}</p>
+              )
+            }
+            <p class="mt-3">
+              <a href={tel} class="font-display text-2xl font-bold text-primary-dark">{CONTACT.phoneDisplay}</a>
+            </p>
+            <p><a href={`mailto:${CONTACT.email}`} class="underline">{CONTACT.email}</a></p>
+          </address>
+          <p class="mt-3 text-sm text-ink-soft">{CONTACT.hoursHuman}</p>
+          <a href={tel} class="btn btn-accent mt-4 w-full" data-cta="about-call">
+            <Icon name="phone" size={20} /> Call now
+          </a>
+        </div>
+        <div class="card mt-6 p-5">
+          <p class="font-display text-lg font-bold uppercase tracking-wide text-primary-dark">Areas of expertise</p>
+          <hr class="rule-accent" />
+          <ul class="mt-4 space-y-2 text-[0.98rem] leading-relaxed text-ink-soft">
+            {KNOWS_ABOUT.map((k) => (
+              <li class="flex items-start gap-2">
+                <Icon name="check" size={16} class="mt-1 shrink-0 text-primary-light" />
+                <span>{k}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-5 border-t border-line pt-4">
+            <CredentialList />
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container-site">
+      <SectionHead eyebrow="How the work is done" heading="Four things that are true of every visit" />
+      <div class="mt-10"><WhyUs headingLevel={3} /></div>
+      <div class="mt-12"><TeamGrid /></div>
+      <p class="mt-10">
+        <a href="/services-menu/" class="btn btn-outline">All {coreServices.length} core services →</a>
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    heading={`Call ${CONTACT.phoneDisplay}`}
+    body={`${BRAND.name} covers ${CONTACT.serviceArea}. A person answers and takes the details.`}
+    secondaryLabel="Send property details"
+  />
+</Base>

@@ -1,0 +1,99 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Icon from '../../components/Icon.astro';
+import RelatedGuides from '../../components/RelatedGuides.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { BRAND, CONTACT, tel } from '../../config';
+import { graph, organization, website, webPage, breadcrumbs, articleNode } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.filter((p) => p.id).map((p) => ({ params: { slug: p.id }, props: { post: p } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+const path = `/blog/${post.id}/`;
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Blog', path: '/blog/' },
+  { name: d.h1, path },
+];
+
+// Organization-authored. A Person byline is only ever set when a real named
+// person exists in proof.json — no invented author personas, no stock headshots.
+const schema = graph([
+  organization(),
+  website(),
+  webPage({ path, title: d.title, description: d.description, modified: d.dateModified }),
+  breadcrumbs(trail),
+  articleNode({
+    path,
+    headline: d.h1,
+    description: d.description,
+    published: d.datePublished,
+    modified: d.dateModified,
+    section: d.category,
+  }),
+]);
+---
+<Base
+  title={d.title}
+  description={d.description}
+  path={path}
+  schema={schema}
+  ogType="article"
+  publishedTime={d.datePublished}
+  modifiedTime={d.dateModified}
+>
+  <Breadcrumbs trail={trail} />
+  <div class="container-site max-w-4xl py-10 lg:py-14">
+    <article>
+      <p class="inline-block rounded-sm bg-accent-tint px-3 py-1.5 font-display text-sm font-bold uppercase tracking-[0.14em] text-accent-dark">
+        {d.category}
+      </p>
+      <h1 class="mt-4 font-display text-[2.25rem] leading-[1.08] text-primary-dark sm:text-[2.75rem]">{d.h1}</h1>
+      <hr class="rule-accent" />
+      <p class="mt-5 text-xl leading-relaxed text-ink-soft">{d.dek}</p>
+      <p class="mt-4 text-sm text-ink-soft">
+        Published {d.datePublished} · Last updated {d.dateModified} · By
+        <a href="/about/" class="font-semibold"> {BRAND.name}</a>
+      </p>
+      <div class="prose-site mt-10 max-w-none">
+        <Content />
+      </div>
+
+      <div class="mt-12 rounded border border-line bg-primary p-6 text-white sm:p-8">
+        <p class="font-display text-2xl font-bold uppercase leading-tight text-white sm:text-3xl">
+          Book a pump-out in {CONTACT.address.locality}
+        </p>
+        <p class="mt-2 max-w-2xl text-white/85">
+          Covering {CONTACT.serviceArea}. Price confirmed before any work starts.
+        </p>
+        <div class="mt-5 flex flex-col gap-3 sm:flex-row">
+          <a href={tel} class="btn btn-accent" data-cta="blog-call">
+            <Icon name="phone" size={20} /> Call {CONTACT.phoneDisplay}
+          </a>
+          <a href="/contact/" class="btn btn-ghost-light">Send property details</a>
+        </div>
+      </div>
+
+      {
+        d.related.length > 0 && (
+          <div class="mt-12">
+            <RelatedGuides slugs={d.related} heading="Related guides" headingLevel={2} />
+          </div>
+        )
+      }
+    </article>
+  </div>
+  <CtaBand
+    heading="Not sure what the system needs?"
+    body="Nine questions in the urgency assessment gives a clear next step."
+    secondaryLabel="Run the assessment"
+    secondaryHref="/tools/septic-system-assessment/"
+  />
+</Base>

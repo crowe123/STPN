@@ -1,0 +1,179 @@
+---
+/**
+ * Multi-step lead form (step 1 trivial: service + ZIP; step 2: name + phone).
+ * Posts to FORMS.endpoint from src/config.ts — never to a decorative nowhere.
+ *
+ * FORMS.enabled is false until a real endpoint is configured; while it is false
+ * the form renders in a clearly-labelled disabled state rather than silently
+ * swallowing a lead. The phone route above it always works.
+ */
+import Icon from './Icon.astro';
+import { FORMS, CONTACT, tel } from '../config';
+import { coreServices } from '../lib/data';
+
+interface Props {
+  id?: string;
+  heading?: string;
+  body?: string;
+  submitLabel?: string;
+  /** Written into a hidden field so submissions are attributable to a page. */
+  source: string;
+  cityName?: string;
+  headingLevel?: 2 | 3;
+}
+const {
+  id = 'lead-form',
+  heading,
+  body,
+  submitLabel = 'Request a call back',
+  source,
+  cityName,
+  headingLevel = 2,
+} = Astro.props;
+const H = `h${headingLevel}` as 'h2' | 'h3';
+const resolvedHeading = heading ?? (cityName ? `Book septic service in ${cityName}` : 'Get a price for this property');
+---
+<div id={id} class="card overflow-hidden">
+  <div class="bg-primary px-6 py-5 text-white">
+    <H class="text-2xl text-white">{resolvedHeading}</H>
+    <p class="mt-2 text-white/85">
+      {body ?? 'Two short steps. A person calls back with a price — not an automated sequence.'}
+    </p>
+    <a href={tel} class="btn btn-accent mt-4 w-full sm:w-auto" data-cta="form-call-first">
+      <Icon name="phone" size={20} /> Call {CONTACT.phoneDisplay} instead
+    </a>
+  </div>
+
+  <form
+    class="space-y-5 p-6"
+    method="POST"
+    action={FORMS.endpoint}
+    data-lead-form
+    aria-describedby={FORMS.enabled ? undefined : `${id}-disabled`}
+  >
+    {
+      !FORMS.enabled && (
+        <p id={`${id}-disabled`} class="rounded border-l-4 border-accent bg-accent-tint px-4 py-3 text-sm leading-relaxed text-ink">
+          <strong class="font-semibold">Online booking is not live yet.</strong> The form endpoint has not been
+          configured for this site, so submissions are disabled rather than lost. Call {CONTACT.phoneDisplay} and a
+          person will take the details.
+        </p>
+      )
+    }
+
+    <input type="hidden" name="_source" value={source} />
+    {cityName && <input type="hidden" name="_city" value={cityName} />}
+
+    <!-- Honeypot: off-screen, not display:none, excluded from tab order and a11y tree. -->
+    <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+      <label for={`${id}-hp`}>Leave this field empty</label>
+      <input id={`${id}-hp`} type="text" name={FORMS.honeypotName} tabindex="-1" autocomplete="off" />
+    </div>
+
+    <fieldset data-step="1" class="space-y-5 border-0 p-0">
+      <legend class="font-display text-lg font-bold uppercase tracking-wide text-primary-dark">
+        Step 1 — what and where
+      </legend>
+      <div>
+        <label for={`${id}-service`} class="block font-semibold text-primary-dark">What do you need?</label>
+        <select
+          id={`${id}-service`}
+          name="service"
+          required
+          disabled={!FORMS.enabled}
+          class="mt-1.5 min-h-12 w-full rounded border border-line bg-white px-3 py-2.5 text-[1.0625rem] disabled:bg-offwhite disabled:text-ink-soft"
+        >
+          <option value="">Choose one…</option>
+          {coreServices.map((s) => <option value={s.name}>{s.name}</option>)}
+          <option value="Not sure">Not sure — need advice</option>
+        </select>
+      </div>
+      <div>
+        <label for={`${id}-zip`} class="block font-semibold text-primary-dark">Property ZIP code</label>
+        <input
+          id={`${id}-zip`}
+          name="zip"
+          inputmode="numeric"
+          autocomplete="postal-code"
+          pattern="[0-9]{5}"
+          maxlength="5"
+          required
+          disabled={!FORMS.enabled}
+          placeholder="37221"
+          class="mt-1.5 min-h-12 w-full rounded border border-line px-3 py-2.5 text-[1.0625rem] disabled:bg-offwhite"
+        />
+      </div>
+      <button type="button" data-next class="btn btn-primary w-full" disabled={!FORMS.enabled}>
+        Continue <Icon name="arrow" size={18} />
+      </button>
+    </fieldset>
+
+    <fieldset data-step="2" hidden class="space-y-5 border-0 p-0">
+      <legend class="font-display text-lg font-bold uppercase tracking-wide text-primary-dark">
+        Step 2 — how to reach you
+      </legend>
+      <div>
+        <label for={`${id}-name`} class="block font-semibold text-primary-dark">Name</label>
+        <input
+          id={`${id}-name`}
+          name="name"
+          autocomplete="name"
+          required
+          class="mt-1.5 min-h-12 w-full rounded border border-line px-3 py-2.5 text-[1.0625rem]"
+        />
+      </div>
+      <div>
+        <label for={`${id}-phone`} class="block font-semibold text-primary-dark">Phone</label>
+        <input
+          id={`${id}-phone`}
+          name="phone"
+          type="tel"
+          autocomplete="tel"
+          required
+          class="mt-1.5 min-h-12 w-full rounded border border-line px-3 py-2.5 text-[1.0625rem]"
+        />
+      </div>
+      <div>
+        <label for={`${id}-message`} class="block font-semibold text-primary-dark">
+          What is the system doing? <span class="font-normal text-ink-soft">(optional)</span>
+        </label>
+        <textarea
+          id={`${id}-message`}
+          name="message"
+          rows="3"
+          class="mt-1.5 w-full rounded border border-line px-3 py-2.5 text-[1.0625rem]"
+        ></textarea>
+      </div>
+      <div class="flex gap-3">
+        <button type="button" data-back class="btn btn-outline">Back</button>
+        <button type="submit" class="btn btn-accent flex-1">{submitLabel}</button>
+      </div>
+      <p class="text-sm leading-relaxed text-ink-soft">
+        Used only to return your call about this property. See the <a href="/privacy/">privacy policy</a>.
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+<script>
+  // Multi-step progression. Two short steps convert far better than one long one.
+  document.querySelectorAll('form[data-lead-form]').forEach((form) => {
+    const s1 = form.querySelector('[data-step="1"]') as HTMLFieldSetElement | null;
+    const s2 = form.querySelector('[data-step="2"]') as HTMLFieldSetElement | null;
+    if (!s1 || !s2) return;
+
+    form.querySelector('[data-next]')?.addEventListener('click', () => {
+      const fields = Array.from(s1.querySelectorAll('select,input')) as HTMLInputElement[];
+      const ok = fields.every((f) => f.checkValidity() || f.reportValidity());
+      if (!ok) return;
+      s1.hidden = true;
+      s2.hidden = false;
+      (s2.querySelector('input') as HTMLInputElement | null)?.focus();
+    });
+
+    form.querySelector('[data-back]')?.addEventListener('click', () => {
+      s2.hidden = true;
+      s1.hidden = false;
+    });
+  });
+</script>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="615 Septic Tank Pumping">
+  <title>615 Septic Tank Pumping</title>
+  <rect x="0" y="0" width="64" height="64" rx="10" fill="#14432F"/>
+  <clipPath id="t"><rect x="13.75" y="21.75" width="36.5" height="24.5" rx="3"/></clipPath>
+  <rect x="15" y="33" width="34" height="14" fill="#E4700D" clip-path="url(#t)"/>
+  <rect x="13.75" y="21.75" width="36.5" height="24.5" rx="3" fill="none" stroke="#FFFFFF" stroke-width="3.5"/>
+  <path d="M20 15.5v20.5M44 15.5v24" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M20 15.5h-6M44 15.5h6" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,74 @@
+---
+/**
+ * Service-area graphic. Deliberately NOT a Google Maps iframe — third-party
+ * iframes are the single heaviest thing on a page and the local signal survives
+ * without them. Generated inline as SVG (zero requests, zero JS) and wrapped in
+ * a link out to Google Maps for the locality.
+ */
+import Icon from './Icon.astro';
+import { CONTACT } from '../config';
+
+interface Props {
+  cityName: string;
+  state?: string;
+  neighborhoods?: string[];
+  routes?: string[];
+  caption?: string;
+}
+const { cityName, state = CONTACT.address.region, neighborhoods = [], routes = [], caption } = Astro.props;
+const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${cityName}, ${state}`)}`;
+
+// Deterministic pseudo-random placement so the graphic is stable per city name
+// (no Math.random — the build must be reproducible).
+const hash = (s: string) => {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return Math.abs(h);
+};
+const seed = hash(cityName);
+const pins = neighborhoods.slice(0, 6).map((n, i) => {
+  const a = ((seed >> (i * 3)) % 360) * (Math.PI / 180);
+  const r = 26 + ((seed >> (i * 5)) % 22);
+  return { name: n, x: 200 + Math.cos(a + i * 1.05) * r * 1.55, y: 130 + Math.sin(a + i * 1.05) * r };
+});
+---
+<figure class="overflow-hidden rounded border border-line bg-white shadow-card">
+  <a href={mapUrl} target="_blank" rel="noopener nofollow" class="block" aria-label={`Open ${cityName}, ${state} in Google Maps`}>
+    <svg viewBox="0 0 400 260" width="400" height="260" class="h-auto w-full" role="img" aria-label={`Service coverage around ${cityName}, ${state}`}>
+      <title>{`Service coverage around ${cityName}, ${state}`}</title>
+      <rect width="400" height="260" fill="#F4F2ED" />
+      <g stroke="#DFDCD3" stroke-width="1">
+        {Array.from({ length: 12 }, (_, i) => <line x1={i * 36} y1="0" x2={i * 36} y2="260" />)}
+        {Array.from({ length: 8 }, (_, i) => <line x1="0" y1={i * 36} x2="400" y2={i * 36} />)}
+      </g>
+      <path d="M0 196 C 90 176, 150 214, 230 190 S 340 156, 400 172" fill="none" stroke="#B9CFC2" stroke-width="9" opacity="0.85" />
+      <path d="M-10 92 C 80 104, 140 62, 214 78 S 330 116, 410 96" fill="none" stroke="#FFFFFF" stroke-width="7" />
+      <path d="M-10 92 C 80 104, 140 62, 214 78 S 330 116, 410 96" fill="none" stroke="#DFDCD3" stroke-width="1" />
+      <line x1="60" y1="-10" x2="128" y2="270" stroke="#FFFFFF" stroke-width="6" />
+      <line x1="60" y1="-10" x2="128" y2="270" stroke="#DFDCD3" stroke-width="1" />
+      <circle cx="200" cy="130" r="86" fill="#14432F" opacity="0.07" />
+      <circle cx="200" cy="130" r="86" fill="none" stroke="#256B4A" stroke-width="2" stroke-dasharray="7 5" />
+      {pins.map((p) => (
+        <g>
+          <circle cx={p.x} cy={p.y} r="4.5" fill="#14432F" />
+          <text x={p.x + 8} y={p.y + 4} font-family="system-ui, sans-serif" font-size="10.5" fill="#47564E">{p.name}</text>
+        </g>
+      ))}
+      <g>
+        <path d="M200 108 c-9 0-16 7-16 16 0 12 16 28 16 28s16-16 16-28c0-9-7-16-16-16z" fill="#E4700D" />
+        <circle cx="200" cy="124" r="5.5" fill="#FFFFFF" />
+      </g>
+      <text x="200" y="176" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0D2C1F">
+        {cityName}, {state}
+      </text>
+    </svg>
+  </a>
+  <figcaption class="border-t border-line px-4 py-3 text-sm leading-relaxed text-ink-soft">
+    <span class="inline-flex items-center gap-1.5 font-semibold text-primary-dark">
+      <Icon name="map" size={16} /> Coverage around {cityName}
+    </span>
+    {routes.length > 0 && <span> — reached via {routes.slice(0, 3).join(', ')}.</span>}
+    {caption && <span> {caption}</span>}
+    <a href={mapUrl} target="_blank" rel="noopener nofollow" class="ml-1 inline-flex min-h-11 items-center underline md:min-h-0">Open in Google Maps</a>
+  </figcaption>
+</figure>

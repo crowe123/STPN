@@ -1,0 +1,46 @@
+---
+/**
+ * Four differentiators that are true on day one. No review counts, no
+ * years-in-business, no job counts — every claim here is about method.
+ */
+import Icon from './Icon.astro';
+
+interface Props { headingLevel?: 3 | 4; items?: { title: string; body: string }[] }
+const {
+  headingLevel = 3,
+  items = [
+    {
+      title: 'The tank is emptied to the floor',
+      body: 'Liquid, scum and settled sludge all come out, and the floor is visible before the lid goes back on. Drawing off the liquid and leaving the sludge is the standard shortcut in this trade; it is not what happens here.',
+    },
+    {
+      title: 'Readings taken before anything is pumped',
+      body: 'Liquid level, scum depth and sludge depth exist only before the vacuum starts. They are what turn "every three to five years" into a specific date for this system, and they are recorded every visit.',
+    },
+    {
+      title: 'Baffles and filter checked while the tank is open',
+      body: 'A missing outlet baffle has no above-ground symptom and is the most common cause of a drain field dying early. It is checked on every pump-out as routine, not offered as an extra.',
+    },
+    {
+      title: 'Findings in writing before we leave',
+      body: 'What was found, what it means, and when the next service is due — written and dated, so it works for an insurer, a buyer, or simply the next visit.',
+    },
+  ],
+} = Astro.props;
+const H = `h${headingLevel}` as 'h3' | 'h4';
+---
+<ul class="grid gap-6 md:grid-cols-2">
+  {
+    items.map((it) => (
+      <li class="flex gap-4">
+        <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-primary text-white">
+          <Icon name="check" size={20} />
+        </span>
+        <div>
+          <H class="text-xl leading-snug">{it.title}</H>
+          <p class="mt-1.5 text-[1.0625rem] leading-relaxed text-ink-soft">{it.body}</p>
+        </div>
+      </li>
+    ))
+  }
+</ul>

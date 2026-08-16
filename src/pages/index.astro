@@ -1,0 +1,252 @@
+---
+/**
+ * HOMEPAGE.
+ *
+ * The body of this page is the supplied article, rendered VERBATIM from
+ * src/data/homepage-article.json — mechanically extracted from the source .docx
+ * by scripts/extract-article.mjs, never re-typed. No word, heading level, list
+ * item or table cell is changed, added, removed or reordered.
+ *
+ * `npm run qa` diffs the text rendered inside <article data-verbatim-article>
+ * against src/data/homepage-article.txt and fails the build on any difference.
+ *
+ * Everything outside that <article> element is site chrome (header, hero CTAs,
+ * ticker, hub links, lead form, footer) and does not touch the article text.
+ */
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import TickerBar from '../components/TickerBar.astro';
+import SystemDiagram from '../components/SystemDiagram.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import LeadCaptureForm from '../components/LeadCaptureForm.astro';
+import Testimonials from '../components/Testimonials.astro';
+import StatBand from '../components/StatBand.astro';
+import RelatedGuides from '../components/RelatedGuides.astro';
+import { BRAND, CONTACT, SITE, tel } from '../config';
+import { primaryCities, secondaryCities } from '../lib/data';
+import { graph, organization, website, webPage, faqPage } from '../lib/schema';
+import article from '../data/homepage-article.json';
+
+type Block =
+  | { type: 'h1' | 'h2' | 'h3' | 'p'; text: string }
+  | { type: 'ul'; items: string[] }
+  | { type: 'table'; head: string[]; rows: string[][] };
+
+const blocks = article as Block[];
+
+// Hero takes the article's H1 and the two paragraphs beneath it; the remainder
+// renders in document order below. Nothing is skipped and nothing is reordered.
+const heroBlocks = blocks.slice(0, 3);
+const bodyBlocks = blocks.slice(3);
+
+// FAQPage schema is mirrored 1:1 from the article's own visible Q&A — the h3s
+// after the "Frequently Asked Questions" heading and the paragraph under each.
+const faqStart = blocks.findIndex((b) => 'text' in b && /^Frequently Asked Questions/i.test(b.text));
+const faqs: { q: string; a: string }[] = [];
+for (let i = faqStart + 1; i < blocks.length; i++) {
+  const b = blocks[i];
+  const next = blocks[i + 1];
+  if (b?.type === 'h3' && next?.type === 'p') faqs.push({ q: b.text, a: next.text });
+}
+
+const path = '/';
+const title = 'Septic Tank Pumping Nashville TN | Licensed Full Pump-Out | 615 Septic';
+const description =
+  'Licensed septic tank pumping in Nashville, TN. Full pump-out of 1,000-1,500 gallon tanks across Davidson County, $275-$525 typical. Free estimates. Call 24/7.';
+
+const schema = graph([
+  organization(),
+  website(),
+  webPage({ path, title, description }),
+  faqs.length > 0 ? faqPage(path, faqs) : null,
+]);
+---
+
+<Base title={title} description={description} path={path} schema={schema}>
+  <!-- ── HERO (chrome around the article's own opening) ──────────────────── -->
+  <section class="border-b border-line bg-offwhite">
+    <div class="container-site grid items-center gap-10 py-12 lg:grid-cols-[1.05fr_1fr] lg:py-16">
+      <article data-verbatim-article="part-1">
+        {
+          heroBlocks.map((b) =>
+            b.type === 'h1' ? (
+              <h1 class="font-display text-[2.6rem] leading-[1.05] text-primary-dark sm:text-5xl lg:text-[3.5rem]">
+                {b.text}
+              </h1>
+            ) : (
+              <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink first-of-type:text-xl first-of-type:text-ink">
+                {b.text}
+              </p>
+            )
+          )
+        }
+      </article>
+      <div>
+        <SystemDiagram compact />
+        <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+          What the truck is actually emptying: the floating scum layer and the settled sludge, the two layers that are
+          never supposed to leave the tank.
+        </p>
+      </div>
+    </div>
+    <div class="container-site pb-12 lg:pb-14">
+      <div class="flex flex-col gap-3 sm:flex-row">
+        <a href={tel} class="btn btn-accent" data-cta="hero-call">
+          <Icon name="phone" size={22} /> Call {CONTACT.phoneDisplay}
+        </a>
+        <a href="/contact/" class="btn btn-outline">Get a Free Estimate</a>
+        <a href="/tools/septic-pumping-cost-estimator/" class="btn btn-outline">
+          <Icon name="calc" size={20} /> Estimate the cost
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <TickerBar />
+  <StatBand />
+
+  <!-- ── ARTICLE BODY, VERBATIM ──────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container-site">
+      <article class="prose-site mx-auto max-w-3xl" data-verbatim-article="part-2">
+        {
+          bodyBlocks.map((b) => {
+            if (b.type === 'h2') return <h2>{b.text}</h2>;
+            if (b.type === 'h3') return <h3>{b.text}</h3>;
+            if (b.type === 'p') return <p>{b.text}</p>;
+            if (b.type === 'ul')
+              return (
+                <ul>
+                  {b.items.map((i) => (
+                    <li>{i}</li>
+                  ))}
+                </ul>
+              );
+            return (
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      {b.head.map((h) => (
+                        <th scope="col">{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {b.rows.map((r) => (
+                      <tr>
+                        {r.map((c, ci) =>
+                          ci === 0 ? <th scope="row">{c}</th> : <td>{c}</td>
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+          })
+        }
+      </article>
+    </div>
+  </section>
+
+  <Testimonials />
+
+  <!-- ── HUB LINKING (chrome). The homepage is the authority hub: it links
+       out to every core service, the top cities, the guide hub and the
+       calculator, and every subpage links its brand mention back here. ──── -->
+  <section class="section section-alt">
+    <div class="container-site">
+      <SectionHead
+        eyebrow="What we do"
+        heading="Septic services across Nashville and Davidson County"
+        lede="Ten core services plus specialist work for pre-sale inspections, new owners, rentals, well-water properties and karst lots."
+      />
+      <div class="mt-10"><ServicesGrid showLongTail /></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-site">
+      <SectionHead
+        eyebrow="Where we work"
+        heading="Service areas across Davidson County"
+        lede="Each area page covers the ground conditions, housing stock and failure patterns specific to that part of the county — because a Bellevue ridge lot and a Neelys Bend bottomland lot are not the same system problem."
+      />
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          primaryCities.map((c) => (
+            <a href={`/service-areas/${c.slug}/`} class="card card-hover block p-6">
+              <h3 class="text-xl text-primary-dark">
+                {c.name}, {c.state}
+              </h3>
+              <p class="mt-1 text-sm font-semibold uppercase tracking-wide text-accent-dark">
+                ZIP {c.zips.join(', ')}
+              </p>
+              <p class="mt-2 text-[1.0625rem] leading-relaxed text-ink-soft">{c.localAngle[0].split('. ')[0]}.</p>
+              <p class="mt-3 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-widest text-primary-light">
+                {c.name} septic service <Icon name="arrow" size={16} />
+              </p>
+            </a>
+          ))
+        }
+      </div>
+      <p class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-[1.0625rem] text-ink-soft">
+        <span class="font-semibold text-primary-dark">Also covering:</span>
+        {
+          secondaryCities.map((c) => (
+            <a href={`/service-areas/${c.slug}/`} class="inline-flex min-h-11 items-center font-medium text-primary-light hover:text-accent-dark md:min-h-0">
+              {c.name}
+            </a>
+          ))
+        }
+        <a href="/service-areas/" class="btn btn-outline ml-auto">All service areas</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container-site grid gap-10 lg:grid-cols-[1.15fr_1fr]">
+      <div>
+        <RelatedGuides
+          heading="Answers to the questions people actually search"
+          lede="Cost breakdowns, permit rules, what to do during a backup, and the decisions worth getting right before spending money."
+          slugs={[
+            'septic-tank-pumping-cost-nashville',
+            'how-often-pump-septic-tank-nashville',
+            'sewage-backing-up-what-to-do',
+            'septic-permit-davidson-county',
+          ]}
+        />
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/guide/" class="btn btn-primary">All septic guides</a>
+          <a href="/tools/" class="btn btn-outline">
+            <Icon name="calc" size={20} /> Free tools
+          </a>
+          <a href="/resources/" class="btn btn-outline">Free pre-hire checklist</a>
+        </div>
+      </div>
+      <LeadCaptureForm
+        source="homepage"
+        heading="Get a price for this property"
+        body="Two short steps. A person calls back with a price — the number is confirmed before any work starts."
+      />
+    </div>
+  </section>
+
+  <CtaBand
+    heading={`A full tank will not wait. Call ${CONTACT.phoneDisplay}.`}
+    body={`${BRAND.name} covers ${CONTACT.serviceArea}. Backups get priority dispatch; routine pump-outs are usually same-day or next-day.`}
+    callLabel="Call now"
+    secondaryLabel="Book a pump-out"
+  />
+
+  <Fragment slot="head">
+    <meta name="robots" content="max-image-preview:large, max-snippet:-1" />
+    <meta name="geo.region" content={`US-${CONTACT.address.region}`} />
+    <meta name="geo.placename" content={CONTACT.address.locality} />
+    <meta name="last-reviewed" content={SITE.lastReviewed} />
+  </Fragment>
+</Base>

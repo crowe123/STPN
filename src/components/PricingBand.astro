@@ -1,0 +1,77 @@
+---
+/**
+ * Published cost ranges with their sources. This occupies the slot most local
+ * sites give to a testimonial row — it answers the visitor's actual first
+ * question, and every figure is a cited third-party range rather than a claim
+ * about us.
+ */
+import Icon from './Icon.astro';
+import { CONTACT, tel } from '../config';
+
+interface Props { headingLevel?: 2 | 3 }
+const { headingLevel = 2 } = Astro.props;
+const H = `h${headingLevel}` as 'h2' | 'h3';
+const HSub = `h${headingLevel + 1}` as 'h3' | 'h4';
+
+const bands = [
+  {
+    name: 'Standard tank pump-out',
+    range: '$275 – $525',
+    detail: 'Full removal of liquid, scum and sludge, with baffle and filter inspection. Most 1,000–1,500 gallon residential tanks.',
+    swing: 'Tank capacity, lid access, and years since the last service.',
+  },
+  {
+    name: 'Long-neglected tank clean-out',
+    range: '$525 +',
+    detail: 'Agitation, backflush and a second vacuum pass where floor sludge has compacted past what a vacuum lifts on its own.',
+    swing: 'Ten years or more without service, or no record at all.',
+  },
+  {
+    name: 'Drain field replacement (for scale)',
+    range: '$6,000 – $10,000',
+    detail: 'Not a service we quote here — the number that routine pumping exists to keep theoretical. National 2026 figures span roughly $5,000 to $20,000.',
+    swing: 'Field size, soil, access, and whether a solution feature constrains where it can go.',
+  },
+];
+---
+<div>
+  <p class="eyebrow">Published pricing, not a phone call</p>
+  <H class="mt-2 text-3xl md:text-4xl">What Septic Pumping Costs in {CONTACT.address.locality}</H>
+  <hr class="rule-accent" />
+  <p class="mt-5 max-w-3xl text-lg leading-relaxed text-ink-soft">
+    These are published market ranges for Tennessee, not our invented numbers. A standard residential pump-out runs
+    <strong>$275 to $525</strong> per visit statewide, and Davidson County jobs have been reported from $199 to $796
+    depending on tank size and access. Price is confirmed on site before any work starts.
+  </p>
+
+  <div class="mt-8 grid gap-5 lg:grid-cols-3">
+    {
+      bands.map((b) => (
+        <div class="card flex flex-col p-6">
+          <HSub class="text-lg leading-snug">{b.name}</HSub>
+          <p class="mt-2 font-display text-4xl font-bold text-accent-dark">{b.range}</p>
+          <p class="mt-3 flex-1 text-[1.0625rem] leading-relaxed text-ink-soft">{b.detail}</p>
+          <p class="mt-4 border-t border-line pt-3 text-sm leading-relaxed text-ink-soft">
+            <span class="font-display font-bold uppercase tracking-wide text-primary">What moves it:</span> {b.swing}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+    <a href="/tools/septic-pumping-cost-estimator/" class="btn btn-primary">
+      <Icon name="calc" size={20} /> Estimate this property
+    </a>
+    <a href={tel} class="btn btn-outline">
+      <Icon name="phone" size={20} /> Call {CONTACT.phoneDisplay}
+    </a>
+  </div>
+
+  <p class="mt-5 max-w-3xl text-sm leading-relaxed text-ink-soft">
+    Sources:
+    <a href="https://www.septiccompaniesnearme.com/guides/septic-pumping-cost/tennessee" rel="nofollow noopener" target="_blank">Tennessee septic pumping cost data (2026)</a>,
+    <a href="https://www.homeyou.com/tn/septic-tank-cleaning-nashville-costs" rel="nofollow noopener" target="_blank">Davidson County septic cleaning costs</a>,
+    <a href="https://homeguide.com/costs/drain-leach-field-replacement-cost" rel="nofollow noopener" target="_blank">drain field replacement cost (2026)</a>.
+  </p>
+</div>

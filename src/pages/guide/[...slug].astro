@@ -1,0 +1,189 @@
+---
+/**
+ * GUIDE PAGES (~700–1,000 words).
+ * Scope rule: BoFu-adjacent only — cost, insurance/permits/code, urgency, and
+ * vs/decision. Pure-informational curiosity content stays off this site.
+ *
+ * Astro 5 content collections: entries expose `entry.id` (never `entry.slug`),
+ * and rendering uses the standalone `render()` from astro:content — never
+ * `entry.render()`, and never set:html of the raw body.
+ */
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Icon from '../../components/Icon.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import RelatedGuides from '../../components/RelatedGuides.astro';
+import LeadCaptureForm from '../../components/LeadCaptureForm.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { BRAND, CONTACT, tel } from '../../config';
+import { serviceBySlug } from '../../lib/data';
+import { graph, organization, website, webPage, breadcrumbs, faqPage, articleNode } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides');
+  return guides
+    .filter((g) => g.id) // guard: an empty id would collide with the index route
+    .map((g) => ({ params: { slug: g.id }, props: { guide: g } }));
+}
+
+const { guide } = Astro.props;
+const { Content } = await render(guide);
+const d = guide.data;
+const path = `/guide/${guide.id}/`;
+const parent = serviceBySlug(d.parentService);
+
+const trail = [
+  { name: 'Home', path: '/' },
+  ...(parent ? [{ name: parent.name, path: `/${parent.slug}/` }] : []),
+  { name: d.h1, path },
+];
+
+const schema = graph([
+  organization(),
+  website(),
+  webPage({ path, title: d.title, description: d.description, modified: d.dateModified }),
+  breadcrumbs(trail),
+  articleNode({
+    path,
+    headline: d.h1,
+    description: d.description,
+    published: d.datePublished,
+    modified: d.dateModified,
+    aboutServiceSlug: parent?.slug,
+    section: d.badge,
+  }),
+  faqPage(path, d.faq),
+]);
+---
+
+<Base
+  title={d.title}
+  description={d.description}
+  path={path}
+  schema={schema}
+  ogType="article"
+  publishedTime={d.datePublished}
+  modifiedTime={d.dateModified}
+>
+  <Breadcrumbs trail={trail} />
+
+  <div class="container-site grid gap-12 py-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:py-14">
+    <article>
+      <p class="inline-block rounded-sm bg-accent-tint px-3 py-1.5 font-display text-sm font-bold uppercase tracking-[0.14em] text-accent-dark">
+        {d.badge}
+      </p>
+      <h1 class="mt-4 font-display text-[2.25rem] leading-[1.08] text-primary-dark sm:text-[2.75rem]">{d.h1}</h1>
+      <hr class="rule-accent" />
+      <p class="mt-5 max-w-3xl text-xl leading-relaxed text-ink-soft">{d.dek}</p>
+      <p class="mt-4 text-sm text-ink-soft">
+        Published {d.datePublished} · Last updated {d.dateModified} · By
+        <a href="/about/" class="font-semibold"> {BRAND.name}</a>
+      </p>
+
+      <!-- Answer-first: the direct answer sits above everything else. -->
+      <div class="mt-8 rounded border-l-4 border-accent bg-offwhite p-6">
+        <p class="font-display text-sm font-bold uppercase tracking-[0.16em] text-accent-dark">The short answer</p>
+        <p class="mt-2 text-lg leading-relaxed text-ink">{d.answer}</p>
+      </div>
+
+      <div class="prose-site mt-10 max-w-none">
+        <Content />
+      </div>
+
+      <!-- Mid-article conversion band -->
+      <div class="mt-12 rounded border border-line bg-primary p-6 text-white sm:p-8">
+        <p class="font-display text-2xl font-bold uppercase leading-tight text-white sm:text-3xl">
+          Want this answered for your actual property?
+        </p>
+        <p class="mt-2 max-w-2xl text-white/85">
+          A pump-out with inspection replaces every general figure on this page with the numbers for this specific
+          system — sludge depth, component condition, and a dated next-service interval.
+        </p>
+        <div class="mt-5 flex flex-col gap-3 sm:flex-row">
+          <a href={tel} class="btn btn-accent" data-cta="guide-mid-call">
+            <Icon name="phone" size={20} /> Call {CONTACT.phoneDisplay}
+          </a>
+          <a href="#guide-form" class="btn btn-ghost-light">Send property details</a>
+        </div>
+      </div>
+
+      <h2 class="mt-12 font-display text-3xl">Frequently asked questions</h2>
+      <hr class="rule-accent" />
+      <div class="mt-6">
+        <FaqAccordion faqs={d.faq} headingLevel={3} />
+      </div>
+
+      {
+        d.related.length > 0 && (
+          <div class="mt-12">
+            <RelatedGuides slugs={d.related} heading="Keep reading" headingLevel={2} />
+          </div>
+        )
+      }
+    </article>
+
+    <aside class="lg:sticky lg:top-28 lg:self-start">
+      {
+        parent && (
+          <div class="card border-t-4 border-t-accent p-5">
+            <p class="font-display text-xs font-bold uppercase tracking-[0.16em] text-ink-soft">Related service</p>
+            <h2 class="mt-1.5 text-xl text-primary-dark">{parent.name}</h2>
+            <p class="mt-2 text-[1rem] leading-relaxed text-ink-soft">{parent.blurb}</p>
+            <a href={`/${parent.slug}/`} class="btn btn-primary mt-4 w-full">
+              View the service <Icon name="arrow" size={18} />
+            </a>
+            <a href={tel} class="btn btn-outline mt-3 w-full" data-cta="guide-sidebar-call">
+              <Icon name="phone" size={18} /> {CONTACT.phoneDisplay}
+            </a>
+          </div>
+        )
+      }
+      <div class="card mt-6 p-5">
+        <p class="font-display text-lg font-bold uppercase tracking-wide text-primary-dark">Work it out yourself</p>
+        <hr class="rule-accent" />
+        <ul class="mt-4 space-y-3">
+          <li>
+            <a href="/tools/septic-pumping-cost-estimator/" class="link-row font-semibold">Cost estimator →</a>
+            <p class="text-sm text-ink-soft">A range in three questions, formula shown in full.</p>
+          </li>
+          <li>
+            <a href="/tools/septic-system-assessment/" class="link-row font-semibold">Urgency assessment →</a>
+            <p class="text-sm text-ink-soft">Nine questions and a clear next step.</p>
+          </li>
+          <li>
+            <a href="/resources/" class="link-row font-semibold">Pre-hire checklist →</a>
+            <p class="text-sm text-ink-soft">What to ask before booking any septic contractor.</p>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <section id="guide-form" class="section section-alt">
+    <div class="container-site grid gap-10 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <p class="eyebrow">Bottom line</p>
+        <p class="mt-2 font-display text-3xl font-bold uppercase leading-tight text-primary-dark md:text-4xl">
+          Call {CONTACT.phoneDisplay}
+        </p>
+        <hr class="rule-accent" />
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
+          {BRAND.name} covers {CONTACT.serviceArea}. General figures get you to a decision; an on-site reading gets you
+          a number. Price is confirmed before any work starts.
+        </p>
+        <a href={tel} class="btn btn-accent mt-6" data-cta="guide-bottom-call">
+          <Icon name="phone" size={22} /> Call {CONTACT.phoneDisplay}
+        </a>
+      </div>
+      <LeadCaptureForm source={`guide:${guide.id}`} id="guide-lead-form" />
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Still not sure what the system needs?"
+    body="Nine questions in the urgency assessment will tell you whether this is an emergency, a booking, or something to keep an eye on."
+    secondaryLabel="Run the assessment"
+    secondaryHref="/tools/septic-system-assessment/"
+  />
+</Base>

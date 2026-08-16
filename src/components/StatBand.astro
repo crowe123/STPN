@@ -1,0 +1,24 @@
+---
+/**
+ * DORMANT PROOF COMPONENT.
+ * Wired to src/data/proof.json → stats[]. Returns null on an empty array.
+ * Only counts that are true and countable belong here (jobs completed, years
+ * operating). No invented figures, not even as placeholders.
+ */
+import { proof } from '../lib/data';
+const items = proof.stats;
+---
+{
+  items.length > 0 && (
+    <div class="bg-primary-dark py-10 text-white">
+      <div class="container-site grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {items.map((s) => (
+          <div>
+            <p class="font-display text-5xl font-bold text-accent">{s.value}</p>
+            <p class="mt-1 text-white/85">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}

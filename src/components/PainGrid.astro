@@ -1,0 +1,47 @@
+---
+import Icon from './Icon.astro';
+
+interface Card { icon: string; title: string; body: string }
+interface Props { cards?: Card[]; headingLevel?: 3 | 4; cityName?: string }
+const { headingLevel = 3, cityName } = Astro.props;
+const H = `h${headingLevel}` as 'h3' | 'h4';
+
+const defaults: Card[] = [
+  {
+    icon: 'alert',
+    title: 'Sewage is backing up right now',
+    body: 'Stop using water immediately — every flush makes it worse. Raw sewage carries bacteria and pathogens, so keep people and pets out of the affected area until it is cleared.',
+  },
+  {
+    icon: 'drop',
+    title: 'Wet ground over the drain field',
+    body: 'Spongy grass or standing effluent in dry weather means liquid is surfacing because the field is overwhelmed. It rarely resolves on its own.',
+  },
+  {
+    icon: 'clock',
+    title: 'No idea when it was last pumped',
+    body: 'Past about five years the tank is statistically due regardless of symptoms — and by the time symptoms appear, solids have usually been reaching the field for a while.',
+  },
+  {
+    icon: 'wallet',
+    title: 'A quote you want a second view on',
+    body: 'A drain field replacement runs $6,000 to $10,000 in Middle Tennessee. Confirming the field has actually failed is worth doing before that money is committed.',
+  },
+];
+
+const { cards = defaults } = Astro.props;
+---
+<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+  {
+    cards.map((c) => (
+      <div class="card flex flex-col border-t-4 border-t-accent p-6">
+        <span class="flex h-11 w-11 items-center justify-center rounded bg-accent-tint text-accent-dark">
+          <Icon name={c.icon} size={24} />
+        </span>
+        <H class="mt-4 text-lg leading-snug">{c.title}</H>
+        <p class="mt-2 text-[1.0625rem] leading-relaxed text-ink-soft">{c.body}</p>
+      </div>
+    ))
+  }
+</div>
+{cityName && <p class="sr-only">Situations we are called to across {cityName}.</p>}

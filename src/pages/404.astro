@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { CONTACT, tel } from '../config';
+import { coreServices, primaryCities } from '../lib/data';
+
+const path = '/404/';
+const title = 'Page Not Found | 615 Septic Tank Pumping, Nashville TN';
+const description =
+  `That page does not exist. Find septic services, service areas and guides for Nashville and Davidson County, or call ${CONTACT.phoneDisplay}.`;
+---
+<Base title={title} description={description} path={path}>
+  <section class="section">
+    <div class="container-site max-w-3xl text-center">
+      <p class="font-display text-[6rem] font-bold leading-none text-primary-tint sm:text-[9rem]">404</p>
+      <h1 class="mt-2 font-display text-[2.4rem] leading-[1.06] text-primary-dark sm:text-5xl">
+        That page is not here
+      </h1>
+      <hr class="rule-accent mx-auto" />
+      <p class="mt-6 text-xl leading-relaxed text-ink-soft">
+        The link may be out of date, or the address slightly off. Everything on the site is one click away below — and
+        if the system is backing up right now, skip all of it and call.
+      </p>
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <a href={tel} class="btn btn-accent" data-cta="404-call">
+          <Icon name="phone" size={22} /> Call {CONTACT.phoneDisplay}
+        </a>
+        <a href="/" class="btn btn-outline">Back to the homepage</a>
+      </div>
+    </div>
+
+    <div class="container-site mt-14 grid gap-8 md:grid-cols-3">
+      <div>
+        <h2 class="text-xl">Services</h2>
+        <hr class="rule-accent" />
+        <ul class="mt-4 space-y-2">
+          {coreServices.slice(0, 6).map((s) => <li><a href={`/${s.slug}/`} class="link-row">{s.name}</a></li>)}
+          <li><a href="/services-menu/" class="link-row font-semibold">All services →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-xl">Service areas</h2>
+        <hr class="rule-accent" />
+        <ul class="mt-4 space-y-2">
+          {primaryCities.map((c) => <li><a href={`/service-areas/${c.slug}/`} class="link-row">{c.name}, {c.state}</a></li>)}
+          <li><a href="/service-areas/" class="link-row font-semibold">All areas →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-xl">Popular pages</h2>
+        <hr class="rule-accent" />
+        <ul class="mt-4 space-y-2">
+          <li><a href="/guide/septic-tank-pumping-cost-nashville/" class="link-row">What pumping costs in Nashville</a></li>
+          <li><a href="/guide/signs-septic-tank-needs-pumping/" class="link-row">Signs a tank needs pumping</a></li>
+          <li><a href="/tools/septic-pumping-cost-estimator/" class="link-row">Cost estimator</a></li>
+          <li><a href="/tools/septic-system-assessment/" class="link-row">Urgency assessment</a></li>
+          <li><a href="/resources/" class="link-row">Free pre-hire checklist</a></li>
+          <li><a href="/contact/" class="link-row">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>

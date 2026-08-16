@@ -1,0 +1,145 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Icon from '../components/Icon.astro';
+import StaticMap from '../components/StaticMap.astro';
+import LeadCaptureForm from '../components/LeadCaptureForm.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { BRAND, CONTACT, tel, hasStreetAddress } from '../config';
+import { primaryCities } from '../lib/data';
+import { graph, organization, website, webPage, breadcrumbs } from '../lib/schema';
+
+const path = '/contact/';
+const title = `Contact ${BRAND.name} | Nashville TN | ${CONTACT.phoneDisplay}`;
+const description =
+  `Contact ${BRAND.name} in Nashville, TN. A live person answers. Service across Davidson County. Call ${CONTACT.phoneDisplay} or send property details.`;
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Contact', path },
+];
+const schema = graph([organization(), website(), webPage({ path, title, description }), breadcrumbs(trail)]);
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs trail={trail} />
+
+  <section class="section-dark py-12 md:py-16">
+    <div class="container-site text-center">
+      <p class="eyebrow">A live person answers</p>
+      <h1 class="mt-2 font-display text-[2.6rem] leading-[1.06] text-white sm:text-5xl">
+        Contact 615 Septic Tank Pumping
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg text-white/85">
+        Phone is the fastest route by a wide margin, and it is the only one that gets a backup dispatched today.
+      </p>
+      <a href={tel} class="btn btn-accent mt-7 px-10 text-2xl" data-cta="contact-hero-call">
+        <Icon name="phone" size={26} /> {CONTACT.phoneDisplay}
+      </a>
+      <p class="mt-4 text-white/75">{CONTACT.hoursHuman}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-site grid gap-12 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <SectionHead
+          eyebrow="Details"
+          heading="How to reach us"
+          lede="The same name, phone number and address appear here, in the footer, in the site's structured data and in llms.txt — identical everywhere, by design."
+        />
+
+        <!-- Full NAP block. All values read from src/config.ts. -->
+        <address class="mt-8 not-italic">
+          <dl class="grid gap-5 sm:grid-cols-2">
+            <div class="rounded border border-line bg-white p-5 shadow-card">
+              <dt class="font-display text-xs font-bold uppercase tracking-[0.16em] text-ink-soft">Business name</dt>
+              <dd class="mt-1 text-lg font-semibold text-primary-dark">{BRAND.name}</dd>
+            </div>
+            <div class="rounded border border-line bg-white p-5 shadow-card">
+              <dt class="font-display text-xs font-bold uppercase tracking-[0.16em] text-ink-soft">Phone</dt>
+              <dd class="mt-1">
+                <a href={tel} class="font-display text-2xl font-bold text-primary-dark">{CONTACT.phoneDisplay}</a>
+              </dd>
+            </div>
+            <div class="rounded border border-line bg-white p-5 shadow-card">
+              <dt class="font-display text-xs font-bold uppercase tracking-[0.16em] text-ink-soft">Email</dt>
+              <dd class="mt-1">
+                <a href={`mailto:${CONTACT.email}`} class="text-lg font-semibold text-primary-dark underline">
+                  {CONTACT.email}
+                </a>
+              </dd>
+            </div>
+            <div class="rounded border border-line bg-white p-5 shadow-card">
+              <dt class="font-display text-xs font-bold uppercase tracking-[0.16em] text-ink-soft">Location</dt>
+              <dd class="mt-1 text-lg font-semibold text-primary-dark">
+                {
+                  hasStreetAddress ? (
+                    <>
+                      {CONTACT.address.street}<br />
+                      {CONTACT.address.locality}, {CONTACT.address.region} {CONTACT.address.postalCode}
+                    </>
+                  ) : (
+                    <>{CONTACT.address.locality}, {CONTACT.address.region}</>
+                  )
+                }
+              </dd>
+            </div>
+            <div class="rounded border border-line bg-white p-5 shadow-card sm:col-span-2">
+              <dt class="font-display text-xs font-bold uppercase tracking-[0.16em] text-ink-soft">Hours</dt>
+              <dd class="mt-1 text-lg text-primary-dark">{CONTACT.hoursHuman}</dd>
+            </div>
+          </dl>
+        </address>
+
+        <h2 class="mt-10 text-2xl">Service area in words</h2>
+        <hr class="rule-accent" />
+        <p class="mt-4 text-[1.0625rem] leading-relaxed text-ink-soft">
+          {CONTACT.serviceAreaLong}. Primary areas are {primaryCities.map((c) => c.name).join(', ')}, with coverage
+          extending across Green Hills, Goodlettsville, Old Hickory, Joelton, Whites Creek, Bells Bend, Forest Hills,
+          Oak Hill, Una and Pasquo. If an address sits on the boundary, call and you will get a straight answer.
+        </p>
+        <p class="mt-3">
+          <a href="/service-areas/" class="btn btn-outline">All service areas →</a>
+        </p>
+
+        <div class="mt-10">
+          <StaticMap
+            cityName={CONTACT.address.locality}
+            neighborhoods={primaryCities.map((c) => c.name)}
+            routes={['I-40', 'I-24', 'Briley Parkway']}
+            caption="Coverage radius approximately 25 miles from central Nashville."
+          />
+        </div>
+      </div>
+
+      <div class="lg:sticky lg:top-28 lg:self-start">
+        <LeadCaptureForm
+          source="contact-page"
+          heading="Send the property details"
+          body="Two short steps. A person calls back with a price. For an active backup, call instead — it gets dispatched ahead of the queue."
+          submitLabel="Request a call back"
+        />
+        <div class="card mt-6 border-l-4 border-l-alert p-5">
+          <p class="font-display text-lg font-bold uppercase tracking-wide text-alert">Sewage in the house right now?</p>
+          <p class="mt-2 text-[1rem] leading-relaxed text-ink-soft">
+            Stop using water completely — no flushing, laundry, dishwasher or showers. Keep people and pets out of the
+            affected area. Do not open the tank lid. Then call.
+          </p>
+          <a href={tel} class="btn btn-accent mt-4 w-full" data-cta="contact-emergency">
+            <Icon name="phone" size={20} /> {CONTACT.phoneDisplay}
+          </a>
+          <a href="/emergency-septic-service/" class="mt-3 flex min-h-11 items-center justify-center text-center font-semibold underline">
+            Emergency septic service →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Backups first, everything else by appointment"
+    body="Routine pump-outs are usually same-day or next-day across the primary service areas."
+    secondaryLabel="Estimate the cost"
+    secondaryHref="/tools/septic-pumping-cost-estimator/"
+  />
+</Base>

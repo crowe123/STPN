@@ -1,0 +1,23 @@
+---
+/**
+ * Section eyebrow + heading. The eyebrow is a styled <p>, never a heading tag —
+ * heading levels are structural on this site, not decorative.
+ * `level` lets the caller keep the h1→h2→h3 descent correct on every page.
+ */
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  level?: 2 | 3;
+  lede?: string;
+  align?: 'left' | 'center';
+  id?: string;
+}
+const { eyebrow, heading, level = 2, lede, align = 'left', id } = Astro.props;
+const Tag = `h${level}` as 'h2' | 'h3';
+---
+<div class:list={['max-w-3xl', align === 'center' && 'mx-auto text-center']}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <Tag id={id} class:list={[level === 2 ? 'mt-2 text-3xl md:text-4xl' : 'mt-2 text-2xl md:text-3xl']}>{heading}</Tag>
+  <hr class:list={['rule-accent', align === 'center' && 'mx-auto']} />
+  {lede && <p class="mt-5 text-lg leading-relaxed text-ink-soft">{lede}</p>}
+</div>

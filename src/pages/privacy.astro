@@ -1,0 +1,99 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { BRAND, CONTACT, SITE, ANALYTICS, hasStreetAddress } from '../config';
+import { graph, organization, website, webPage, breadcrumbs } from '../lib/schema';
+
+const path = '/privacy/';
+const title = 'Privacy Policy | 615 Septic Tank Pumping, Nashville TN';
+const description =
+  'Privacy policy for 615 Septic Tank Pumping — what data this site collects, why, how long it is kept, and how to have it removed.';
+const trail = [{ name: 'Home', path: '/' }, { name: 'Privacy Policy', path }];
+const schema = graph([organization(), website(), webPage({ path, title, description }), breadcrumbs(trail)]);
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs trail={trail} />
+  <section class="section">
+    <div class="container-site max-w-3xl">
+      <h1 class="font-display text-[2.25rem] leading-tight text-primary-dark sm:text-[2.75rem]">Privacy Policy</h1>
+      <hr class="rule-accent" />
+      <p class="mt-4 text-sm text-ink-soft">Last updated {SITE.lastReviewed}</p>
+      <div class="prose-site mt-8 max-w-none">
+        <h2>Who this covers</h2>
+        <p>
+          This policy covers {SITE.domain}, operated by {BRAND.name}
+          {hasStreetAddress ? `, ${CONTACT.address.street}, ${CONTACT.address.locality}, ${CONTACT.address.region} ${CONTACT.address.postalCode}` : ` of ${CONTACT.address.locality}, ${CONTACT.address.region}`}.
+          Questions about anything here go to <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> or {CONTACT.phoneDisplay}.
+        </p>
+
+        <h2>What this site collects</h2>
+        <p>There are two sources of data, and neither involves selling anything to anyone.</p>
+        <h3>Information you send</h3>
+        <p>
+          The forms on this site ask for a name, phone number, email address, property ZIP code and a description of the
+          problem. On the cost estimator, the selections made in the tool are submitted alongside the contact details so
+          the callback is about the right property. Nothing beyond what is typed into the form is collected.
+        </p>
+        <h3>Analytics</h3>
+        <p>
+          {
+            ANALYTICS.provider === 'plausible'
+              ? 'This site uses Plausible Analytics, which is cookieless and does not collect or store personal data or track visitors across sites. It records aggregate page views, referrers and country-level location only.'
+              : ANALYTICS.provider === 'ga4'
+                ? 'This site uses Google Analytics 4, which sets cookies and records page views, referrers, approximate location and device information. Google acts as a data processor for this data; their policies apply in addition to this one.'
+                : 'No analytics are currently running on this site.'
+          }
+        </p>
+
+        <h2>Why it is collected</h2>
+        <ul>
+          <li>To return your call about the property you asked about</li>
+          <li>To send the checklist if you requested it</li>
+          <li>To keep a service record for work carried out at a property</li>
+          <li>To understand, in aggregate, which pages of this site are useful</li>
+        </ul>
+        <p>
+          Contact details submitted through this site are not sold, rented or shared with third-party marketers.
+          Marketing messages are not sent to people who only asked a question.
+        </p>
+
+        <h2>How long it is kept</h2>
+        <p>
+          Enquiries that do not become jobs are kept for up to 12 months and then deleted. Records relating to work
+          actually carried out are kept for as long as needed for warranty, tax and legal purposes, because a service
+          history is part of what a property owner is buying.
+        </p>
+
+        <h2>Who else sees it</h2>
+        <p>
+          The form provider that receives submissions, the email provider used to reply, and the analytics provider
+          named above. Each processes data on our behalf. Data may also be disclosed where the law requires it.
+        </p>
+
+        <h2>Your choices</h2>
+        <ul>
+          <li>Ask what is held about you, and get a copy</li>
+          <li>Ask for it to be corrected or deleted</li>
+          <li>Ask not to be contacted again</li>
+          <li>Block or delete cookies through your browser settings</li>
+        </ul>
+        <p>Email <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> for any of these.</p>
+
+        <h2>Children</h2>
+        <p>This site is not directed at children under 13 and does not knowingly collect their information.</p>
+
+        <h2>Third-party links</h2>
+        <p>
+          Pages here link to published sources — state regulations, cost data, code references. Those sites have their
+          own privacy policies, and this one does not apply to them.
+        </p>
+
+        <h2>Changes</h2>
+        <p>
+          Changes to this policy are published on this page with an updated date at the top. Material changes will be
+          noted rather than made quietly.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

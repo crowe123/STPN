@@ -1,0 +1,22 @@
+---
+/**
+ * Fixed bottom call bar, mobile only. Rendered in HTML, never JS-injected.
+ * Its height is reserved by `body { padding-bottom: var(--callbar-h) }` in
+ * global.css so it can never overlap content or shift layout.
+ */
+import Icon from './Icon.astro';
+import { CONTACT, tel } from '../config';
+---
+<div class="fixed inset-x-0 bottom-0 z-50 h-16 border-t-2 border-accent-dark bg-accent md:hidden">
+  <a
+    href={tel}
+    class="flex h-full w-full items-center justify-center gap-3 px-4 text-white"
+    data-cta="sticky-call-bar"
+  >
+    <Icon name="phone" size={24} class="shrink-0" />
+    <span class="text-left leading-tight">
+      <span class="block font-display text-xl font-bold tracking-wide">Call {CONTACT.phoneDisplay}</span>
+      <span class="block text-xs font-semibold uppercase tracking-[0.12em] text-white/90">A person answers — backups first</span>
+    </span>
+  </a>
+</div>

@@ -1,0 +1,152 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { CONTACT, tel } from '../config';
+import { coreServices } from '../lib/data';
+
+interface Props { currentPath: string }
+const { currentPath } = Astro.props;
+const isActive = (href: string) => (href === '/' ? currentPath === '/' : currentPath.startsWith(href));
+
+const nav = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services-menu/', hasMenu: true },
+  { label: 'Service Areas', href: '/service-areas/' },
+  { label: 'Guides', href: '/guide/' },
+  { label: 'Free Tools', href: '/tools/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Contact', href: '/contact/' },
+];
+---
+
+<header id="site-header" class="sticky top-0 z-40 border-b border-line bg-white transition-shadow">
+  <div class="container-site flex items-center justify-between gap-4 py-3">
+    <a href="/" class="flex min-h-11 shrink-0 items-center" aria-label="615 Septic Tank Pumping — home">
+      <Logo variant="dark" height={42} class="h-11 w-auto" />
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary">
+      {
+        nav.map((item) =>
+          item.hasMenu ? (
+            <div class="group relative">
+              <a
+                href={item.href}
+                class:list={[
+                  'flex items-center gap-1 rounded px-3 py-2 font-display text-[1.0625rem] font-semibold uppercase tracking-wide',
+                  isActive(item.href) ? 'text-accent-dark' : 'text-primary-dark hover:text-accent-dark',
+                ]}
+                aria-haspopup="true"
+              >
+                {item.label}
+                <Icon name="chevron" size={14} class="rotate-90" />
+              </a>
+              <div
+                class="invisible absolute left-0 top-full z-50 w-[22rem] translate-y-1 border border-line bg-white p-2 opacity-0 shadow-lift transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
+              >
+                <ul>
+                  {coreServices.map((s) => (
+                    <li>
+                      <a
+                        href={`/${s.slug}/`}
+                        class="block rounded px-3 py-2 text-[0.95rem] leading-snug hover:bg-primary-tint"
+                      >
+                        {s.name}
+                      </a>
+                    </li>
+                  ))}
+                  <li class="mt-1 border-t border-line pt-1">
+                    <a href="/services-menu/" class="block rounded px-3 py-2 text-[0.95rem] font-semibold hover:bg-primary-tint">
+                      All services &amp; specialist work →
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class:list={[
+                'rounded px-3 py-2 font-display text-[1.0625rem] font-semibold uppercase tracking-wide',
+                isActive(item.href) ? 'text-accent-dark' : 'text-primary-dark hover:text-accent-dark',
+              ]}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          )
+        )
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href={tel} class="hidden text-right leading-tight sm:block">
+        <span class="block font-display text-xs font-semibold uppercase tracking-[0.16em] text-ink-soft">Call now</span>
+        <span class="block font-display text-xl font-bold text-primary-dark">{CONTACT.phoneDisplay}</span>
+      </a>
+      <a href="/contact/" class="btn btn-accent hidden md:inline-flex">Get a Quote</a>
+      <button
+        type="button"
+        id="menu-toggle"
+        class="inline-flex h-11 w-11 items-center justify-center rounded border border-line text-primary-dark lg:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+      >
+        <Icon name="menu" size={26} />
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" hidden class="border-t border-line bg-white lg:hidden">
+    <nav class="container-site py-3" aria-label="Mobile">
+      <ul class="divide-y divide-line">
+        <li><a href="/" class="block py-3 font-display text-lg font-semibold uppercase">Home</a></li>
+        <li>
+          <details>
+            <summary class="flex cursor-pointer list-none items-center justify-between py-3 font-display text-lg font-semibold uppercase">
+              Services <Icon name="chevron" size={16} class="rotate-90" />
+            </summary>
+            <ul class="pb-2">
+              {coreServices.map((s) => (
+                <li><a href={`/${s.slug}/`} class="block py-2 pl-3 text-base">{s.name}</a></li>
+              ))}
+              <li><a href="/services-menu/" class="block py-2 pl-3 text-base font-semibold">All services →</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/service-areas/" class="block py-3 font-display text-lg font-semibold uppercase">Service Areas</a></li>
+        <li><a href="/guide/" class="block py-3 font-display text-lg font-semibold uppercase">Guides</a></li>
+        <li><a href="/tools/" class="block py-3 font-display text-lg font-semibold uppercase">Free Tools</a></li>
+        <li><a href="/about/" class="block py-3 font-display text-lg font-semibold uppercase">About</a></li>
+        <li><a href="/contact/" class="block py-3 font-display text-lg font-semibold uppercase">Contact</a></li>
+      </ul>
+      <a href={tel} class="btn btn-accent mt-4 w-full">
+        <Icon name="phone" size={20} /> Call {CONTACT.phoneDisplay}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // The site's only inline module script: header shadow + mobile menu toggle.
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  const onScroll = () => {
+    if (!header) return;
+    header.classList.toggle('shadow-head', window.scrollY > 8);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  toggle?.addEventListener('click', () => {
+    if (!menu) return;
+    const open = menu.hasAttribute('hidden');
+    if (open) menu.removeAttribute('hidden');
+    else menu.setAttribute('hidden', '');
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+</script>

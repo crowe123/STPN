@@ -1,0 +1,91 @@
+---
+/**
+ * DIY / cheapest-quote / done-properly, on the dimensions that actually decide
+ * outcomes in this trade. Every claim here is about method, not about us.
+ */
+interface Row { dimension: string; diy: string; cheap: string; proper: string }
+
+interface Props { rows?: Row[]; caption?: string }
+const {
+  caption = 'Three ways a septic tank gets emptied in Nashville, and what separates them',
+  rows = [
+    {
+      dimension: 'What leaves the tank',
+      diy: 'Not achievable — domestic septage removal requires a permitted hauler and a licensed disposal site.',
+      cheap: 'Liquid drawn off; compacted sludge on the floor usually stays.',
+      proper: 'Liquid, scum and sludge removed to a visible tank floor.',
+    },
+    {
+      dimension: 'Baffle inspection',
+      diy: 'None. Opening a tank is a confined-space hazard.',
+      cheap: 'Rarely — the tank is often not emptied enough to see them.',
+      proper: 'Inlet and outlet checked with the tank empty, photographed.',
+    },
+    {
+      dimension: 'Effluent filter',
+      diy: 'Usually unknown to the owner.',
+      cheap: 'Commonly missed; a blocked filter mimics a full tank.',
+      proper: 'Located, rinsed, condition recorded.',
+    },
+    {
+      dimension: 'What you know afterwards',
+      diy: 'Nothing new.',
+      cheap: 'That it was pumped. No readings, no interval.',
+      proper: 'Sludge depth, component condition, and a dated next-service interval.',
+    },
+    {
+      dimension: 'Effect on the drain field',
+      diy: 'Continues to degrade.',
+      cheap: 'Working volume only partly restored — symptoms often return within months.',
+      proper: 'Full working volume restored; solids stop reaching the field.',
+    },
+    {
+      dimension: 'Typical cost',
+      diy: '$0 upfront, against a $6,000–$10,000 drain field replacement.',
+      cheap: 'At or below the $275 low end, repeated more often.',
+      proper: '$275–$525 on a 3–5 year interval.',
+    },
+    {
+      dimension: 'Paper trail',
+      diy: 'None.',
+      cheap: 'An invoice.',
+      proper: 'Dated findings for insurance, a sale, or the next inspection.',
+    },
+  ],
+} = Astro.props;
+---
+<div class="table-scroll">
+  <table class="w-full border-collapse text-left">
+    <caption class="sr-only">{caption}</caption>
+    <thead>
+      <tr>
+        <th scope="col" class="bg-primary-dark px-4 py-3 font-display text-base uppercase tracking-wide text-white">
+          What matters
+        </th>
+        <th scope="col" class="bg-primary px-4 py-3 font-display text-base uppercase tracking-wide text-white">
+          Do nothing / DIY
+        </th>
+        <th scope="col" class="bg-primary px-4 py-3 font-display text-base uppercase tracking-wide text-white">
+          Cheapest quote
+        </th>
+        <th scope="col" class="bg-accent-dark px-4 py-3 font-display text-base uppercase tracking-wide text-white">
+          Done properly
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((r, i) => (
+          <tr class={i % 2 ? 'bg-offwhite' : 'bg-white'}>
+            <th scope="row" class="border-b border-line px-4 py-3 align-top font-semibold text-primary-dark">
+              {r.dimension}
+            </th>
+            <td class="border-b border-line px-4 py-3 align-top text-ink-soft">{r.diy}</td>
+            <td class="border-b border-line px-4 py-3 align-top text-ink-soft">{r.cheap}</td>
+            <td class="border-b border-line bg-accent-tint/60 px-4 py-3 align-top font-medium text-ink">{r.proper}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

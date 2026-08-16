@@ -1,0 +1,87 @@
+---
+/**
+ * Brand mark + wordmark lockup.
+ *
+ * Rendered as inline SVG so the self-hosted Barlow Condensed applies to the
+ * wordmark (an <img>-referenced SVG cannot see the document's webfonts).
+ * The mark itself is pure geometry — a tank in profile with its liquid level
+ * and inlet/outlet tees — so it survives at 32px and needs no font at all.
+ *
+ * variant: 'dark'  → for light backgrounds (header)
+ *          'light' → for dark backgrounds (footer)
+ *          'mark'  → square mark only
+ */
+import { BRAND } from '../config';
+
+interface Props {
+  variant?: 'dark' | 'light' | 'mark';
+  height?: number;
+  class?: string;
+}
+const { variant = 'dark', height = 44, class: className = '' } = Astro.props;
+
+const isLight = variant === 'light';
+const plate = isLight ? '#F4F2ED' : '#14432F';
+const tank = isLight ? '#14432F' : '#FFFFFF';
+const liquid = '#E4700D';
+const word = isLight ? '#FFFFFF' : '#0D2C1F';
+const sub = isLight ? '#B9CFC2' : '#47564E';
+
+const markOnly = variant === 'mark';
+const vb = markOnly ? '0 0 64 64' : '0 0 268 64';
+const w = markOnly ? height : Math.round((268 / 64) * height);
+---
+
+<svg
+  viewBox={vb}
+  width={w}
+  height={height}
+  class={className}
+  role="img"
+  aria-label={`${BRAND.name} logo`}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>{BRAND.name}</title>
+  <g>
+    <rect x="0" y="0" width="64" height="64" rx="10" fill={plate} />
+    <clipPath id="lg-tank">
+      <rect x="13.75" y="21.75" width="36.5" height="24.5" rx="3" />
+    </clipPath>
+    <rect x="15" y="33" width="34" height="14" fill={liquid} clip-path="url(#lg-tank)" />
+    <rect
+      x="13.75"
+      y="21.75"
+      width="36.5"
+      height="24.5"
+      rx="3"
+      fill="none"
+      stroke={tank}
+      stroke-width="3.5"
+    />
+    <path d="M20 15.5v20.5M44 15.5v24" stroke={tank} stroke-width="3.5" stroke-linecap="round" />
+    <path d="M20 15.5h-6M44 15.5h6" stroke={tank} stroke-width="3.5" stroke-linecap="round" />
+  </g>
+
+  {!markOnly && (
+    <g>
+      <text
+        x="78"
+        y="30"
+        fill={word}
+        font-family="'Barlow Condensed', 'Arial Narrow', sans-serif"
+        font-size="30"
+        font-weight="700"
+        letter-spacing="0.5"
+      >615 SEPTIC</text>
+      <text
+        x="78"
+        y="50"
+        fill={sub}
+        font-family="'Barlow Condensed', 'Arial Narrow', sans-serif"
+        font-size="18.5"
+        font-weight="600"
+        letter-spacing="3.4"
+      >TANK PUMPING</text>
+    </g>
+  )}
+</svg>

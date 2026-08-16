@@ -1,0 +1,75 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import RelatedGuides from '../../components/RelatedGuides.astro';
+import AssessmentQuiz from '../../components/islands/AssessmentQuiz.tsx';
+import { CONTACT, tel } from '../../config';
+import { graph, organization, website, webPage, breadcrumbs, webApplication } from '../../lib/schema';
+
+const path = '/tools/septic-system-assessment/';
+const title = 'Septic Urgency Assessment for Nashville Homes | 615 Septic Tank Pumping';
+const description =
+  'Free septic urgency assessment. Nine questions about what the system is doing now, producing an urgency level and clear next steps. No contact details required.';
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Free Tools', path: '/tools/' },
+  { name: 'Urgency assessment', path },
+];
+const schema = graph([
+  organization(),
+  website(),
+  webPage({ path, title, description }),
+  breadcrumbs(trail),
+  webApplication({
+    path,
+    name: 'Septic System Urgency Assessment',
+    description:
+      'A nine-question triage tool that classifies a septic system as emergency, urgent, due soon or monitor, with next steps for each level.',
+  }),
+]);
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs trail={trail} />
+  <section class="bg-offwhite py-10 md:py-14">
+    <div class="container-site">
+      <p class="eyebrow">Free tool · result on screen · no email required</p>
+      <h1 class="mt-2 font-display text-[2.4rem] leading-[1.06] text-primary-dark sm:text-5xl">
+        Septic Urgency Assessment
+      </h1>
+      <hr class="rule-accent" />
+      <p class="mt-6 max-w-3xl text-xl leading-relaxed text-ink">
+        Nine plain questions about what the system is doing right now. The result classifies it as an emergency, urgent,
+        due soon, or fine to monitor — and gives the specific next steps for that level rather than a generic call-us.
+      </p>
+      <p class="mt-4 max-w-3xl rounded border-l-4 border-alert bg-[#fdeceb] px-4 py-3 text-[1.0625rem] leading-relaxed">
+        <strong>If sewage is entering the building right now:</strong> stop using water completely and call
+        <a href={tel} class="font-semibold underline"> {CONTACT.phoneDisplay}</a>. Do not wait for a questionnaire.
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container-site max-w-4xl">
+      <AssessmentQuiz client:visible phoneDisplay={CONTACT.phoneDisplay} telHref={tel} />
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container-site">
+      <RelatedGuides
+        heading="Read more on the signals"
+        slugs={[
+          'signs-septic-tank-needs-pumping',
+          'sewage-backing-up-what-to-do',
+          'septic-tank-overflowing-emergency',
+          'how-often-pump-septic-tank-nashville',
+        ]}
+      />
+    </div>
+  </section>
+  <CtaBand
+    heading="Get the result confirmed on site"
+    body="An assessment triages. An inspection with the tank open is what confirms what is actually happening underground."
+    secondaryLabel="Estimate the cost"
+    secondaryHref="/tools/septic-pumping-cost-estimator/"
+  />
+</Base>

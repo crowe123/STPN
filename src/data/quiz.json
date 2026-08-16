@@ -1,0 +1,153 @@
+{
+  "title": "Septic System Urgency Assessment",
+  "intro": "Nine questions about what the system is actually doing right now. The result is an urgency classification, what it means, and what to do next — no contact details required to see it.",
+  "disclaimer": "This assessment is a triage tool built on the standard warning signs, not a diagnosis. Only an on-site inspection with the tank open can confirm what is happening underground. If sewage is entering the building, treat it as an emergency regardless of what this says.",
+  "questions": [
+    {
+      "id": "backup",
+      "text": "Is sewage currently backing up into the house — a floor drain, a tub, or the lowest toilet?",
+      "options": [
+        { "label": "Yes, right now", "weight": 100 },
+        { "label": "It has in the last week", "weight": 45 },
+        { "label": "No", "weight": 0 }
+      ]
+    },
+    {
+      "id": "surfacing",
+      "text": "Is there standing effluent, or wet and spongy ground, over the drain field?",
+      "options": [
+        { "label": "Yes, and it smells", "weight": 60 },
+        { "label": "Wet ground, no smell", "weight": 25 },
+        { "label": "Only after heavy rain", "weight": 12 },
+        { "label": "No", "weight": 0 }
+      ]
+    },
+    {
+      "id": "drains",
+      "text": "How many drains in the house are running slowly?",
+      "options": [
+        { "label": "All of them", "weight": 35 },
+        { "label": "Several, in different rooms", "weight": 25 },
+        { "label": "One fixture only", "weight": 3 },
+        { "label": "None", "weight": 0 }
+      ]
+    },
+    {
+      "id": "odour",
+      "text": "Is there a sewage odour indoors, or near the tank or field outside?",
+      "options": [
+        { "label": "Indoors", "weight": 30 },
+        { "label": "Outdoors, near the tank or field", "weight": 15 },
+        { "label": "Occasionally, faint", "weight": 6 },
+        { "label": "No", "weight": 0 }
+      ]
+    },
+    {
+      "id": "gurgle",
+      "text": "Do toilets gurgle, or does water rise in a toilet when a washing machine drains?",
+      "options": [
+        { "label": "Yes, regularly", "weight": 20 },
+        { "label": "Occasionally", "weight": 10 },
+        { "label": "No", "weight": 0 }
+      ]
+    },
+    {
+      "id": "lastPumped",
+      "text": "When was the tank last pumped?",
+      "options": [
+        { "label": "Never, or no record at all", "weight": 30 },
+        { "label": "More than 8 years ago", "weight": 25 },
+        { "label": "5–8 years ago", "weight": 15 },
+        { "label": "3–5 years ago", "weight": 5 },
+        { "label": "Under 3 years ago", "weight": 0 }
+      ]
+    },
+    {
+      "id": "household",
+      "text": "How does the household size compare to the tank?",
+      "options": [
+        { "label": "4+ people on a 1,000-gallon tank or smaller", "weight": 14 },
+        { "label": "3–4 people on a typical tank", "weight": 6 },
+        { "label": "1–2 people, or a large tank", "weight": 0 },
+        { "label": "Not sure of the tank size", "weight": 6 }
+      ]
+    },
+    {
+      "id": "alarm",
+      "text": "Is there a pump tank or aerobic unit, and is its alarm sounding?",
+      "options": [
+        { "label": "Yes, the alarm is sounding", "weight": 55 },
+        { "label": "There is a pump or aerobic unit, no alarm", "weight": 3 },
+        { "label": "Conventional gravity system", "weight": 0 },
+        { "label": "Not sure", "weight": 3 }
+      ]
+    },
+    {
+      "id": "weather",
+      "text": "Do the symptoms appear only after sustained rain?",
+      "options": [
+        { "label": "Yes — fine in dry weather, bad when wet", "weight": 10 },
+        { "label": "No, they are constant", "weight": 18 },
+        { "label": "No symptoms at all", "weight": 0 }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "minScore": 60,
+      "level": "Emergency",
+      "tone": "critical",
+      "headline": "Treat this as an emergency",
+      "meaning": "The answers describe an active failure: sewage where it should not be, or a system that has stopped accepting water. Raw sewage carries bacteria and pathogens, and every additional gallon of water used makes the situation worse.",
+      "next": [
+        "Stop using water completely — no flushing, laundry, dishwasher or showers.",
+        "Keep people and pets away from any affected area, indoors or out.",
+        "Do not open the tank lid. Septic tank gases displace oxygen and have killed people who leaned in.",
+        "Call now for priority dispatch — the tank is pumped down first, then the cause is diagnosed."
+      ],
+      "cta": "Call for emergency service"
+    },
+    {
+      "minScore": 30,
+      "level": "Urgent",
+      "tone": "warn",
+      "headline": "Book service within days, not months",
+      "meaning": "The system is showing multiple stress signals at once. This pattern usually means the tank is full or a component has failed, and it typically becomes a backup rather than resolving on its own.",
+      "next": [
+        "Reduce water use — spread laundry out, delay anything that can wait.",
+        "Book a pump-out with inspection so the cause is identified, not just the symptom relieved.",
+        "If sewage appears indoors or in the yard before the appointment, treat it as an emergency and call.",
+        "Note when symptoms started and whether they track with rainfall — it changes the diagnosis."
+      ],
+      "cta": "Book a pump-out and inspection"
+    },
+    {
+      "minScore": 12,
+      "level": "Due Soon",
+      "tone": "notice",
+      "headline": "Due for service — schedule it on your own timeline",
+      "meaning": "The answers point to a system approaching its interval or showing early signals, without an active failure. This is the point at which pumping is straightforward maintenance rather than damage control.",
+      "next": [
+        "Schedule a pump-out in the next few weeks rather than waiting for symptoms.",
+        "Ask for baffle condition and sludge depth to be recorded so the next interval is a date rather than a guess.",
+        "If there is no service record for the property, ask for a documented inspection alongside the pump-out.",
+        "Check nothing is parked or stored on the drain field footprint."
+      ],
+      "cta": "Schedule a pump-out"
+    },
+    {
+      "minScore": 0,
+      "level": "Monitor",
+      "tone": "ok",
+      "headline": "No urgent signals — keep to the interval",
+      "meaning": "Nothing here suggests an active problem. Septic systems fail quietly, so the interval matters more than symptoms: by the time signs appear, solids have often already been reaching the drain field.",
+      "next": [
+        "Keep to a 3–5 year pumping interval, shorter for a large household on a small tank.",
+        "Have sludge depth recorded at the next service so the interval becomes specific to this system.",
+        "Keep vehicles, sheds and pools off the drain field footprint.",
+        "Keep wipes, grease and solvents out of the system — the short list that causes most avoidable failures."
+      ],
+      "cta": "Book routine service"
+    }
+  ]
+}

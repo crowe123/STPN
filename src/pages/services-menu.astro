@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import CtaBand from '../components/CtaBand.astro';
+import TickerBar from '../components/TickerBar.astro';
+import { CONTACT } from '../config';
+import { graph, organization, website, webPage, breadcrumbs } from '../lib/schema';
+
+const path = '/services-menu/';
+const title = 'Septic Services in Nashville TN | Full Service List | 615 Septic Tank Pumping';
+const description =
+  'Every septic service offered across Nashville and Davidson County — pumping, cleaning, inspection, drain field, grease traps, risers and emergencies. Call 24/7.';
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Services', path },
+];
+const schema = graph([organization(), website(), webPage({ path, title, description }), breadcrumbs(trail)]);
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs trail={trail} />
+  <section class="bg-offwhite py-12 md:py-16">
+    <div class="container-site">
+      <p class="eyebrow">{CONTACT.serviceArea}</p>
+      <h1 class="mt-2 font-display text-[2.4rem] leading-[1.06] text-primary-dark sm:text-5xl">
+        Septic Services in Nashville, TN
+      </h1>
+      <hr class="rule-accent" />
+      <p class="mt-6 max-w-3xl text-xl leading-relaxed text-ink">
+        Ten core services and five specialist situations, covering everything a septic system in Davidson County
+        realistically needs between installation and replacement. Every visit ends with written findings and a dated
+        interval, whichever service brought us out.
+      </p>
+    </div>
+  </section>
+  <TickerBar />
+  <section class="section">
+    <div class="container-site">
+      <SectionHead eyebrow="Core services" heading="The work most properties need" />
+      <div class="mt-10"><ServicesGrid showLongTail /></div>
+    </div>
+  </section>
+  <CtaBand
+    heading="Not sure which service the property needs?"
+    body="Describe what the system is doing and it takes about a minute on the phone to work out which visit is the right one."
+    secondaryLabel="Run the urgency assessment"
+    secondaryHref="/tools/septic-system-assessment/"
+  />
+</Base>

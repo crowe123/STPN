@@ -1,0 +1,197 @@
+---
+/**
+ * RESOURCES — the site's lead magnet. One genuinely useful printable, gated
+ * behind the lead form. The checklist content is real and specific to Davidson
+ * County, including the truck-permit check any homeowner can perform.
+ */
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { CONTACT, FORMS, tel } from '../config';
+import { graph, organization, website, webPage, breadcrumbs } from '../lib/schema';
+
+const path = '/resources/';
+const title = 'Free Septic Contractor Pre-Hire Checklist | Nashville TN | 615 Septic';
+const description =
+  'Free printable checklist of what to ask before hiring a septic contractor in Nashville, TN — permits, scope, readings and paperwork. Get the download.';
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Free checklist', path },
+];
+const schema = graph([organization(), website(), webPage({ path, title, description }), breadcrumbs(trail)]);
+
+const checklist = [
+  {
+    group: 'Before booking',
+    items: [
+      'Does the contractor hold a TDEC Septic Tank Pumping Contractor permit?',
+      'Will the quote change if the access lid has to be located and excavated? By how much?',
+      'Is the tank emptied to the floor, or is liquid drawn off?',
+      'Are sludge and scum depths measured before pumping, and recorded?',
+      'Are the inlet and outlet baffles inspected while the tank is empty?',
+      'Is the effluent filter located and rinsed, if one is fitted?',
+      'Will findings be provided in writing, dated?',
+    ],
+  },
+  {
+    group: 'When the truck arrives',
+    items: [
+      'Does the vehicle display the firm name and address plus the septage removal permit number, in lettering at least two inches high on a contrasting background?',
+      'Is a department-issued identifying sticker displayed?',
+      'Has the liquid level been read against the outlet invert before anything is pumped?',
+      'Ask to look into the tank before the lid goes back on — the floor should be visible.',
+    ],
+  },
+  {
+    group: 'Before they leave',
+    items: [
+      'What was the sludge depth, and what does it mean for the interval?',
+      'What condition are the baffles in? Ask to see a photograph.',
+      'Was there an effluent filter? If not, how was that confirmed?',
+      'Is there anything to monitor, and anything to fix?',
+      'What is the date of the next service?',
+      'Get the written findings before the truck leaves.',
+    ],
+  },
+  {
+    group: 'For the property file',
+    items: [
+      'Dated service record with volume removed',
+      'Photographs of the empty tank interior',
+      'Tank position measured from two fixed points',
+      'The county permit file, if you have not pulled it before',
+    ],
+  },
+];
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs trail={trail} />
+  <section class="bg-offwhite py-12 md:py-16">
+    <div class="container-site grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr]">
+      <div>
+        <p class="eyebrow">Free printable · one page</p>
+        <h1 class="mt-2 font-display text-[2.4rem] leading-[1.06] text-primary-dark sm:text-5xl">
+          The Septic Contractor Pre-Hire Checklist
+        </h1>
+        <hr class="rule-accent" />
+        <p class="mt-6 max-w-2xl text-xl leading-relaxed text-ink">
+          Twenty-one questions to ask before, during and after a septic service visit in Davidson County — including
+          the truck-marking check that takes five seconds and tells you whether the operator is permitted to be hauling
+          septage at all. Written to be printed and kept with the property paperwork.
+        </p>
+        <p class="mt-4 text-[1.0625rem] text-ink-soft">
+          It works against any contractor, including us. That is the point of it.
+        </p>
+      </div>
+
+      <!-- Preview mockup of the printable, generated inline as SVG. -->
+      <figure class="mx-auto w-full max-w-sm">
+        <svg viewBox="0 0 300 390" width="300" height="390" class="h-auto w-full drop-shadow-xl" role="img" aria-label="Preview of the one-page septic contractor pre-hire checklist">
+          <title>Preview of the printable pre-hire checklist</title>
+          <rect x="6" y="6" width="288" height="378" rx="3" fill="#FFFFFF" stroke="#DFDCD3" stroke-width="1.5" />
+          <rect x="6" y="6" width="288" height="46" fill="#14432F" />
+          <rect x="6" y="52" width="288" height="4" fill="#E4700D" />
+          <text x="20" y="28" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">SEPTIC CONTRACTOR</text>
+          <text x="20" y="44" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#E4700D">PRE-HIRE CHECKLIST</text>
+          {
+            [72, 158, 246, 320].map((y, gi) => (
+              <>
+                <text x="20" y={y} font-family="system-ui, sans-serif" font-size="9.5" font-weight="700" fill="#14432F">
+                  {['BEFORE BOOKING', 'WHEN THE TRUCK ARRIVES', 'BEFORE THEY LEAVE', 'FOR THE PROPERTY FILE'][gi]}
+                </text>
+                <line x1="20" y1={y + 5} x2="280" y2={y + 5} stroke="#DFDCD3" stroke-width="1" />
+                {Array.from({ length: gi === 3 ? 4 : gi === 1 ? 4 : 6 }, (_, i) => (
+                  <>
+                    <rect x="20" y={y + 14 + i * 12} width="8" height="8" fill="none" stroke="#47564E" stroke-width="1.2" />
+                    <rect x="34" y={y + 17 + i * 12} width={196 - ((i * 37) % 70)} height="3" rx="1.5" fill="#C9C4B7" />
+                  </>
+                ))}
+              </>
+            ))
+          }
+          <text x="20" y="374" font-family="system-ui, sans-serif" font-size="7.5" fill="#8A8371">615 Septic Tank Pumping · Nashville, TN</text>
+        </svg>
+        <figcaption class="mt-3 text-center text-sm text-ink-soft">One page, designed to print and keep.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-site grid gap-12 lg:grid-cols-[1.1fr_.9fr]">
+      <div>
+        <SectionHead
+          eyebrow="What is on it"
+          heading="The full checklist"
+          lede="Nothing is held back behind the form — the questions are all here. The download is the printable version, formatted to take to the property."
+        />
+        <div class="mt-8 space-y-8">
+          {
+            checklist.map((c) => (
+              <div>
+                <h3 class="text-xl text-primary-dark">{c.group}</h3>
+                <ul class="mt-3 space-y-2">
+                  {c.items.map((item) => (
+                    <li class="flex items-start gap-3">
+                      <span class="mt-1.5 h-4 w-4 shrink-0 border-2 border-primary" />
+                      <span class="text-[1.0625rem] leading-relaxed text-ink-soft">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="lg:sticky lg:top-28 lg:self-start">
+        <div class="card overflow-hidden">
+          <div class="bg-primary px-6 py-5 text-white">
+            <h2 class="text-2xl text-white">Get the printable version</h2>
+            <p class="mt-2 text-white/85">Sent by email, formatted for a single page.</p>
+          </div>
+          <form class="space-y-5 p-6" method="POST" action={FORMS.endpoint}>
+            {
+              !FORMS.enabled && (
+                <p class="rounded border-l-4 border-accent bg-accent-tint px-4 py-3 text-sm leading-relaxed">
+                  <strong>The download form is not live yet.</strong> The endpoint has not been configured, so
+                  submissions are disabled rather than lost. The full checklist is printed on this page in the meantime.
+                </p>
+              )
+            }
+            <input type="hidden" name="_source" value="resources-checklist" />
+            <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+              <input type="text" name={FORMS.honeypotName} tabindex="-1" autocomplete="off" />
+            </div>
+            <div>
+              <label for="rs-email" class="block font-semibold text-primary-dark">Email</label>
+              <input id="rs-email" name="email" type="email" required disabled={!FORMS.enabled}
+                class="mt-1.5 min-h-12 w-full rounded border border-line px-3 py-2.5 text-[1.0625rem] disabled:bg-offwhite" />
+            </div>
+            <div>
+              <label for="rs-phone" class="block font-semibold text-primary-dark">Phone</label>
+              <input id="rs-phone" name="phone" type="tel" required disabled={!FORMS.enabled}
+                class="mt-1.5 min-h-12 w-full rounded border border-line px-3 py-2.5 text-[1.0625rem] disabled:bg-offwhite" />
+            </div>
+            <button type="submit" class="btn btn-accent w-full" disabled={!FORMS.enabled}>Send me the checklist</button>
+            <p class="text-sm leading-relaxed text-ink-soft">
+              Used to send the checklist and to answer a question about a property if you ask one. See the
+              <a href="/privacy/"> privacy policy</a>.
+            </p>
+          </form>
+        </div>
+        <a href={tel} class="btn btn-outline mt-6 w-full" data-cta="resources-call">
+          <Icon name="phone" size={20} /> Or just call {CONTACT.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Ready to book instead?"
+    body={`Covering ${CONTACT.serviceArea}. Price confirmed before any work starts.`}
+    secondaryLabel="Estimate the cost"
+    secondaryHref="/tools/septic-pumping-cost-estimator/"
+  />
+</Base>

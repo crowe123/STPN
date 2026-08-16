@@ -1,0 +1,115 @@
+---
+/**
+ * REVIEW COLLECTION PAGE — part of the review kit shipped with every build.
+ * Short, mobile-first, one tap to the review destination once the tenant sets
+ * proof.reviewPlatform. Fallback form captures written feedback plus explicit
+ * permission to publish.
+ *
+ * Reviews must be unincentivised and unedited beyond truncation, and only
+ * genuinely received reviews may ever be published or marked up in schema.
+ */
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Icon from '../components/Icon.astro';
+import { BRAND, CONTACT, FORMS, tel } from '../config';
+import { proof } from '../lib/data';
+import { graph, organization, website, webPage, breadcrumbs } from '../lib/schema';
+
+const path = '/leave-a-review/';
+const title = 'Leave a Review | 615 Septic Tank Pumping, Nashville TN';
+const description =
+  'Leave a review for 615 Septic Tank Pumping in Nashville, TN. One tap to the review page, or send written feedback directly. Takes under a minute.';
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Leave a review', path },
+];
+const schema = graph([organization(), website(), webPage({ path, title, description }), breadcrumbs(trail)]);
+const platform = proof.reviewPlatform;
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs trail={trail} />
+  <section class="section">
+    <div class="container-site max-w-2xl">
+      <p class="eyebrow">Takes under a minute</p>
+      <h1 class="mt-2 font-display text-[2.4rem] leading-[1.06] text-primary-dark sm:text-[3rem]">
+        Leave a Review for {BRAND.name}
+      </h1>
+      <hr class="rule-accent" />
+      <p class="mt-6 text-xl leading-relaxed text-ink">
+        If the job was done well — or if it was not — saying so publicly is the most useful thing a customer can do for
+        the next person choosing a septic contractor in Nashville.
+      </p>
+
+      {
+        platform.url ? (
+          <a href={platform.url} target="_blank" rel="noopener" class="btn btn-accent mt-8 w-full px-8 py-5 text-2xl">
+            Write a review on {platform.name}
+          </a>
+        ) : (
+          <p class="mt-8 rounded border-l-4 border-accent bg-accent-tint px-5 py-4 text-[1.0625rem] leading-relaxed">
+            <strong>The public review link is not set up yet.</strong> Until it is, written feedback sent through the
+            form below reaches us directly — and with permission it may be published on this site.
+          </p>
+        )
+      }
+
+      <h2 class="mt-12 text-2xl">Or send feedback directly</h2>
+      <hr class="rule-accent" />
+      <form class="mt-6 space-y-5" method="POST" action={FORMS.endpoint}>
+        {
+          !FORMS.enabled && (
+            <p class="rounded border-l-4 border-accent bg-accent-tint px-4 py-3 text-sm leading-relaxed">
+              <strong>This form is not live yet.</strong> The endpoint has not been configured, so submissions are
+              disabled rather than lost. Call {CONTACT.phoneDisplay} or email
+              <a href={`mailto:${CONTACT.email}`} class="underline"> {CONTACT.email}</a> in the meantime.
+            </p>
+          )
+        }
+        <input type="hidden" name="_source" value="leave-a-review" />
+        <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+          <input type="text" name={FORMS.honeypotName} tabindex="-1" autocomplete="off" />
+        </div>
+        <div>
+          <label for="rv-name" class="block font-semibold text-primary-dark">Your name</label>
+          <input id="rv-name" name="name" required disabled={!FORMS.enabled}
+            class="mt-1.5 min-h-12 w-full rounded border border-line px-3 py-2.5 text-[1.0625rem] disabled:bg-offwhite" />
+        </div>
+        <div>
+          <label for="rv-city" class="block font-semibold text-primary-dark">Area (e.g. Bellevue, Antioch)</label>
+          <input id="rv-city" name="city" disabled={!FORMS.enabled}
+            class="mt-1.5 min-h-12 w-full rounded border border-line px-3 py-2.5 text-[1.0625rem] disabled:bg-offwhite" />
+        </div>
+        <div>
+          <label for="rv-text" class="block font-semibold text-primary-dark">How did the job go?</label>
+          <textarea id="rv-text" name="review" rows="5" required disabled={!FORMS.enabled}
+            class="mt-1.5 w-full rounded border border-line px-3 py-2.5 text-[1.0625rem] disabled:bg-offwhite"></textarea>
+        </div>
+        <label class="flex items-start gap-3 text-[1.0625rem] leading-relaxed">
+          <input type="checkbox" name="publish_permission" value="yes" disabled={!FORMS.enabled}
+            class="mt-1 h-5 w-5 shrink-0 accent-[#14432F]" />
+          <span>
+            I am happy for this to be published on the 615 Septic Tank Pumping website, shown with my first name, last
+            initial and area.
+          </span>
+        </label>
+        <button type="submit" class="btn btn-primary w-full" disabled={!FORMS.enabled}>Send feedback</button>
+      </form>
+
+      <div class="mt-10 rounded border border-line bg-offwhite p-5 text-[1rem] leading-relaxed text-ink-soft">
+        <p class="font-display text-base font-bold uppercase tracking-wide text-primary-dark">
+          How reviews are handled here
+        </p>
+        <ul class="mt-3 space-y-2">
+          <li>Nothing is offered in exchange for a review — no discount, no entry, no gift.</li>
+          <li>Published reviews are shown as written, edited only for length where necessary.</li>
+          <li>Only genuinely received reviews are ever published or included in the site's structured data.</li>
+          <li>Negative feedback is welcome and is not filtered out before it reaches us.</li>
+        </ul>
+      </div>
+
+      <a href={tel} class="btn btn-outline mt-8 w-full" data-cta="review-call">
+        <Icon name="phone" size={20} /> Something went wrong? Call {CONTACT.phoneDisplay}
+      </a>
+    </div>
+  </section>
+</Base>

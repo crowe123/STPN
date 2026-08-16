@@ -1,0 +1,33 @@
+---
+/**
+ * Facts about the work and the regulations governing it — true regardless of
+ * how long the company has traded. Never company credentials or review counts.
+ * Items are styled <span>s, never heading tags.
+ */
+interface Props { items?: string[] }
+const {
+  items = [
+    'TDEC-permitted septage removal',
+    'Tank emptied to the floor — not skimmed',
+    'Baffles inspected on every pump-out',
+    'Written findings before we leave',
+    'Published cost ranges, cited',
+  ],
+} = Astro.props;
+---
+<div class="border-y border-primary-light/30 bg-primary text-white">
+  <div class="container-site">
+    <ul class="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 py-3 text-center">
+      {
+        items.map((item, i) => (
+          <li class="flex items-center gap-2">
+            {i > 0 && <span aria-hidden="true" class="hidden text-accent md:inline">◆</span>}
+            <span class="font-display text-[0.95rem] font-semibold uppercase tracking-[0.09em] text-white/95">
+              {item}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

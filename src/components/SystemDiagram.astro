@@ -1,0 +1,134 @@
+---
+/**
+ * Cross-section of a conventional gravity septic system.
+ *
+ * This is real explanatory artwork, not a placeholder standing in for a photo:
+ * it names the components the rest of the site refers to (inlet and outlet
+ * baffles, the three layers inside the tank, the distribution box, the
+ * laterals) so the copy has something to point at. Inline SVG — zero requests,
+ * scales cleanly, and readable in a screen reader through its <title>/<desc>.
+ */
+interface Props { class?: string; compact?: boolean }
+const { class: className = '', compact = false } = Astro.props;
+---
+<figure class={className}>
+  <svg
+    viewBox="0 0 900 440"
+    width="900"
+    height="440"
+    class="h-auto w-full"
+    role="img"
+    aria-labelledby="sysdiag-t sysdiag-d"
+    font-family="inherit"
+  >
+    <title id="sysdiag-t">Cross-section of a conventional septic system</title>
+    <desc id="sysdiag-d">
+      Wastewater leaves the house through the building drain and enters the septic tank at the inlet baffle. Inside the
+      tank it separates into three layers: a floating scum layer on top, a clear effluent zone in the middle, and
+      settled sludge on the floor. Only the clear middle layer should leave through the outlet baffle, passing to a
+      distribution box and out along the drain field laterals, where it filters down through the soil. Pumping removes
+      the scum and sludge layers, which are the two that are not supposed to leave.
+    </desc>
+
+    <rect width="900" height="440" fill="#FFFFFF" />
+    <rect x="0" y="0" width="900" height="132" fill="#F4F2ED" />
+    <rect x="0" y="132" width="900" height="308" fill="#EDE7DB" />
+    <rect x="0" y="126" width="900" height="8" fill="#B9CFC2" />
+    <text x="884" y="118" text-anchor="end" font-size="12" font-weight="700" fill="#8A8371" letter-spacing="1.5">GROUND LEVEL</text>
+
+    <!-- house -->
+    <g>
+      <path d="M40 126V64l62-40 62 40v62z" fill="#FFFFFF" stroke="#0D2C1F" stroke-width="3" stroke-linejoin="round" />
+      <path d="M28 68 102 20l74 48" fill="none" stroke="#14432F" stroke-width="5" stroke-linejoin="round" />
+      <rect x="86" y="88" width="32" height="38" fill="#14432F" />
+      <rect x="52" y="76" width="24" height="22" fill="#B9CFC2" stroke="#0D2C1F" stroke-width="2" />
+      <rect x="128" y="76" width="24" height="22" fill="#B9CFC2" stroke="#0D2C1F" stroke-width="2" />
+    </g>
+
+    <!-- building drain -->
+    <path d="M164 140 L330 172" stroke="#0D2C1F" stroke-width="11" stroke-linecap="round" />
+    <path d="M164 140 L330 172" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+    <text x="196" y="134" font-size="13" fill="#47564E">Building drain</text>
+
+    <!-- tank -->
+    <g>
+      <clipPath id="tankclip"><rect x="330" y="156" width="252" height="150" rx="6" /></clipPath>
+      <rect x="330" y="156" width="252" height="150" rx="6" fill="#FFFFFF" />
+      <g clip-path="url(#tankclip)">
+        <rect x="330" y="176" width="252" height="26" fill="#C9BFA4" />
+        <rect x="330" y="202" width="252" height="62" fill="#DCEBE1" />
+        <rect x="330" y="264" width="252" height="42" fill="#8B6A3F" />
+        <g opacity="0.5" fill="#6E5230">
+          <circle cx="368" cy="278" r="4" /><circle cx="404" cy="290" r="5" /><circle cx="452" cy="276" r="4.5" />
+          <circle cx="500" cy="292" r="4" /><circle cx="540" cy="280" r="5" /><circle cx="424" cy="272" r="3.5" />
+        </g>
+      </g>
+      <rect x="330" y="156" width="252" height="150" rx="6" fill="none" stroke="#0D2C1F" stroke-width="4" />
+
+      <!-- access riser to grade -->
+      <rect x="428" y="126" width="56" height="34" fill="#FFFFFF" stroke="#0D2C1F" stroke-width="4" />
+      <rect x="420" y="116" width="72" height="12" rx="3" fill="#256B4A" stroke="#0D2C1F" stroke-width="3" />
+      <text x="500" y="110" font-size="13" fill="#47564E">Access riser + secured lid</text>
+
+      <!-- inlet baffle -->
+      <path d="M362 158v66" stroke="#0D2C1F" stroke-width="9" stroke-linecap="round" />
+      <path d="M362 158v66" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+      <!-- outlet baffle -->
+      <path d="M552 158v78" stroke="#0D2C1F" stroke-width="9" stroke-linecap="round" />
+      <path d="M552 158v78" stroke="#E4700D" stroke-width="3" stroke-linecap="round" />
+
+      <text x="338" y="195" font-size="12.5" font-weight="700" fill="#5C4A24">SCUM</text>
+      <text x="338" y="237" font-size="12.5" font-weight="700" fill="#14432F">CLEAR EFFLUENT</text>
+      <text x="338" y="291" font-size="12.5" font-weight="700" fill="#FFFFFF">SLUDGE</text>
+
+      <text x="600" y="182" font-size="13.5" font-weight="700" fill="#0D2C1F">Inlet baffle</text>
+      <text x="600" y="201" font-size="13" fill="#47564E">directs flow down and</text>
+      <text x="600" y="218" font-size="13" fill="#47564E">protects the scum layer</text>
+
+      <text x="332" y="334" font-size="13.5" font-weight="700" fill="#B75505">Outlet baffle</text>
+      <text x="332" y="352" font-size="13" fill="#47564E">draws only the clear zone — and it is the component</text>
+      <text x="332" y="369" font-size="13" fill="#47564E">that fails with no symptom above ground</text>
+    </g>
+
+    <!-- outlet run to d-box -->
+    <path d="M582 246 H700 V300" fill="none" stroke="#0D2C1F" stroke-width="10" stroke-linejoin="round" />
+    <path d="M582 246 H700 V300" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" />
+
+    <!-- distribution box -->
+    <rect x="676" y="300" width="48" height="30" rx="3" fill="#FFFFFF" stroke="#0D2C1F" stroke-width="4" />
+    <text x="736" y="314" font-size="13.5" font-weight="700" fill="#0D2C1F">D-box</text>
+    <text x="736" y="331" font-size="13" fill="#47564E">splits flow evenly</text>
+
+    <!-- laterals -->
+    <g>
+      <rect x="700" y="346" width="180" height="20" rx="4" fill="#D8CDB4" stroke="#0D2C1F" stroke-width="2" />
+      <rect x="700" y="382" width="180" height="20" rx="4" fill="#D8CDB4" stroke="#0D2C1F" stroke-width="2" />
+      <path d="M706 356h168M706 392h168" stroke="#0D2C1F" stroke-width="4" stroke-dasharray="9 7" stroke-linecap="round" />
+      <path d="M700 330 v16 M714 330 v16" stroke="#0D2C1F" stroke-width="4" />
+      <path d="M700 366 v16" stroke="#0D2C1F" stroke-width="4" />
+      <g stroke="#256B4A" stroke-width="2.5" stroke-linecap="round" fill="none">
+        <path d="M740 406v12M780 406v12M820 406v12M860 406v12" />
+      </g>
+      <text x="700" y="434" font-size="13.5" font-weight="700" fill="#0D2C1F">Drain field laterals</text>
+    </g>
+
+    <!-- pump-out callout -->
+    <g>
+      <rect x="34" y="186" width="268" height="116" rx="4" fill="#FFFFFF" stroke="#E4700D" stroke-width="3" />
+      <text x="50" y="212" font-size="15" font-weight="700" fill="#B75505">WHAT PUMPING REMOVES</text>
+      <text x="50" y="238" font-size="13" fill="#47564E">The scum layer and the sludge layer —</text>
+      <text x="50" y="256" font-size="13" fill="#47564E">the two that are never supposed to</text>
+      <text x="50" y="274" font-size="13" fill="#47564E">leave the tank. A partial pump-out</text>
+      <text x="50" y="292" font-size="13" fill="#47564E">lifts the liquid and leaves the floor.</text>
+    </g>
+  </svg>
+  {
+    !compact && (
+      <figcaption class="mt-3 text-sm leading-relaxed text-ink-soft">
+        A conventional gravity system. Solids settle as sludge, fats float as scum, and only the clear middle layer is
+        meant to pass the outlet baffle into the drain field. When the tank runs past its interval that clear zone
+        narrows, the outlet starts drawing solids, and the field — the part that cannot be serviced — takes the damage.
+      </figcaption>
+    )
+  }
+</figure>

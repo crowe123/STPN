@@ -1,0 +1,36 @@
+---
+import Icon from './Icon.astro';
+
+interface Props { landmarks: string[]; routes: string[]; transit: string; cityName: string; headingLevel?: 3 | 4 }
+const { landmarks, routes, transit, cityName, headingLevel = 3 } = Astro.props;
+const H = `h${headingLevel}` as 'h3' | 'h4';
+---
+<div class="grid gap-8 md:grid-cols-2">
+  <div>
+    <H class="text-xl">Landmarks we work around in {cityName}</H>
+    <ul class="mt-4 space-y-2">
+      {
+        landmarks.map((l) => (
+          <li class="flex items-start gap-2.5">
+            <Icon name="map" size={18} class="mt-1 shrink-0 text-primary-light" />
+            <span class="text-[1.0625rem] text-ink-soft">{l}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div>
+    <H class="text-xl">How we reach you</H>
+    <ul class="mt-4 space-y-2">
+      {
+        routes.map((r) => (
+          <li class="flex items-start gap-2.5">
+            <Icon name="truck" size={18} class="mt-1 shrink-0 text-primary-light" />
+            <span class="text-[1.0625rem] text-ink-soft">{r}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-4 text-[1.0625rem] leading-relaxed text-ink-soft">{transit}</p>
+  </div>
+</div>

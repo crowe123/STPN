@@ -1,0 +1,26 @@
+---
+/**
+ * DORMANT PROOF COMPONENT.
+ * Wired to src/data/proof.json → team[]. Returns null on an empty array.
+ * Real named people only — no stock headshots, no invented bios, no personas.
+ */
+import { proof } from '../lib/data';
+const items = proof.team;
+---
+{
+  items.length > 0 && (
+    <div>
+      <h2 class="text-3xl md:text-4xl">The team</h2>
+      <hr class="rule-accent" />
+      <ul class="mt-6 grid gap-5 md:grid-cols-3">
+        {items.map((m) => (
+          <li class="card p-6">
+            <h3 class="text-lg">{m.name}</h3>
+            <p class="text-sm font-semibold uppercase tracking-wide text-accent-dark">{m.role}</p>
+            <p class="mt-2 text-[1.0625rem] leading-relaxed text-ink-soft">{m.bio}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}

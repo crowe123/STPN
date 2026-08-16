@@ -1,0 +1,71 @@
+---
+import Icon from './Icon.astro';
+import { coreServices, longTailServices, type Service } from '../lib/data';
+
+interface Props {
+  /** Explicit list, otherwise all core services. */
+  list?: Service[];
+  showLongTail?: boolean;
+  cityName?: string;
+  headingLevel?: 3 | 4;
+}
+// The whole card is one anchor, so the tap target is the card rather than the
+// heading text — clears the 44px touch minimum without exception.
+const { list = coreServices, showLongTail = false, cityName, headingLevel = 3 } = Astro.props;
+const H = `h${headingLevel}` as 'h3' | 'h4';
+const iconFor: Record<string, string> = {
+  'residential-septic-tank-pumping': 'home',
+  'septic-tank-cleaning': 'drop',
+  'commercial-septic-pumping': 'truck',
+  'emergency-septic-service': 'alert',
+  'septic-tank-inspection': 'doc',
+  'drain-field-inspection': 'map',
+  'grease-trap-cleaning': 'drop',
+  'septic-tank-locating': 'map',
+  'septic-baffle-repair': 'wrench',
+  'septic-tank-riser-installation': 'wrench',
+};
+---
+<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  {
+    list.map((s, i) => (
+      <article class="card card-hover relative flex flex-col">
+        {i < 4 && !cityName && (
+          <span class="absolute right-4 top-4 z-10 rounded-sm bg-accent-tint px-2 py-1 font-display text-xs font-bold uppercase tracking-widest text-accent-dark">
+            Most booked
+          </span>
+        )}
+        <a href={`/${s.slug}/`} class="group flex h-full flex-col p-6">
+          <span class="flex h-12 w-12 items-center justify-center rounded bg-primary-tint text-primary">
+            <Icon name={iconFor[s.slug] ?? 'wrench'} size={26} />
+          </span>
+          <H class="mt-4 text-xl leading-tight text-primary-dark group-hover:text-accent-dark">
+            {cityName ? `${s.name} in ${cityName}` : s.name}
+          </H>
+          <span class="mt-2 flex-1 text-[1.0625rem] leading-relaxed text-ink-soft">{s.blurb}</span>
+          <span class="mt-4 inline-flex items-center gap-2 font-display text-base font-bold uppercase tracking-wide text-accent-dark">
+            Read more <Icon name="arrow" size={18} />
+          </span>
+        </a>
+      </article>
+    ))
+  }
+</div>
+
+{
+  showLongTail && (
+    <div class="mt-8 rounded border border-line bg-white p-6">
+      <p class="font-display text-lg font-bold uppercase tracking-wide text-primary-dark">Specialist situations</p>
+      <hr class="rule-accent" />
+      <ul class="mt-4 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+        {longTailServices.map((s) => (
+          <li>
+            <a href={`/${s.slug}/`} class="link-row font-semibold text-primary-light hover:text-accent-dark">
+              {s.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}

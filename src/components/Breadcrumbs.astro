@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+
+/** `trail` must match the BreadcrumbList passed to the page's schema graph. */
+interface Props { trail: { name: string; path: string }[] }
+const { trail } = Astro.props;
+---
+<nav aria-label="Breadcrumb" class="border-b border-line bg-offwhite">
+  <div class="container-site">
+    <ol class="flex flex-wrap items-center gap-x-2 gap-y-1 py-1.5 text-sm text-ink-soft md:py-3">
+      {
+        trail.map((t, i) => (
+          <li class="flex min-h-11 items-center gap-2 md:min-h-0">
+            {i > 0 && <Icon name="chevron" size={13} class="text-line" />}
+            {i === trail.length - 1 ? (
+              <span aria-current="page" class="font-semibold text-primary-dark">{t.name}</span>
+            ) : (
+              <a href={t.path} class="flex min-h-11 items-center hover:text-accent-dark md:min-h-0">{t.name}</a>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</nav>

@@ -1,0 +1,78 @@
+{
+  "title": "Septic Pumping Cost Estimator",
+  "intro": "Three questions gives a realistic range for a pump-out on a Nashville property. The formula is shown in full below the result — nothing is hidden and no contact details are required to see the number.",
+  "locale": { "currency": "USD", "currencySymbol": "$", "units": "us", "volumeUnit": "gallon", "lengthUnit": "ft" },
+  "basis": {
+    "summary": "The base range is the published Tennessee septic pumping band of $275–$525 per visit. Davidson County jobs have been reported from $199 to $796 depending on tank size and access, which is why the estimator can land outside the headline band.",
+    "sources": [
+      { "label": "Septic pumping cost in Tennessee (2026)", "url": "https://www.septiccompaniesnearme.com/guides/septic-pumping-cost/tennessee" },
+      { "label": "Septic tank cleaning costs, Davidson County", "url": "https://www.homeyou.com/tn/septic-tank-cleaning-nashville-costs" },
+      { "label": "How much does septic tank pumping cost (2026 data)", "url": "https://www.angi.com/articles/how-much-does-septic-tank-pumping-cost.htm" }
+    ]
+  },
+  "baseLow": 275,
+  "baseHigh": 525,
+  "inputs": [
+    {
+      "id": "size",
+      "label": "Tank capacity",
+      "help": "Tennessee sizes tanks by bedroom count, with 750 gallons the floor. Most single-family homes are 1,000–1,500 gallons. Not sure? Pick the middle option — the technician measures on arrival.",
+      "options": [
+        { "value": "750", "label": "750 gallons (small / older 2-bedroom)", "lowMult": 0.85, "highMult": 0.88 },
+        { "value": "1000", "label": "1,000 gallons (typical 3-bedroom)", "lowMult": 1.0, "highMult": 1.0 },
+        { "value": "1250", "label": "1,250 gallons (4-bedroom)", "lowMult": 1.1, "highMult": 1.12 },
+        { "value": "1500", "label": "1,500 gallons (larger home)", "lowMult": 1.2, "highMult": 1.24 },
+        { "value": "unknown", "label": "Not sure", "lowMult": 1.0, "highMult": 1.15 }
+      ]
+    },
+    {
+      "id": "access",
+      "label": "Access to the tank lid",
+      "help": "The single biggest swing factor. A riser at ground level makes the visit an hour; a buried lid on a wooded lot adds locating and excavation time.",
+      "options": [
+        { "value": "riser", "label": "Riser fitted — lid is at ground level", "lowMult": 1.0, "highMult": 1.0 },
+        { "value": "shallow", "label": "Lid known, buried a few inches", "lowMult": 1.06, "highMult": 1.12 },
+        { "value": "buried", "label": "Lid buried, position known", "lowMult": 1.15, "highMult": 1.28 },
+        { "value": "unknown", "label": "Tank position unknown — needs locating", "lowMult": 1.25, "highMult": 1.55 }
+      ]
+    },
+    {
+      "id": "history",
+      "label": "Time since the last pump-out",
+      "help": "A long-neglected tank needs a full clean-out — agitation and a second vacuum pass — rather than a straight pump.",
+      "options": [
+        { "value": "recent", "label": "Under 3 years", "lowMult": 0.95, "highMult": 0.95 },
+        { "value": "normal", "label": "3–5 years", "lowMult": 1.0, "highMult": 1.0 },
+        { "value": "overdue", "label": "5–10 years", "lowMult": 1.08, "highMult": 1.18 },
+        { "value": "neglected", "label": "Over 10 years, or never / unknown", "lowMult": 1.2, "highMult": 1.45 }
+      ]
+    }
+  ],
+  "formulaExplainer": [
+    "Start from the published Tennessee range: $275 low, $525 high.",
+    "Multiply both ends by the tank-capacity factor — larger tanks mean more volume to haul and dispose of.",
+    "Multiply both ends by the access factor — locating and excavating a buried lid is labour before the pump even starts.",
+    "Multiply both ends by the service-history factor — a decade of compacted sludge needs agitation and a second vacuum pass.",
+    "Round to the nearest $5."
+  ],
+  "comparisons": [
+    {
+      "label": "Against a drain field replacement",
+      "text": "Middle Tennessee drain field replacements are commonly quoted at $6,000 to $10,000, against a national 2026 range of roughly $5,000 to $20,000. Pumping on schedule is the maintenance that keeps that number theoretical."
+    },
+    {
+      "label": "Against waiting for symptoms",
+      "text": "By the time drains slow and odour appears, solids have usually already been reaching the drain field for some time. The pump-out costs the same; the damage already done does not undo itself."
+    },
+    {
+      "label": "Against a full clean-out later",
+      "text": "A tank pumped on a 3–5 year interval is a straightforward job. The same tank at 12 years needs agitation, backflushing and a second vacuum pass — the top-of-band and above outcome this estimator shows."
+    }
+  ],
+  "disclaimer": "This is an estimate built from published Tennessee pricing, not a quote. Final price depends on what is found on site — tank condition, actual capacity, hose distance and disposal volume. The price is confirmed before any work starts.",
+  "leadCapture": {
+    "heading": "Get an Exact Quote",
+    "body": "Send the property details and the price is confirmed before the truck is scheduled.",
+    "cta": "Send for an exact quote"
+  }
+}

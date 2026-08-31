@@ -1,0 +1,9 @@
+{
+  "_comment": "DORMANT BY DESIGN. Every array here is empty because no reviews, ratings, certifications, staff bios or operating history exist for this business yet. Components reading this file return null on empty arrays and render nothing at all — no empty section, no heading with nothing under it, no 'coming soon'. QA gate 8 fails the build if proof content appears without backing here. To activate a section, add real, genuinely-received, unedited entries and rebuild. Reviews must be unincentivised and attributable to a named platform. Never add sample, placeholder or illustrative entries.",
+  "testimonials": [],
+  "stats": [],
+  "credentials": [],
+  "team": [],
+  "awards": [],
+  "aggregateRating": null
+}

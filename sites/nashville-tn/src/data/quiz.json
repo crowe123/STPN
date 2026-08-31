@@ -1,0 +1,69 @@
+{
+  "title": "Septic Urgency Assessment",
+  "intro": "Nine questions about what your system is actually doing. You get a severity reading, what it means, and what to do next — before you call anyone.",
+  "questions": [
+    { "id": "backup", "text": "Is sewage backing up into the house right now?", "options": [
+      { "label": "Yes, into a tub, shower or toilet", "score": 100, "critical": true },
+      { "label": "It has in the last week", "score": 40 },
+      { "label": "No", "score": 0 } ] },
+    { "id": "surfacing", "text": "Is there standing water, soft ground or effluent over the tank or drain field?", "options": [
+      { "label": "Yes, and it smells", "score": 45, "critical": true },
+      { "label": "Ground is soft or soggy but no odour", "score": 25 },
+      { "label": "Only after heavy rain, then it clears", "score": 15 },
+      { "label": "No", "score": 0 } ] },
+    { "id": "drains", "text": "How are the drains across the house?", "options": [
+      { "label": "Everything is slow at once", "score": 30 },
+      { "label": "One or two fixtures are slow", "score": 10 },
+      { "label": "Slow only when the washing machine empties", "score": 20 },
+      { "label": "Normal", "score": 0 } ] },
+    { "id": "gurgle", "text": "Any gurgling from drains or toilets?", "options": [
+      { "label": "Yes, regularly", "score": 20 },
+      { "label": "Occasionally", "score": 10 },
+      { "label": "No", "score": 0 } ] },
+    { "id": "odour", "text": "Is there a sewage odour?", "options": [
+      { "label": "Indoors", "score": 25 },
+      { "label": "Outdoors near the tank or field", "score": 20 },
+      { "label": "Only occasionally outdoors", "score": 8 },
+      { "label": "No", "score": 0 } ] },
+    { "id": "grass", "text": "Is the grass over the tank or field greener or growing faster than the rest of the lawn?", "options": [
+      { "label": "Noticeably, yes", "score": 20 },
+      { "label": "Slightly", "score": 10 },
+      { "label": "No", "score": 0 } ] },
+    { "id": "lastPumped", "text": "When was the tank last pumped?", "options": [
+      { "label": "Over 10 years ago, or never, or no records", "score": 30 },
+      { "label": "6–10 years ago", "score": 20 },
+      { "label": "3–5 years ago", "score": 5 },
+      { "label": "Within 3 years", "score": 0 } ] },
+    { "id": "alarm", "text": "Does your system have an alarm, and is it sounding?", "options": [
+      { "label": "Yes, it is sounding now", "score": 60, "critical": true },
+      { "label": "It has sounded recently", "score": 30 },
+      { "label": "It has an alarm and it is silent", "score": 0 },
+      { "label": "No alarm / not sure", "score": 0 } ] },
+    { "id": "recentPump", "text": "Did symptoms return within weeks of a recent pump-out?", "options": [
+      { "label": "Yes", "score": 35 },
+      { "label": "No", "score": 0 },
+      { "label": "Not applicable", "score": 0 } ] }
+  ],
+  "results": [
+    { "min": 100, "level": "Emergency", "tone": "critical",
+      "headline": "This needs attention today.",
+      "meaning": "What you have described is an active failure, not a maintenance issue. Sewage in living space is a biohazard, surfacing effluent is a groundwater concern in Middle Tennessee's fractured limestone, and a sounding alarm means the system is telling you it cannot cope.",
+      "steps": ["Stop all water use now — no flushing, laundry, dishwasher or showers. Every gallon makes it worse.","Keep people and pets away from any affected area, indoors or out.","Do not try to plunge or chemically clear it.","Call us. If the backup reached living space, photograph it before any cleanup for your insurer."],
+      "cta": "Call now — (615) 234-9048" },
+    { "min": 55, "level": "Urgent", "tone": "high",
+      "headline": "Get this looked at within days, not months.",
+      "meaning": "Several signs point to a system at or beyond capacity. It has not failed outright yet, which is the useful part — acting now is the difference between a pump-out and a drain field. Symptoms returning soon after a pump-out in particular suggests a failed baffle, a blocked filter or a field problem rather than a full tank.",
+      "steps": ["Reduce water use — spread laundry across the week, fix running toilets.","Book a pump-out with an internal inspection, not just an empty-and-go.","Ask specifically for the baffles and effluent filter to be checked and reported.","Keep vehicles and heavy equipment off the drain field."],
+      "cta": "Book an inspection" },
+    { "min": 25, "level": "Watch closely", "tone": "medium",
+      "headline": "Early signs. Worth acting on while it is cheap.",
+      "meaning": "Individually these are minor, but together they are the front end of the usual failure sequence. Systems rarely fail suddenly — they signal for months first. Everything you are seeing is addressable now at routine-service prices.",
+      "steps": ["Book a pump-out if it has been three or more years.","Have the effluent filter cleaned and the baffles inspected while the tank is open.","Note whether symptoms track with wet weather — that points at the field rather than the tank.","Get the interval set from measured sludge depth rather than a rule of thumb."],
+      "cta": "Schedule a pump-out" },
+    { "min": 0, "level": "Routine", "tone": "low",
+      "headline": "Nothing here suggests a problem.",
+      "meaning": "No failure signals from what you have described. The useful thing now is keeping to a genuine interval — Tennessee guidance is every three to five years, and every two to three with a garbage disposal, a larger household or a smaller tank.",
+      "steps": ["Book on schedule rather than on symptoms.","Ask for sludge and scum depth to be measured so your interval reflects your tank.","Have the effluent filter cleaned at each visit.","Consider risers if the lids are buried — they pay back in two or three services."],
+      "cta": "Get on a schedule" }
+  ]
+}

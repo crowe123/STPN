@@ -1,0 +1,26 @@
+{
+  "name": "615-septic-tank-pumping",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "icons": "node scripts/gen-icons.mjs",
+    "build": "npm run icons && astro build && node scripts/gen-ai-layer.mjs && node scripts/qa.mjs",
+    "build:only": "astro build",
+    "qa": "node scripts/qa.mjs",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.14",
+    "@astrojs/preact": "^4.1.3",
+    "@astrojs/sitemap": "^3.7.3",
+    "@fontsource-variable/bitter": "^5.2.5",
+    "@fontsource-variable/source-sans-3": "^5.2.5",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^5.18.2",
+    "preact": "^10.29.8",
+    "sharp": "^0.35.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

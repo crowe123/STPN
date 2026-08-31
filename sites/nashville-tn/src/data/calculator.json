@@ -1,0 +1,62 @@
+{
+  "title": "Septic Pumping Cost Estimator",
+  "intro": "Three questions gives you a real number. No email required, no phone call, no \"contact us for a quote\".",
+  "locale": { "currency": "USD", "currencySymbol": "$", "units": "imperial" },
+  "inputs": [
+    {
+      "id": "tankSize", "label": "How big is your tank?",
+      "help": "If you do not know, choose Not sure — most Davidson County homes are 1,000 gallons, and mobile homes are usually smaller.",
+      "options": [
+        { "value": "small", "label": "500–750 gallons (often a mobile home)", "base": 300 },
+        { "value": "standard", "label": "1,000 gallons (most common)", "base": 375 },
+        { "value": "large", "label": "1,250 gallons", "base": 435 },
+        { "value": "xlarge", "label": "1,500 gallons or more", "base": 495 },
+        { "value": "unknown", "label": "Not sure", "base": 375 }
+      ]
+    },
+    {
+      "id": "access", "label": "Can you see the tank lids?",
+      "help": "This is the single largest swing factor in what a pump-out costs. Hand-digging a buried lid adds real time on site.",
+      "options": [
+        { "value": "risers", "label": "Yes — risers bring them to ground level", "add": 0 },
+        { "value": "visible", "label": "Yes — lids are at or near the surface", "add": 40 },
+        { "value": "buried", "label": "No — they are buried and need digging", "add": 125 },
+        { "value": "unknown", "label": "I have no idea where the tank is", "add": 75 }
+      ]
+    },
+    {
+      "id": "lastPumped", "label": "When was it last pumped?",
+      "help": "Long gaps let sludge compact, which can turn a routine pump-out into a tank cleaning.",
+      "options": [
+        { "value": "recent", "label": "Within the last 3 years", "add": 0 },
+        { "value": "normal", "label": "3–5 years ago", "add": 0 },
+        { "value": "overdue", "label": "6–10 years ago", "add": 75 },
+        { "value": "unknown", "label": "Over 10 years ago, or never / no records", "add": 150 }
+      ]
+    }
+  ],
+  "formula": {
+    "steps": [
+      "Start from the base rate for your tank capacity — bigger tanks hold more and take longer to pump.",
+      "Add for access. A lid at grade costs nothing extra; a buried lid means hand-digging, which national cost data puts at $50–$200.",
+      "Add for overdue intervals, where compacted sludge may require cleaning rather than straightforward pumping.",
+      "The range shown is roughly ±12% around that figure, which is the honest spread before we have seen your tank."
+    ],
+    "spread": 0.12
+  },
+  "output": {
+    "headline": "Your likely cost",
+    "disclaimer": "This is an estimate built from published Tennessee and Davidson County price data, not a quote. Tennessee pumping runs $275–$525; Davidson County homeowner-reported figures span $199–$796. What we find when the tank is open — a corroded baffle, a missing effluent filter, compacted sludge — can change it, and we tell you before doing the work, not after.",
+    "comparisons": [
+      { "label": "Drain field replacement in Tennessee", "value": "$7,000–$15,000+", "note": "What routine pumping is protecting. Middle Tennessee fields skew large because the soils drain slowly, so replacement here sits above national averages." },
+      { "label": "Drain field repair, Nashville area", "value": "$2,000–$10,000+", "note": "Where a field is salvageable. Still many times the cost of the pump-out that would have prevented it." },
+      { "label": "Baffle replacement", "value": "$150–$600", "note": "Found during a routine pump-out. The repair that stops solids reaching the field." },
+      { "label": "Risers, fitted once", "value": "$300–$600", "note": "Removes the buried-lid surcharge from every future service. Usually pays for itself in two or three visits." }
+    ]
+  },
+  "leadCapture": {
+    "heading": "Get an Exact Quote",
+    "body": "An estimate is a starting point. Tell us the property and we will give you a firm price before we come out.",
+    "cta": "Get my exact price"
+  }
+}

@@ -1,0 +1,1406 @@
+{
+  "services": [
+    {
+      "slug": "residential-septic-tank-pumping",
+      "name": "Residential Septic Tank Pumping",
+      "shortName": "Residential Pumping",
+      "primaryKeyword": "residential septic tank pumping nashville",
+      "tier": "core",
+      "navOrder": 1,
+      "priority": true,
+      "blurb": "Scheduled pumping for Davidson County homes, with the tank opened, both baffles checked and the sludge and scum depths recorded before we leave.",
+      "metaDescription": "Residential septic tank pumping across Davidson County. Full solids removal, baffle and filter check, depths recorded. Upfront pricing. Call (615) 234-9048.",
+      "heroH1": "Residential Septic Tank Pumping in Nashville, TN",
+      "priceFrom": 375,
+      "priceRange": "$300\u2013$525 for a typical 1,000-gallon residential tank",
+      "priceBasis": "Tennessee septic pumping runs $275\u2013$525; Davidson County homeowner-reported figures span $199\u2013$796. Access difficulty is the single largest swing factor.",
+      "symptoms": [
+        "Drains across the house slowing at the same time",
+        "Gurgling from the lowest drain when the washing machine empties",
+        "Grass over the tank or field greener and faster-growing than the rest of the yard",
+        "Odour outdoors near the tank or field after rain",
+        "Three or more years since the last pump-out with no record of what was found"
+      ],
+      "whatsIncluded": [
+        "Locate and uncover both tank lids, including hand-digging where a lid is buried",
+        "Full pump-out of liquid, scum and settled sludge \u2014 not a partial liquid draw-down",
+        "Sludge and scum depth measured and recorded before pumping",
+        "Inlet baffle inspected for the corrosion that lets solids run to the field",
+        "Outlet baffle and effluent filter inspected, and the filter rinsed back into the tank",
+        "Tank walls and lids checked for cracks, root intrusion and infiltration",
+        "Backflush of the tank and a check that the inlet line runs free",
+        "Written record of tank condition, depths and the interval we recommend next"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Call and scheduling",
+          "body": "You tell us the property, roughly when the tank was last pumped and what the house is doing. We give you a price band before we come out and confirm what could move it."
+        },
+        {
+          "n": "02",
+          "title": "Locate and open",
+          "body": "We find both access points. If risers are fitted the lids are at grade; if not we probe and hand-dig to the lid, which is the most common reason one job costs more than another."
+        },
+        {
+          "n": "03",
+          "title": "Pump and inspect",
+          "body": "Depths measured, then the tank is pumped down completely and backflushed. Both baffles and the effluent filter are inspected while the tank is empty and visible."
+        },
+        {
+          "n": "04",
+          "title": "Report and interval",
+          "body": "You get what was in the tank, the condition of the baffles and filter, anything that needs watching, and a pumping interval based on your tank size and household \u2014 not a generic three years."
+        }
+      ],
+      "faq": [
+        {
+          "q": "How often does a Davidson County septic tank need pumping?",
+          "a": "Every three to five years for most households, and every two to three where there is a garbage disposal, a larger household or a smaller tank. The interval depends on tank size against daily flow, which is why we measure sludge and scum depth on every visit and give you a number based on your tank rather than a rule of thumb."
+        },
+        {
+          "q": "What makes one pumping job cost more than another?",
+          "a": "Access, almost always. A tank with risers bringing the lids to grade is quick. A lid buried under eight inches of soil, a deck, or landscaping adds hand-digging, and national cost data puts that surcharge at $50\u2013$200. Tank size is the second factor: a 1,500-gallon tank holds half again what a 1,000-gallon tank does."
+        },
+        {
+          "q": "Do you pump the tank completely or just the liquid?",
+          "a": "Completely. A liquid-only draw-down leaves the settled sludge that actually threatens your drain field, and it makes the tank look serviced while the problem stays put. We pump liquid, scum and sludge, then backflush."
+        },
+        {
+          "q": "Can you pump if you cannot find the lid?",
+          "a": "We locate the tank as part of the job \u2014 probing from the outlet line and the house's plumbing exit. If the tank has been paved or built over and cannot be reached, we will tell you before any digging starts rather than after."
+        }
+      ],
+      "relatedServices": [
+        "septic-tank-cleaning",
+        "septic-tank-inspection",
+        "septic-tank-riser-installation"
+      ],
+      "guideSlugs": [
+        "septic-tank-pumping-cost-nashville",
+        "how-often-pump-septic-tank-tennessee",
+        "signs-septic-tank-is-full",
+        "what-happens-if-you-never-pump",
+        "why-is-septic-pumping-so-expensive"
+      ]
+    },
+    {
+      "slug": "septic-tank-cleaning",
+      "name": "Septic Tank Cleaning",
+      "shortName": "Tank Cleaning",
+      "primaryKeyword": "septic tank cleaning nashville",
+      "tier": "core",
+      "navOrder": 2,
+      "priority": true,
+      "blurb": "A step beyond pumping: the tank is emptied, then the walls, baffles and floor are washed down and the hardened scum mat and compacted sludge are broken up and removed.",
+      "metaDescription": "Septic tank cleaning in Nashville \u2014 full pump-out plus wall wash-down and removal of compacted sludge that routine pumping leaves. Call (615) 234-9048.",
+      "heroH1": "Septic Tank Cleaning in Nashville, TN",
+      "priceFrom": 450,
+      "priceRange": "$400\u2013$650 depending on tank size and how compacted the sludge layer is",
+      "priceBasis": "Cleaning costs more than routine pumping because it is a longer job on site. Davidson County septic cleaning figures reported by homeowners span $199\u2013$796, with cleaning at the upper end of that band.",
+      "symptoms": [
+        "Tank pumped recently but drains still slow",
+        "A hardened scum mat that a pump hose cannot break through",
+        "Sludge compacted at the tank floor after years of missed intervals",
+        "Buying a property with no service records at all",
+        "Odour persisting after a routine pump-out"
+      ],
+      "whatsIncluded": [
+        "Everything in a full pump-out \u2014 liquid, scum and sludge",
+        "Mechanical break-up of a hardened scum mat the hose cannot lift",
+        "Removal of compacted sludge from the tank floor and corners",
+        "Wash-down of interior tank walls to expose the concrete for inspection",
+        "Inlet and outlet baffle cleared and inspected with the walls visible",
+        "Effluent filter removed, cleaned and refitted, or flagged for replacement",
+        "Inspection for cracks, spalling and root intrusion once walls are clean",
+        "Written condition report with photographs of anything that needs attention"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Establish what is in there",
+          "body": "Cleaning is the right call when sludge has compacted or a scum mat has hardened. We measure first \u2014 if a routine pump-out is genuinely all you need, we say so and charge for that instead."
+        },
+        {
+          "n": "02",
+          "title": "Pump down",
+          "body": "The tank is emptied of liquid, scum and sludge exactly as in a standard pump-out, which is the prerequisite for everything that follows."
+        },
+        {
+          "n": "03",
+          "title": "Break up and wash down",
+          "body": "Compacted material is broken up and drawn off, then the walls and floor are washed down so the concrete, baffles and filter are visible rather than coated."
+        },
+        {
+          "n": "04",
+          "title": "Inspect the clean tank",
+          "body": "A clean tank is the only time you can genuinely assess it. Cracks, spalling, failed baffles and root intrusion all get found here, photographed and reported."
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is the difference between septic tank pumping and cleaning?",
+          "a": "Pumping removes what the hose can draw out \u2014 liquid, floating scum and settled sludge. Cleaning adds mechanical break-up of hardened material and a wash-down of the tank interior so the walls and baffles can actually be inspected. Most households need pumping on a cycle and cleaning occasionally, typically every second or third visit."
+        },
+        {
+          "q": "Does my tank need cleaning or just pumping?",
+          "a": "If you have pumped on schedule and have service records, pumping is almost certainly enough. Cleaning earns its cost when intervals have been missed for years, when a scum mat has hardened, or when you have bought a property with no records and want the tank assessed properly rather than guessed at."
+        },
+        {
+          "q": "Will cleaning fix slow drains on its own?",
+          "a": "Sometimes \u2014 if the cause was a tank so full that solids were carrying to the outlet. If the drain field itself has been damaged by years of solids reaching it, cleaning the tank stops further harm but does not restore the field. We tell you which of the two you are looking at."
+        },
+        {
+          "q": "Do I need to add bacteria or a starter after cleaning?",
+          "a": "No. A septic tank is repopulated by normal household wastewater within days. Additive products sold for this purpose are not required by Tennessee rules and are not part of our service."
+        }
+      ],
+      "relatedServices": [
+        "residential-septic-tank-pumping",
+        "septic-tank-inspection",
+        "septic-baffle-repair"
+      ],
+      "guideSlugs": [
+        "pumping-vs-cleaning-difference",
+        "signs-septic-tank-is-full",
+        "what-happens-if-you-never-pump"
+      ]
+    },
+    {
+      "slug": "emergency-septic-service",
+      "name": "Emergency Septic Service",
+      "shortName": "Emergency Service",
+      "primaryKeyword": "emergency septic service nashville",
+      "tier": "core",
+      "navOrder": 3,
+      "priority": true,
+      "emergency": true,
+      "blurb": "Sewage backing up into the house, or surfacing over the tank or field, is a containment problem before it is a plumbing problem. We answer the line outside office hours for exactly this.",
+      "metaDescription": "Emergency septic service in Nashville \u2014 sewage backup, surfacing effluent, tank alarms. A person answers outside office hours. Call (615) 234-9048.",
+      "heroH1": "Emergency Septic Service in Nashville, TN",
+      "priceFrom": 475,
+      "priceRange": "$425\u2013$700 for an out-of-hours emergency pump-out, depending on access and time of day",
+      "priceBasis": "An emergency call carries a premium over a scheduled visit because it displaces routed work. We quote the band on the phone before dispatching.",
+      "symptoms": [
+        "Sewage backing up into a tub, shower or the lowest toilet in the house",
+        "Effluent surfacing over the tank lid or standing on the drain field",
+        "A high-water alarm sounding on a pump tank",
+        "Every drain in the house stopped at once with no single blocked fixture",
+        "Sewage odour indoors that does not clear"
+      ],
+      "whatsIncluded": [
+        "A person on the phone outside office hours, not a message service",
+        "Guidance on what to stop doing immediately while we are en route",
+        "Emergency pump-down to take the hydraulic load off the system",
+        "Assessment of whether the cause is the tank, the outlet line or the drain field",
+        "Baffle and effluent filter checked as the likely mechanical cause",
+        "Inlet line checked for the blockage that mimics a full tank",
+        "Clear statement of what is repairable now and what needs a planned return",
+        "Written record for your insurer if the backup reached living space"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Call and triage",
+          "body": "We ask what is happening and where. Sewage inside the house, effluent surfacing in the yard, and a sounding alarm are three different urgencies, and the answer changes what you should do in the next ten minutes."
+        },
+        {
+          "n": "02",
+          "title": "Stop the loading",
+          "body": "Before we arrive, water use stops \u2014 no laundry, no dishwasher, minimal flushing. Almost every backup gets worse because the household keeps sending water to a system that has nowhere to put it."
+        },
+        {
+          "n": "03",
+          "title": "Pump down and find the cause",
+          "body": "We pump the tank down to relieve the system, then work out whether you had a full tank, a failed baffle, a blocked inlet, a filter nobody has ever cleaned, or a drain field that has stopped accepting."
+        },
+        {
+          "n": "04",
+          "title": "Tell you what you are actually facing",
+          "body": "A pump-out buys time; it is not always the fix. You get a straight answer about whether this recurs next month, and what the repair costs, before we leave."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Sewage is backing up into my house right now \u2014 what do I do first?",
+          "a": "Stop all water use immediately: no flushing, laundry, dishwasher or showers. Every gallon you send makes the backup worse. Keep people and pets away from the affected area, do not attempt to plunge it through, and call us. Sewage in living space is a biohazard as well as a plumbing failure."
+        },
+        {
+          "q": "Is effluent surfacing in the yard an emergency?",
+          "a": "It is urgent. Surfacing effluent means the system is no longer accepting flow, and in Middle Tennessee's fractured limestone it is also a groundwater concern, which is why the state regulates these systems at all. Keep people and pets off it and get the tank pumped down while the cause is diagnosed."
+        },
+        {
+          "q": "Will pumping the tank fix a backup permanently?",
+          "a": "It depends what caused it. A genuinely overfull tank is fixed by pumping. A failed outlet baffle, a blocked inlet line, a clogged effluent filter or a saturated drain field will all back up again within weeks of a pump-out. We diagnose which you have rather than pumping and leaving."
+        },
+        {
+          "q": "Does homeowners insurance cover a septic backup?",
+          "a": "Standard policies frequently exclude septic backup unless a specific endorsement was added, though coverage for the resulting damage to living space differs from coverage for the system itself. Document everything before cleanup and check your policy wording \u2014 we provide a written service record for the claim either way."
+        }
+      ],
+      "relatedServices": [
+        "residential-septic-tank-pumping",
+        "drain-field-repair",
+        "septic-baffle-repair"
+      ],
+      "guideSlugs": [
+        "sewage-backing-up-what-to-do",
+        "standing-water-over-septic-tank",
+        "signs-septic-tank-is-full",
+        "does-insurance-cover-septic-failure"
+      ]
+    },
+    {
+      "slug": "septic-tank-inspection",
+      "name": "Septic Tank Inspection",
+      "shortName": "Inspection",
+      "primaryKeyword": "septic tank inspection nashville",
+      "tier": "core",
+      "navOrder": 4,
+      "priority": true,
+      "blurb": "A documented assessment of tank, baffles, filter and field condition \u2014 for owners who want to know where they stand rather than wait for a symptom.",
+      "metaDescription": "Septic tank inspection in Nashville. Tank, baffles, filter and drain field assessed and documented. Written report. Call (615) 234-9048.",
+      "heroH1": "Septic Tank Inspection in Nashville, TN",
+      "priceFrom": 275,
+      "priceRange": "$225\u2013$400 standalone, or $0\u2013$50 as a baffle and filter check during routine pumping",
+      "priceBasis": "Most pumpers check baffles as part of standard service at little or no extra cost; a standalone documented inspection is a separate, longer job.",
+      "symptoms": [
+        "No service records for the property",
+        "Buying land or a home and wanting the system assessed",
+        "Planning an addition or an extra bedroom",
+        "Recurring slow drains with no obvious cause",
+        "Wanting a baseline before a system reaches 30 years old"
+      ],
+      "whatsIncluded": [
+        "Tank located and both access points opened",
+        "Sludge and scum depths measured and recorded against tank capacity",
+        "Inlet baffle assessed for corrosion, displacement and blockage",
+        "Outlet baffle and effluent filter assessed, cleaned and reported",
+        "Tank structure checked for cracks, spalling, root intrusion and groundwater infiltration",
+        "Drain field walked for surfacing, ponding, odour and differential grass growth",
+        "Metro bedroom-approval record cross-checked against the property's actual bedroom count",
+        "Written report with photographs and a plain statement of what needs doing and when"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Records first",
+          "body": "Before we open anything we check what Metro holds \u2014 approval date, inspection dates and the bedroom count the system was permitted for. That single record explains a surprising number of failing systems."
+        },
+        {
+          "n": "02",
+          "title": "Open and measure",
+          "body": "Both lids come off. Depths are measured against tank capacity, which tells us whether the tank is being serviced adequately for the load it actually carries."
+        },
+        {
+          "n": "03",
+          "title": "Assess the mechanicals",
+          "body": "Baffles and effluent filter are where a system fails quietly. A corroded outlet baffle sends solids to the field for years before anything shows at the house."
+        },
+        {
+          "n": "04",
+          "title": "Walk the field and report",
+          "body": "The field is walked for the early signs \u2014 soft ground, differential growth, faint odour. You get a written report with photographs rather than a verbal all-clear."
+        }
+      ],
+      "faq": [
+        {
+          "q": "How many bedrooms is my septic system approved for?",
+          "a": "Metro Public Health holds that record and will tell you the approval date, inspection dates and permitted bedroom count for an existing residence. It matters more than most owners realise: the system was sized for that number, and Tennessee makes it illegal to advertise a residence for more bedrooms than its septic is approved for."
+        },
+        {
+          "q": "Does my lot have room to replace the system if it fails?",
+          "a": "Tennessee requires a septic system to sit entirely within its own parcel with specific setbacks, and requires the parcel to retain sufficient area to replace the system should it fail. Properties that fail that second test create serious problems on sale, and Metro notes that on very rare occasions a residence may be condemned. We assess reserve area as part of a full inspection."
+        },
+        {
+          "q": "Is an inspection the same as a pump-out?",
+          "a": "No. A pump-out empties the tank and includes a baffle check. An inspection is a documented assessment of the whole system \u2014 tank structure, mechanicals, field condition and records \u2014 producing a written report. Many owners have the tank pumped at the same visit because an empty tank inspects far better than a full one."
+        },
+        {
+          "q": "How long does an inspection take?",
+          "a": "Around 90 minutes to two hours for a standard residential system, longer where lids are buried or the field is large. Standalone inspections take longer than the baffle check bundled into a routine pump-out, which is why they are priced separately."
+        }
+      ],
+      "relatedServices": [
+        "real-estate-septic-inspection",
+        "residential-septic-tank-pumping",
+        "drain-field-repair"
+      ],
+      "guideSlugs": [
+        "how-many-bedrooms-is-my-septic-approved-for",
+        "davidson-county-septic-reserve-area",
+        "septic-permit-davidson-county",
+        "failed-septic-baffle-signs"
+      ]
+    },
+    {
+      "slug": "real-estate-septic-inspection",
+      "name": "Real Estate Septic Inspection",
+      "shortName": "Real Estate Inspection",
+      "primaryKeyword": "septic inspection for home sale tennessee",
+      "tier": "core",
+      "navOrder": 5,
+      "priority": true,
+      "blurb": "Transaction-grade inspection on a closing clock, with the written report and the bedroom-approval record a buyer, seller or agent actually needs.",
+      "metaDescription": "Real estate septic inspection in Nashville. Transaction-grade report, bedroom approval verified, scheduled to your closing date. Call (615) 234-9048.",
+      "heroH1": "Real Estate Septic Inspection in Nashville, TN",
+      "priceFrom": 425,
+      "priceRange": "$350\u2013$600 including the pump-out an inspection effectively requires",
+      "priceBasis": "Tennessee does not universally mandate pre-sale pumping, but a system cannot be properly inspected without emptying the tank, so the two are quoted together.",
+      "symptoms": [
+        "Under contract on a property with a septic system",
+        "Listing a home and wanting problems found before a buyer finds them",
+        "Advertised bedroom count you cannot yet substantiate",
+        "A buyer's inspector has raised a septic concern",
+        "A lender or insurer asking for documentation"
+      ],
+      "whatsIncluded": [
+        "Scheduling against your inspection period and closing date",
+        "Full pump-out, since an inspection of a full tank is not an inspection",
+        "Tank structure, both baffles and effluent filter assessed and photographed",
+        "Drain field walked and assessed for capacity and surfacing",
+        "Metro bedroom-approval record retrieved and compared to the listing",
+        "Reserve-area assessment \u2014 whether the parcel could take a replacement system",
+        "Written transaction-grade report suitable for buyer, seller, agent and lender",
+        "Plain-language summary of what is a repair, what is maintenance, and what is a deal issue"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Work back from the closing date",
+          "body": "Inspection periods are short. We book against your date and confirm the report will land inside it, because a report that arrives after the contingency expires is worth nothing to you."
+        },
+        {
+          "n": "02",
+          "title": "Pump, then inspect",
+          "body": "The tank is emptied so the structure, baffles and filter can actually be seen. Reports written from the top of a full tank are guesswork."
+        },
+        {
+          "n": "03",
+          "title": "Check the record against the listing",
+          "body": "We pull the permitted bedroom count and compare it to what the property is being advertised as. Tennessee makes advertising more bedrooms than the septic is approved for a misrepresentation, and it is the single most common problem we find."
+        },
+        {
+          "n": "04",
+          "title": "Report in writing",
+          "body": "A photographed written report separating maintenance from repair from genuine deal issues, in language a buyer and an agent can both act on."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Is a septic inspection required to sell a house in Tennessee?",
+          "a": "Tennessee does not universally require the tank to be pumped before a sale, but sellers must disclose known septic details, and a buyer's agent must present the option of a sewer inspection under TREC Rule 1260-2-.37. In practice a proper inspection requires emptying the tank, so the inspection effectively brings the pumping with it."
+        },
+        {
+          "q": "Who pays for the septic inspection, buyer or seller?",
+          "a": "It is negotiable and varies by contract. Buyers commonly pay because the inspection is theirs to rely on; sellers increasingly pay for one before listing, because finding a failed baffle at your own pace costs far less than renegotiating with a buyer holding an inspection report and a deadline."
+        },
+        {
+          "q": "What if the house is advertised with more bedrooms than the septic is approved for?",
+          "a": "That is a real problem, not a technicality. In Tennessee it is illegal to advertise a home for more bedrooms than its septic is approved for, and whoever advertises it is liable for misrepresentation. Metro holds the approved bedroom count. We check it as standard, because it is far better found before closing."
+        },
+        {
+          "q": "How fast can you turn a report around?",
+          "a": "We schedule against your inspection period and provide the written report promptly after the visit. Tell us your closing date when you call and we will confirm whether we can meet it before you book."
+        }
+      ],
+      "relatedServices": [
+        "septic-tank-inspection",
+        "residential-septic-tank-pumping",
+        "drain-field-repair"
+      ],
+      "guideSlugs": [
+        "septic-inspection-selling-home-tennessee",
+        "who-pays-septic-inspection-home-sale",
+        "septic-bedroom-count-advertising-tennessee",
+        "davidson-county-septic-reserve-area"
+      ]
+    },
+    {
+      "slug": "drain-field-repair",
+      "name": "Drain Field Repair",
+      "shortName": "Drain Field Repair",
+      "primaryKeyword": "drain field repair nashville",
+      "tier": "core",
+      "navOrder": 6,
+      "priority": true,
+      "blurb": "Diagnosis and repair of fields that have stopped accepting effluent \u2014 and an honest read on whether yours is repairable or heading for replacement.",
+      "metaDescription": "Drain field repair in Nashville. Diagnosis of failing and saturated fields, honest repair-or-replace assessment, real cost ranges. Call (615) 234-9048.",
+      "heroH1": "Drain Field Repair in Nashville, TN",
+      "priceFrom": 1200,
+      "priceRange": "$1,000\u2013$5,000 for rejuvenation and localised repair; $7,000\u2013$15,000+ if the field needs replacing",
+      "priceBasis": "National rejuvenation and repair figures run $1,000\u2013$5,000; Nashville-area drain field repair is reported from $2,000 to above $10,000, and Tennessee replacement runs $7,000\u2013$15,000+ because Middle Tennessee's slow-draining soils demand larger fields.",
+      "symptoms": [
+        "Standing water or soft ground over the field",
+        "Effluent surfacing after rain or heavy household use",
+        "Grass over the field markedly greener and faster-growing",
+        "Drains slow again within weeks of a pump-out",
+        "Odour over the field that does not clear"
+      ],
+      "whatsIncluded": [
+        "Diagnosis of whether the fault is the tank, the outlet, the distribution box or the field",
+        "Tank pumped down to take hydraulic load off the field during assessment",
+        "Distribution box located, opened and checked for level and blockage",
+        "Laterals assessed for biomat, root intrusion, crushing and saturation",
+        "Assessment of whether the failure is loading, mechanical or soil-driven",
+        "Karst and sinkhole features noted where they threaten the field",
+        "Reserve area assessed against the parcel, in case replacement becomes necessary",
+        "Written repair-or-replace recommendation with cost bands for both routes"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Rule out the cheap causes first",
+          "body": "A failed outlet baffle or a clogged effluent filter produces symptoms that look exactly like a failing field, and costs a fraction to fix. We check those before anyone talks about excavation."
+        },
+        {
+          "n": "02",
+          "title": "Take the load off",
+          "body": "The tank is pumped down so the field stops receiving flow, which both relieves the immediate problem and lets us see how the field behaves when it is not being pushed."
+        },
+        {
+          "n": "03",
+          "title": "Open the distribution box",
+          "body": "An unlevel or blocked distribution box sends everything to one lateral and drowns it while the rest of the field sits unused. It is common, cheap to correct, and frequently missed."
+        },
+        {
+          "n": "04",
+          "title": "Honest repair-or-replace call",
+          "body": "Some fields recover once the cause is removed. Some are finished. You get the assessment with both cost bands, and we will tell you when spending on a repair is throwing money at a field that needs replacing."
+        }
+      ],
+      "faq": [
+        {
+          "q": "What does drain field repair cost in Middle Tennessee?",
+          "a": "Rejuvenation and localised repair typically run $1,000\u2013$5,000, and Nashville-area repair has been reported from $2,000 to above $10,000 depending on severity and access. Full replacement in Tennessee runs $7,000\u2013$15,000 and up. Middle Tennessee fields sit at the larger end of the sizing range because the soils drain slowly, which pushes replacement costs above national averages."
+        },
+        {
+          "q": "Can a failing drain field be repaired instead of replaced?",
+          "a": "Sometimes. If the cause is a fixable upstream fault \u2014 a failed baffle sending solids to the field, an unlevel distribution box, a filter nobody cleaned \u2014 removing it and resting the field can restore function. If the soil interface is biomat-sealed across the field after years of solids, repair is deferral rather than a fix, and we will say so."
+        },
+        {
+          "q": "Why do drain fields in Middle Tennessee have to be bigger?",
+          "a": "Because the soils here drain slowly. Middle Tennessee is karst country \u2014 shallow clay loam over fractured limestone \u2014 and slow percolation means a given daily flow needs more absorption area. Local drainfields skew to the large end of the sizing range, which raises the cost of replacing one."
+        },
+        {
+          "q": "Does a sinkhole near my field matter?",
+          "a": "Yes. Fractured limestone lets poorly treated effluent reach groundwater without the filtration a proper soil column provides, and a sinkhole can undermine a field directly. County environmental health offices across Middle Tennessee enforce setbacks from visible solution features for exactly this reason."
+        }
+      ],
+      "relatedServices": [
+        "emergency-septic-service",
+        "septic-tank-inspection",
+        "septic-service-for-sinkhole-and-karst-lots"
+      ],
+      "guideSlugs": [
+        "drain-field-replacement-cost-tennessee",
+        "repair-or-replace-drain-field",
+        "why-middle-tennessee-drain-fields-are-bigger",
+        "sinkhole-near-drain-field",
+        "standing-water-over-septic-tank"
+      ]
+    },
+    {
+      "slug": "commercial-septic-pumping",
+      "name": "Commercial Septic Pumping",
+      "shortName": "Commercial Pumping",
+      "primaryKeyword": "commercial septic pumping nashville",
+      "tier": "core",
+      "navOrder": 7,
+      "priority": false,
+      "blurb": "Scheduled pumping for businesses on septic \u2014 offices, churches, daycares, campgrounds and rural commercial premises \u2014 routed outside your operating hours.",
+      "metaDescription": "Commercial septic pumping in Nashville. Scheduled service outside operating hours, documented for compliance. Call (615) 234-9048.",
+      "heroH1": "Commercial Septic Pumping in Nashville, TN",
+      "priceFrom": 650,
+      "priceRange": "$550\u2013$1,400 depending on tank capacity, with multi-tank sites quoted per visit",
+      "priceBasis": "Commercial tanks are substantially larger than residential and are often multi-compartment or multi-tank, so pricing is by capacity and access rather than a flat residential rate.",
+      "symptoms": [
+        "Slow drains across multiple fixtures at a commercial premises",
+        "No documented service history for a leased building",
+        "Occupancy or use increased since the system was sized",
+        "A tank that has never been on a schedule",
+        "Odour complaints from staff or customers"
+      ],
+      "whatsIncluded": [
+        "Service routed outside your operating hours where the site allows",
+        "All tanks and compartments on the site pumped, not just the accessible one",
+        "Capacity assessed against actual daily flow and occupancy",
+        "Both baffles and any effluent filter inspected on each tank",
+        "Manifest and written service record for your compliance file",
+        "Assessment of whether the system is undersized for current use",
+        "Recurring schedule set to your loading rather than a generic interval",
+        "Single point of contact for multi-property portfolios"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Site walk and capacity check",
+          "body": "We establish how many tanks the site actually has, their capacity, and what the daily flow really is. Commercial systems are frequently sized for an occupancy the building outgrew years ago."
+        },
+        {
+          "n": "02",
+          "title": "Schedule around your hours",
+          "body": "Pumping a daycare or a restaurant during operating hours is not workable. We route commercial work to suit the site, which is most of why businesses change provider."
+        },
+        {
+          "n": "03",
+          "title": "Pump and document",
+          "body": "Every tank and compartment is pumped and inspected, and you get a written record \u2014 because a commercial file with no service documentation is a problem waiting for an inspector."
+        },
+        {
+          "n": "04",
+          "title": "Set a real interval",
+          "body": "Interval is set from measured depths against your actual loading. An under-serviced commercial tank sends solids to a field that costs far more to replace than a year of pumping."
+        }
+      ],
+      "faq": [
+        {
+          "q": "How often should a commercial septic system be pumped?",
+          "a": "Far more often than residential, and the interval is driven by flow rather than a calendar. A church used twice a week and a daycare running five days at capacity have completely different requirements from identical tanks. We measure depths against capacity and set the interval from that."
+        },
+        {
+          "q": "Do you service multiple tanks on one site?",
+          "a": "Yes, and it matters. Commercial sites frequently have multiple or multi-compartment tanks, and servicing only the accessible one leaves the rest loading up. We establish what is actually on the site before quoting."
+        },
+        {
+          "q": "Do you provide documentation for compliance files?",
+          "a": "Yes. Every commercial visit produces a written service record, and grease work carries a certified hauler manifest. Metro requires manifest use and three-year record retention for grease, and having the paperwork when it is asked for is the entire point."
+        },
+        {
+          "q": "Our system was sized before we expanded \u2014 is that a problem?",
+          "a": "It is a common and serious one. A system permitted for an occupancy you have since exceeded will keep failing regardless of how often it is pumped. We will tell you whether you have a maintenance problem or a capacity problem, because the fixes are very different."
+        }
+      ],
+      "relatedServices": [
+        "grease-trap-cleaning",
+        "residential-septic-tank-pumping",
+        "septic-tank-inspection"
+      ],
+      "guideSlugs": [
+        "grease-trap-cleaning-frequency-nashville",
+        "grease-trap-25-percent-rule",
+        "how-often-pump-septic-tank-tennessee"
+      ]
+    },
+    {
+      "slug": "grease-trap-cleaning",
+      "name": "Grease Trap Cleaning",
+      "shortName": "Grease Traps",
+      "primaryKeyword": "grease trap cleaning nashville",
+      "tier": "core",
+      "navOrder": 8,
+      "priority": false,
+      "blurb": "Scheduled grease trap and interceptor service on the frequency Metro Water Services actually requires, with the manifests your file needs.",
+      "metaDescription": "Grease trap cleaning in Nashville on Metro Water's required 30/90-day schedule. Certified hauler manifests, 25% rule monitoring. Call (615) 234-9048.",
+      "heroH1": "Grease Trap Cleaning in Nashville, TN",
+      "priceFrom": 225,
+      "priceRange": "$175\u2013$450 for under-sink and small traps; larger in-ground interceptors quoted by capacity",
+      "priceBasis": "Priced by unit capacity and service frequency. Kitchens producing heavy FOG need service more often than the regulatory minimum to stay under the 25% threshold.",
+      "symptoms": [
+        "Approaching or past the 30-day trap or 90-day interceptor interval",
+        "FOG and solids near 25% of unit capacity",
+        "Slow kitchen drains or odour in the kitchen",
+        "An inspection due with gaps in your service records",
+        "Under-sink trap more than half full at weekly check"
+      ],
+      "whatsIncluded": [
+        "Service on the interval Metro Water Services requires for your unit type",
+        "Full pump-out of FOG, water and settled solids",
+        "Baffle and flow-control fitting checked and cleared",
+        "FOG and solids measured against the 25% rule threshold",
+        "Certified hauler manifest issued for every service",
+        "Records kept in a form that satisfies three-year retention",
+        "Frequency reviewed against your actual FOG production, not the minimum",
+        "Advice on kitchen practice where a unit is filling faster than it should"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Identify the unit and the rule that applies",
+          "body": "A small under-sink grease trap and a large in-ground interceptor carry different minimum intervals \u2014 30 days and 90 days respectively. Getting that wrong is the most common compliance failure we see."
+        },
+        {
+          "n": "02",
+          "title": "Service on schedule",
+          "body": "The unit is fully pumped, not skimmed. Skimming the floating layer and leaving settled solids is what turns a compliant trap into a failed inspection."
+        },
+        {
+          "n": "03",
+          "title": "Measure against the 25% rule",
+          "body": "The binding requirement is not just the calendar: a unit must be cleaned when FOG plus settled solids reach 25% of capacity. We measure, so you find out before an inspector does."
+        },
+        {
+          "n": "04",
+          "title": "Manifest and file",
+          "body": "Every service produces a certified hauler manifest. Metro requires manifest use and three-year retention, so the paperwork is the deliverable as much as the clean trap."
+        }
+      ],
+      "faq": [
+        {
+          "q": "How often must a grease trap be cleaned in Nashville?",
+          "a": "Metro Water Services requires grease traps \u2014 typically smaller under-sink units \u2014 to be serviced at least every 30 days, and grease interceptors, the larger often-underground units, at least every 90 days. Those are minimums, not targets: the binding rule is the 25% threshold below."
+        },
+        {
+          "q": "What is the 25% rule?",
+          "a": "You are required to have the unit cleaned when the combined volume of FOG and settled solids reaches 25% of the unit's capacity, whichever comes first against the calendar minimum. High-volume kitchens \u2014 fried chicken, fish, large quantities of rice or pasta \u2014 routinely hit 25% well before the 30 or 90 day mark and need more frequent service."
+        },
+        {
+          "q": "How long do I have to keep grease service records?",
+          "a": "Three years. Metro Water Services enforces certified hauler manifest use and three-year record retention as part of its FOG program, alongside interceptor installation and routine maintenance requirements. We issue a manifest on every visit so the file builds itself."
+        },
+        {
+          "q": "How often should an under-sink trap be checked?",
+          "a": "Weekly. Under-sink units should be cleaned weekly, and if yours is more than half full at the weekly check, the cleaning frequency needs to increase. Waiting for the 30-day minimum on a unit that fills in ten days is how kitchens end up with a blocked line mid-service."
+        }
+      ],
+      "relatedServices": [
+        "commercial-septic-pumping",
+        "septic-tank-inspection",
+        "residential-septic-tank-pumping"
+      ],
+      "guideSlugs": [
+        "grease-trap-cleaning-frequency-nashville",
+        "grease-trap-25-percent-rule"
+      ]
+    },
+    {
+      "slug": "septic-tank-locating",
+      "name": "Septic Tank Locating",
+      "shortName": "Tank Locating",
+      "primaryKeyword": "septic tank locating nashville",
+      "tier": "core",
+      "navOrder": 9,
+      "priority": false,
+      "blurb": "Finding tanks nobody has opened in decades \u2014 on properties where the records are gone, the lids are buried, and the last owner left no idea where anything is.",
+      "metaDescription": "Septic tank locating in Nashville. We find buried tanks and lids on properties with no records, then mark them for good. Call (615) 234-9048.",
+      "heroH1": "Septic Tank Locating in Nashville, TN",
+      "priceFrom": 200,
+      "priceRange": "$150\u2013$400 standalone; frequently waived or reduced when combined with a pump-out on the same visit",
+      "priceBasis": "Locating is labour, and the range reflects how long probing takes. Combining it with the pump-out you need anyway is almost always the cheaper route.",
+      "symptoms": [
+        "No idea where the tank is on a property you have just bought",
+        "Lids buried under years of soil, turf or landscaping",
+        "Records lost or never held for an older system",
+        "A previous owner who covered the lids over",
+        "Needing the tank found before a sale or an addition"
+      ],
+      "whatsIncluded": [
+        "Metro records checked first for approval date and any recorded system location",
+        "Plumbing exit point from the house established as the starting line",
+        "Systematic probing along the outlet run to find the tank",
+        "Both access points located, not just the nearest one",
+        "Hand-excavation to expose the lids without damaging the tank or the yard",
+        "Tank dimensions and capacity recorded once open",
+        "Permanent marking so nobody has to search again",
+        "Riser installation offered at the same visit, which removes the problem for good"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Records before shovels",
+          "body": "Metro holds approval and inspection records for existing residences. Checking those first regularly saves an hour of probing and tells us the tank's era and likely configuration."
+        },
+        {
+          "n": "02",
+          "title": "Work from the house out",
+          "body": "The outlet line leaves the house at a known point and runs to the tank. Following that line is faster and far less destructive than searching the yard."
+        },
+        {
+          "n": "03",
+          "title": "Probe and expose",
+          "body": "Systematic probing finds the tank edges, then the lids are hand-dug rather than machine-dug. The goal is a found tank and an intact yard."
+        },
+        {
+          "n": "04",
+          "title": "Mark it permanently",
+          "body": "We record the location and mark it. If you want the problem gone entirely, risers bring the lids to grade so the next service is a two-minute open rather than an hour of digging."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Nobody can find my septic tank lid \u2014 what now?",
+          "a": "Start with Metro's records for the property, which give the approval date and inspection history for an existing residence. Then the tank is found by working outward from where the plumbing leaves the house and probing along the outlet run. On a typical lot this takes well under an hour; buried lids are common and rarely a real obstacle."
+        },
+        {
+          "q": "Will you dig up my yard to find it?",
+          "a": "No. Probing locates the tank without excavation, and once the lid position is known it is hand-dug. Machine excavation risks cracking a lid or the tank shoulder, which converts a locating job into a repair."
+        },
+        {
+          "q": "Is it cheaper to locate and pump on the same visit?",
+          "a": "Almost always. Locating is labour, and if we are already on site to pump, that labour is not duplicated. Booking them separately means paying twice for the same trip."
+        },
+        {
+          "q": "How do I stop this happening again?",
+          "a": "Fit risers. They bring both lids to ground level, permanently, and cost $300\u2013$600. Every subsequent service is faster and cheaper because nobody is digging, which is why risers tend to pay for themselves across two or three pump-outs."
+        }
+      ],
+      "relatedServices": [
+        "septic-tank-riser-installation",
+        "residential-septic-tank-pumping",
+        "septic-tank-inspection"
+      ],
+      "guideSlugs": [
+        "cant-find-septic-tank-lid",
+        "are-septic-risers-worth-it",
+        "septic-tank-pumping-cost-nashville"
+      ]
+    },
+    {
+      "slug": "septic-tank-riser-installation",
+      "name": "Septic Tank Riser Installation",
+      "shortName": "Riser Installation",
+      "primaryKeyword": "septic tank riser installation",
+      "tier": "longtail",
+      "navOrder": 20,
+      "priority": false,
+      "blurb": "Bringing buried tank lids up to ground level so every future service is a two-minute open instead of an hour of digging.",
+      "metaDescription": "Septic tank riser installation in Nashville. Lids brought to grade, $300-$600, pays for itself across two or three pump-outs. Call (615) 234-9048.",
+      "heroH1": "Septic Tank Riser Installation in Nashville, TN",
+      "priceFrom": 300,
+      "priceRange": "$300\u2013$600 per riser installed, depending on burial depth and lid diameter",
+      "priceBasis": "National riser costs run $300\u2013$600. Against a $50\u2013$200 digging surcharge on every future pump-out, a riser typically pays for itself within two or three service visits.",
+      "symptoms": [
+        "Lids buried under soil, turf or landscaping",
+        "Paying a digging surcharge on every pump-out",
+        "Nobody able to find the access points",
+        "An older system with no risers ever fitted",
+        "Wanting the tank accessible before selling"
+      ],
+      "whatsIncluded": [
+        "Both access points excavated and the existing lids exposed",
+        "Riser sized to the tank's lid diameter and burial depth",
+        "Riser sealed to the tank at the collar to keep groundwater and soil out",
+        "Secure, child-resistant lid fitted at grade",
+        "Backfill and grading around the riser so it sits flush and mows over",
+        "Effluent filter access confirmed through the outlet riser",
+        "Location recorded and marked",
+        "Fitted during a scheduled pump-out so the excavation is only done once"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Fit during a pump-out",
+          "body": "The tank has to be open anyway to be pumped. Fitting risers on the same visit means paying for one excavation rather than two."
+        },
+        {
+          "n": "02",
+          "title": "Size to the tank",
+          "body": "Riser diameter must match the tank's lid opening, and height must match burial depth. An ill-fitting riser leaks soil and groundwater into the tank."
+        },
+        {
+          "n": "03",
+          "title": "Seal at the collar",
+          "body": "The join between riser and tank is where cheap installations fail. Sealed properly, the riser keeps infiltration out; sealed badly, it becomes a funnel."
+        },
+        {
+          "n": "04",
+          "title": "Finish at grade",
+          "body": "The lid finishes flush enough to mow over, secured against children and animals, and the position is recorded."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Are septic tank risers worth the money?",
+          "a": "For most Davidson County homes, yes. A riser costs $300\u2013$600 once. Digging a buried lid adds $50\u2013$200 to every pump-out, and you pump every three to five years for the life of the system. Across two or three services the riser has paid for itself, and it makes inspections and emergencies dramatically faster."
+        },
+        {
+          "q": "Can risers be fitted to any tank?",
+          "a": "Almost all residential concrete tanks accept them. What varies is lid diameter and burial depth, both of which we measure on site. Tanks with damaged shoulders sometimes need repair before a riser can seal properly."
+        },
+        {
+          "q": "Will a riser be an eyesore in the lawn?",
+          "a": "It finishes at grade with a lid you can mow over. Green lids are standard and disappear into turf within a season. Compared with an annual excavation scar, most owners find it the tidier option."
+        },
+        {
+          "q": "Do risers cause problems with groundwater?",
+          "a": "Only when badly sealed. A riser sealed properly at the tank collar keeps soil and groundwater out. An unsealed one channels surface water straight into the tank, which raises liquid levels and loads the drain field \u2014 which is why the collar seal is the part that matters."
+        }
+      ],
+      "relatedServices": [
+        "septic-tank-locating",
+        "residential-septic-tank-pumping",
+        "septic-effluent-filter-cleaning"
+      ],
+      "guideSlugs": [
+        "are-septic-risers-worth-it",
+        "cant-find-septic-tank-lid",
+        "why-is-septic-pumping-so-expensive"
+      ]
+    },
+    {
+      "slug": "septic-effluent-filter-cleaning",
+      "name": "Septic Effluent Filter Cleaning",
+      "shortName": "Effluent Filter",
+      "primaryKeyword": "septic effluent filter cleaning",
+      "tier": "longtail",
+      "navOrder": 21,
+      "priority": false,
+      "blurb": "The cheapest component in the system, and the one whose neglect most often looks like a failing drain field.",
+      "metaDescription": "Septic effluent filter cleaning and replacement in Nashville. The $230-$280 part that protects a $7,000+ drain field. Call (615) 234-9048.",
+      "heroH1": "Septic Effluent Filter Cleaning in Nashville, TN",
+      "priceFrom": 0,
+      "priceRange": "Cleaned as part of a pump-out at no separate charge; replacement $230\u2013$280 if the filter is damaged or missing",
+      "priceBasis": "Filter replacement runs $230\u2013$280. Cleaning is included in our pump-out. Set against a $7,000\u2013$15,000 drain field, it is the highest-leverage maintenance on the system.",
+      "symptoms": [
+        "Drains slowing gradually over weeks",
+        "Backup shortly after a pump-out",
+        "A filter that has never been cleaned since installation",
+        "Tank installed recently but no filter maintenance record",
+        "Effluent carrying visibly to the outlet"
+      ],
+      "whatsIncluded": [
+        "Outlet baffle located and the filter cartridge withdrawn",
+        "Filter rinsed back into the tank so nothing washes to the field",
+        "Cartridge inspected for cracking, warping and missing sections",
+        "Filter housing checked for seating and displacement",
+        "Replacement fitted where the cartridge is damaged or absent",
+        "Assessment of whether a tank without a filter should have one fitted",
+        "Cleaning interval advised against your household loading",
+        "Done as part of every pump-out, not sold as an extra"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Access through the outlet",
+          "body": "The filter sits inside the outlet baffle \u2014 the side facing the drain field, not the house. That is where we go in, through the outlet riser or rear inspection port."
+        },
+        {
+          "n": "02",
+          "title": "Rinse into the tank",
+          "body": "The cartridge is rinsed back into the tank so the captured solids stay where they can be pumped, rather than being washed toward the field."
+        },
+        {
+          "n": "03",
+          "title": "Inspect the cartridge",
+          "body": "Filters crack and warp with age. A cartridge that looks intact from above can be split at the base and passing everything through."
+        },
+        {
+          "n": "04",
+          "title": "Advise the interval",
+          "body": "Most households need the filter cleaned at every pump-out. Heavy users, garbage disposals and high-occupancy properties need it more often."
+        }
+      ],
+      "faq": [
+        {
+          "q": "What is a septic effluent filter and does my tank have one?",
+          "a": "It is a cartridge that sits inside the outlet baffle, on the drain-field side of the tank, catching fine solids before they reach the field. Tanks installed in recent decades usually have one; many older Davidson County systems, particularly those from the 1970s to 1990s, were never fitted with one at all. We check on every visit."
+        },
+        {
+          "q": "What happens if the filter is never cleaned?",
+          "a": "It blocks. A blocked filter backs effluent up into the tank and then the house, which is why a backup shortly after a pump-out so often turns out to be a filter nobody touched. The failure is inconvenient but harmless to the system \u2014 far better than the alternative, where no filter exists and solids reach the field."
+        },
+        {
+          "q": "My tank has no filter. Should I have one fitted?",
+          "a": "In most cases yes. Fitting a filter to a tank that lacks one is inexpensive relative to a drain field, and the field is what it protects. On a system already showing field distress it is a sensible part of stopping further damage, though it will not reverse damage already done."
+        },
+        {
+          "q": "How often does the filter need cleaning?",
+          "a": "At minimum every pump-out, so every three to five years. Households with a garbage disposal, higher occupancy or a smaller tank should have it done more often \u2014 and if you have ever had a slow-drain episode that cleared by itself, the filter is the first thing to check."
+        }
+      ],
+      "relatedServices": [
+        "residential-septic-tank-pumping",
+        "septic-baffle-repair",
+        "septic-tank-riser-installation"
+      ],
+      "guideSlugs": [
+        "what-is-an-effluent-filter",
+        "signs-septic-tank-is-full",
+        "failed-septic-baffle-signs"
+      ]
+    },
+    {
+      "slug": "septic-baffle-repair",
+      "name": "Septic Baffle Repair",
+      "shortName": "Baffle Repair",
+      "primaryKeyword": "septic baffle repair",
+      "tier": "longtail",
+      "navOrder": 22,
+      "priority": false,
+      "blurb": "Corroded and displaced baffles send solids straight to the drain field for years before anything shows up at the house. This is the repair that prevents the expensive one.",
+      "metaDescription": "Septic baffle repair in Nashville. Corroded inlet and outlet baffles replaced for $150-$600, protecting a drain field worth far more. Call (615) 234-9048.",
+      "heroH1": "Septic Baffle Repair in Nashville, TN",
+      "priceFrom": 150,
+      "priceRange": "$150\u2013$600 per baffle depending on type and whether the tank shoulder needs repair",
+      "priceBasis": "National baffle replacement runs $150\u2013$600. Most pumpers, including us, inspect baffles during routine pumping at $0\u2013$50, which is how the problem gets found early.",
+      "symptoms": [
+        "Solids visible carrying to the outlet",
+        "Drain field distress on a tank that is pumped on schedule",
+        "Concrete baffle visibly corroded or spalling at the waterline",
+        "A baffle sitting displaced or missing entirely",
+        "A system over 25 years old never inspected internally"
+      ],
+      "whatsIncluded": [
+        "Tank pumped down so both baffles are visible and reachable",
+        "Inlet baffle assessed for corrosion, displacement and blockage",
+        "Outlet baffle assessed \u2014 the one that protects the drain field",
+        "Replacement baffle fitted in the appropriate material for the tank",
+        "Tank shoulder and wall around the baffle checked and repaired where needed",
+        "Effluent filter fitted or refitted at the outlet while access is open",
+        "Assessment of how long solids have been reaching the field",
+        "Written record of what was replaced and what it was protecting"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Found during pumping",
+          "body": "Baffles are only visible in an empty tank, which is why we inspect them on every pump-out. Almost every baffle repair starts as an incidental finding on a routine visit."
+        },
+        {
+          "n": "02",
+          "title": "Establish which one failed",
+          "body": "The inlet baffle protects the tank's settling action; the outlet baffle protects the drain field. An outlet failure is the more expensive problem by a wide margin."
+        },
+        {
+          "n": "03",
+          "title": "Replace and secure",
+          "body": "A new baffle is fitted and secured to sound concrete. Where the tank shoulder itself has spalled, that gets repaired first or the new baffle will not hold."
+        },
+        {
+          "n": "04",
+          "title": "Assess downstream damage",
+          "body": "If the outlet baffle has been gone for years, the field has been taking solids for years. We tell you what to expect rather than replacing the baffle and calling it solved."
+        }
+      ],
+      "faq": [
+        {
+          "q": "How do I know if my baffle has failed?",
+          "a": "You usually cannot from above ground, which is the problem. Baffles are inside the tank and only visible when it is empty. The indirect signs are drain field distress on a tank that has been pumped on schedule, and solids visibly carrying to the outlet. Direct confirmation requires an internal inspection during a pump-out."
+        },
+        {
+          "q": "Which baffle matters more?",
+          "a": "The outlet. The inlet baffle directs incoming flow downward so the tank settles properly; the outlet baffle stops the floating scum layer from leaving with the effluent. When the outlet baffle fails, scum and solids run to the drain field, and the field is the part that costs $7,000\u2013$15,000 to replace."
+        },
+        {
+          "q": "Why do concrete baffles corrode?",
+          "a": "Hydrogen sulphide gas above the waterline converts to sulphuric acid on damp concrete surfaces, eating the baffle and the tank shoulder from the top down. It is a normal ageing process in older concrete tanks, which is exactly why systems installed in Davidson County between the 1970s and 1990s are now reaching the age where it shows."
+        },
+        {
+          "q": "Can a baffle be repaired instead of replaced?",
+          "a": "Minor spalling can sometimes be repaired. A baffle that is substantially corroded, cracked through or displaced gets replaced \u2014 patching it means opening the tank again in a year. Given the cost sits at $150\u2013$600 against the field it protects, replacement is usually the straightforward call."
+        }
+      ],
+      "relatedServices": [
+        "septic-effluent-filter-cleaning",
+        "drain-field-repair",
+        "septic-tank-cleaning"
+      ],
+      "guideSlugs": [
+        "failed-septic-baffle-signs",
+        "what-is-an-effluent-filter",
+        "repair-or-replace-drain-field"
+      ]
+    },
+    {
+      "slug": "septic-service-for-sinkhole-and-karst-lots",
+      "name": "Septic Service for Sinkhole and Karst Lots",
+      "shortName": "Karst & Sinkhole Lots",
+      "primaryKeyword": "septic system sinkhole lot tennessee",
+      "tier": "longtail",
+      "navOrder": 23,
+      "priority": false,
+      "blurb": "Middle Tennessee sits on fractured limestone. Systems on karst ground fail differently, and they need looking at differently.",
+      "metaDescription": "Septic service for karst and sinkhole-prone lots around Nashville. Systems on fractured limestone assessed for setback and groundwater risk. Call (615) 234-9048.",
+      "heroH1": "Septic Service for Karst and Sinkhole-Prone Lots in Nashville, TN",
+      "priceFrom": 400,
+      "priceRange": "Standard pumping rates apply; karst-specific assessment adds $100\u2013$250 where solution features need evaluating",
+      "priceBasis": "The pumping itself is priced normally. What differs is the assessment: setback from visible solution features, and whether the field has adequate soil column above bedrock.",
+      "symptoms": [
+        "A visible sinkhole or depression on or near the lot",
+        "Effluent disappearing unusually fast with no ponding",
+        "A field that never shows wet even under heavy use",
+        "Shallow soil over rock across the property",
+        "County setback questions raised during a permit or sale"
+      ],
+      "whatsIncluded": [
+        "Tank pumped and inspected to standard",
+        "Field walked for solution features, depressions and swallow holes",
+        "Setback distances from visible karst features assessed",
+        "Soil depth over bedrock evaluated across the field footprint",
+        "Assessment of whether effluent is being treated or simply disappearing",
+        "Groundwater risk noted where fractured rock is close to the surface",
+        "Reserve-area assessment accounting for karst constraints",
+        "Written report suitable for a county environmental health conversation"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Read the ground",
+          "body": "Depressions, swallow holes and rock outcrops tell you where the limestone is close to the surface. On karst lots that map matters more than the tank."
+        },
+        {
+          "n": "02",
+          "title": "Service the tank normally",
+          "body": "Pumping and inspection proceed as on any system. A karst lot does not change how a tank is serviced \u2014 it changes what happens downstream of it."
+        },
+        {
+          "n": "03",
+          "title": "Assess the field against the geology",
+          "body": "A field that never looks wet is not necessarily healthy. On fractured limestone, effluent can leave fast without receiving the soil filtration that treatment depends on."
+        },
+        {
+          "n": "04",
+          "title": "Report against setbacks",
+          "body": "County environmental health offices across Middle Tennessee enforce setbacks from visible solution features. You get a written assessment of where your system stands relative to them."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Does a sinkhole on my lot threaten my septic system?",
+          "a": "It can, in two distinct ways. A sinkhole can physically undermine and swallow part of a drain field. More insidiously, fractured limestone lets poorly treated effluent reach groundwater without the filtration a proper soil column provides \u2014 so the system appears to work while failing at its actual job. County environmental health offices watch karst features closely and enforce generous setbacks for exactly this reason."
+        },
+        {
+          "q": "My drain field never looks wet. Is that good?",
+          "a": "Not necessarily. On karst ground, effluent disappearing quickly can mean it is running into fractures rather than percolating through soil. A field that never ponds but sits on shallow soil over fractured rock warrants assessment rather than reassurance."
+        },
+        {
+          "q": "Why are Middle Tennessee drain fields larger?",
+          "a": "Because the soils drain slowly. Nashville sits in the Central Basin, where limestone dissolves into sinkholes, caves and fractured bedrock, and the soils above are frequently shallow clay loam over rock. Slow percolation means more absorption area is needed for the same daily flow, so local fields skew large \u2014 which is also why replacing one here costs more than the national average."
+        },
+        {
+          "q": "Can I even get a system permitted on a karst lot?",
+          "a": "Often yes, but the design is constrained. Tennessee permitting requires a site evaluation including a soil morphology assessment by a soil scientist, and setbacks from solution features apply. Some lots need advanced treatment or subsurface drip rather than a conventional field. That is a designer and permitting conversation, and we will tell you when you need one."
+        }
+      ],
+      "relatedServices": [
+        "drain-field-repair",
+        "septic-tank-inspection",
+        "residential-septic-tank-pumping"
+      ],
+      "guideSlugs": [
+        "sinkhole-near-drain-field",
+        "why-middle-tennessee-drain-fields-are-bigger",
+        "septic-permit-davidson-county"
+      ]
+    },
+    {
+      "slug": "mobile-home-septic-tank-pumping",
+      "name": "Mobile Home Septic Tank Pumping",
+      "shortName": "Mobile Home Pumping",
+      "primaryKeyword": "mobile home septic tank pumping",
+      "tier": "longtail",
+      "navOrder": 24,
+      "priority": false,
+      "blurb": "Smaller tanks, tighter access and shorter intervals. Mobile home systems across north Davidson need pumping more often than the standard advice suggests.",
+      "metaDescription": "Mobile home septic tank pumping in Joelton, Whites Creek and across Davidson County. Smaller tanks need shorter intervals. Call (615) 234-9048.",
+      "heroH1": "Mobile Home Septic Tank Pumping in Nashville, TN",
+      "priceFrom": 325,
+      "priceRange": "$275\u2013$450, typically at the lower end because tank capacities are smaller",
+      "priceBasis": "Smaller tanks cost less to pump but need doing more often, so annual cost of ownership is comparable to a larger system on a longer interval.",
+      "symptoms": [
+        "Two or three years since the last pump-out on a small tank",
+        "Slow drains recurring on a short cycle",
+        "A tank under 750 gallons serving a full household",
+        "Skirting or decking built over the access points",
+        "Buying a mobile home with no service records"
+      ],
+      "whatsIncluded": [
+        "Access assessed where skirting, decking or additions restrict it",
+        "Full pump-out sized to the tank actually present, often 500\u2013750 gallons",
+        "Depths measured against the smaller capacity, which changes the interval",
+        "Both baffles and any filter inspected",
+        "Interval set for the tank size rather than the generic three-to-five years",
+        "Advice where household size has outgrown the tank",
+        "Care taken around lines that are frequently shallower than in site-built homes",
+        "Written record with the tank capacity noted for future reference"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Establish real capacity",
+          "body": "Mobile home tanks are frequently 500\u2013750 gallons rather than the 1,000 that generic advice assumes. Capacity drives everything else."
+        },
+        {
+          "n": "02",
+          "title": "Work the access",
+          "body": "Skirting, decks and additions built after the fact are the usual obstacle. We assess before digging and tell you if access work is needed."
+        },
+        {
+          "n": "03",
+          "title": "Pump and measure",
+          "body": "Full pump-out, with depths measured against the smaller capacity \u2014 the number that tells you whether your interval is right."
+        },
+        {
+          "n": "04",
+          "title": "Set a realistic interval",
+          "body": "A four-person household on a 750-gallon tank needs pumping considerably more often than three to five years. We give you the number for your tank."
+        }
+      ],
+      "faq": [
+        {
+          "q": "How often should a mobile home septic tank be pumped?",
+          "a": "More often than the standard three-to-five-year advice, because the tanks are usually smaller. A 500\u2013750 gallon tank serving a full household commonly needs pumping every two to three years, and sometimes annually. The rule is capacity against daily flow, not the type of home \u2014 which is why we measure rather than assume."
+        },
+        {
+          "q": "Is a mobile home system different from a regular one?",
+          "a": "The tank is typically smaller and the lines are often shallower, but it is the same kind of system with the same failure modes. What differs in practice is the interval, and access \u2014 skirting and later additions frequently sit over the lids."
+        },
+        {
+          "q": "The skirting is built over the access. What happens?",
+          "a": "We assess it before starting. Sometimes a panel can be removed and replaced; sometimes access needs opening up properly, which we will quote before doing rather than surprising you with it. Risers fitted afterwards prevent it recurring."
+        },
+        {
+          "q": "Are these systems common around Nashville?",
+          "a": "Yes, particularly in north Davidson County. Joelton and Whites Creek have significant mobile home stock alongside single-family housing, most of it built between 1970 and 1999, which puts those systems at 25 to 55 years old."
+        }
+      ],
+      "relatedServices": [
+        "residential-septic-tank-pumping",
+        "septic-tank-locating",
+        "septic-tank-riser-installation"
+      ],
+      "guideSlugs": [
+        "how-often-pump-septic-tank-tennessee",
+        "septic-tank-pumping-cost-nashville",
+        "cant-find-septic-tank-lid"
+      ]
+    },
+    {
+      "slug": "rental-property-septic-pumping",
+      "name": "Rental Property Septic Pumping",
+      "shortName": "Rental Properties",
+      "primaryKeyword": "rental property septic pumping",
+      "tier": "longtail",
+      "navOrder": 25,
+      "priority": false,
+      "blurb": "Scheduled service for landlords, coordinated with tenants, documented for the file \u2014 so a tenant-caused backup does not become an argument about who knew what.",
+      "metaDescription": "Rental property septic pumping in Davidson County. Tenant coordination, scheduled intervals, documented service records for landlords. Call (615) 234-9048.",
+      "heroH1": "Rental Property Septic Pumping in Nashville, TN",
+      "priceFrom": 375,
+      "priceRange": "$300\u2013$525 per property, with recurring schedules across multiple properties quoted together",
+      "priceBasis": "Standard residential rates. The value for landlords is scheduling and documentation rather than a different price.",
+      "symptoms": [
+        "No service record for a property between tenancies",
+        "A tenant reporting slow drains or odour",
+        "Turnover with an unknown maintenance history",
+        "Multiple properties on septic with no unified schedule",
+        "A backup where responsibility is disputed"
+      ],
+      "whatsIncluded": [
+        "Scheduling coordinated directly with the tenant so you do not have to",
+        "Service between tenancies where a turnover window allows",
+        "Full pump-out with baffles and filter inspected",
+        "Written record dated for your property file",
+        "Assessment of whether tenant use exceeds what the system was sized for",
+        "Notes on any misuse found in the tank, documented factually",
+        "Recurring schedule across multiple properties on one arrangement",
+        "A record you can hand a tenant, an insurer or a buyer"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Set a schedule, not a reaction",
+          "body": "Rentals fail because nobody owns the maintenance. A recurring interval per property, documented, converts an unpredictable emergency into a budgeted line item."
+        },
+        {
+          "n": "02",
+          "title": "Coordinate with the tenant",
+          "body": "We arrange access directly with the occupant. Landlords managing several properties spend most of their time on scheduling, and this removes it."
+        },
+        {
+          "n": "03",
+          "title": "Pump and document",
+          "body": "Standard full service, with the state of the tank recorded. What comes out of a tank is factual evidence of how the property is being used."
+        },
+        {
+          "n": "04",
+          "title": "File the record",
+          "body": "You get a dated written record per property. When a backup happens and responsibility is contested, that file is the difference between a discussion and a dispute."
+        }
+      ],
+      "faq": [
+        {
+          "q": "How often should a rental property's septic tank be pumped?",
+          "a": "At least as often as an owner-occupied home on the same tank, and in practice more. Tenants change, household size changes with them, and nobody living in a rental is tracking sludge depth. A fixed interval per property \u2014 set from tank capacity and typical occupancy \u2014 is the only approach that holds up across tenancies."
+        },
+        {
+          "q": "Who is responsible for septic maintenance, landlord or tenant?",
+          "a": "That is a matter for your lease, and we are not the ones to interpret it. What we can do is give you a dated written record of every service and the condition of the tank at each visit, which is what makes the question answerable rather than arguable later."
+        },
+        {
+          "q": "Can you service between tenancies?",
+          "a": "Yes, and it is the ideal window \u2014 vacant access, no coordination, and a clean baseline for the incoming tenant. Tell us the turnover date and we will work to it."
+        },
+        {
+          "q": "Can you cover several properties on one schedule?",
+          "a": "Yes. Multiple properties on septic across Davidson County can run on a single recurring arrangement with one point of contact, which is considerably less administration than booking each one reactively."
+        }
+      ],
+      "relatedServices": [
+        "residential-septic-tank-pumping",
+        "short-term-rental-septic-service",
+        "septic-tank-inspection"
+      ],
+      "guideSlugs": [
+        "how-often-pump-septic-tank-tennessee",
+        "what-happens-if-you-never-pump",
+        "signs-septic-tank-is-full"
+      ]
+    },
+    {
+      "slug": "short-term-rental-septic-service",
+      "name": "Short-Term Rental Septic Service",
+      "shortName": "Short-Term Rentals",
+      "primaryKeyword": "short term rental septic pumping nashville",
+      "tier": "longtail",
+      "navOrder": 26,
+      "priority": false,
+      "blurb": "A septic system is permitted for a bedroom count, not a guest count. Nashville short-term rentals load systems in ways the original design never assumed.",
+      "metaDescription": "Short-term rental septic service in Nashville. Systems permitted for a bedroom count, loaded by guest occupancy. Capacity checks and schedules. Call (615) 234-9048.",
+      "heroH1": "Short-Term Rental Septic Service in Nashville, TN",
+      "priceFrom": 400,
+      "priceRange": "$325\u2013$550 per service, on intervals substantially shorter than an owner-occupied home",
+      "priceBasis": "The pumping is priced normally; the difference is frequency. An STR at high occupancy can need service two to four times as often as the same house lived in by a family.",
+      "symptoms": [
+        "A listing sleeping more guests than the house has bedrooms",
+        "Slow drains appearing on peak weekends and clearing midweek",
+        "Odour reported in guest reviews",
+        "No idea what bedroom count the system was permitted for",
+        "A system pumped on an owner-occupied interval but run at STR occupancy"
+      ],
+      "whatsIncluded": [
+        "Metro bedroom-approval record retrieved for the property",
+        "Permitted bedroom count compared against the listing's advertised sleeping capacity",
+        "Tank capacity assessed against realistic peak-weekend loading",
+        "Full pump-out with baffles and filter inspected",
+        "Service interval built around booking patterns rather than a calendar",
+        "Scheduling into turnover gaps so guest stays are unaffected",
+        "Written record for your file and your property manager",
+        "Plain advice where the system is genuinely undersized for how you are letting it"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Pull the permitted bedroom count",
+          "body": "Metro holds the approval record \u2014 the bedroom count your system was actually sized and permitted for. Everything else follows from that number."
+        },
+        {
+          "n": "02",
+          "title": "Compare it to the listing",
+          "body": "A three-bedroom-approved system in a house advertised as sleeping ten is loaded at several times its design flow on a peak weekend. That is a capacity problem, and no pumping schedule fixes it."
+        },
+        {
+          "n": "03",
+          "title": "Service into the turnover gap",
+          "body": "We schedule between bookings. A tank pumped during a changeover costs you nothing in occupancy."
+        },
+        {
+          "n": "04",
+          "title": "Set the interval to the bookings",
+          "body": "Interval comes off actual occupancy, not the calendar. A heavily booked STR may need service several times a year where the same house lived in by a family would go three."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Is my septic system big enough for a short-term rental?",
+          "a": "It was sized for a permitted bedroom count, and Metro Public Health will tell you what that number is. If your listing sleeps meaningfully more people than the system was approved for, you are running it above design flow \u2014 which shows up first as weekend slow drains and eventually as a drain field that stops accepting. The bedroom count is the number that matters, not the square footage."
+        },
+        {
+          "q": "Can I advertise more guests than my septic is approved for?",
+          "a": "Tread carefully. In Tennessee it is illegal to advertise a home for more bedrooms than its septic is approved for, and whoever advertises it is liable for misrepresentation. That rule is usually discussed in the context of home sales, but the wording is about advertising, and a short-term rental listing is advertising. Get the permitted count, and take advice before listing above it."
+        },
+        {
+          "q": "How often should an STR septic tank be pumped?",
+          "a": "Considerably more often than an owner-occupied home \u2014 two to four times as often is common at high occupancy. Guest use is also harder on a system than family use: more laundry per night, more simultaneous showers, and wipes and grease that a household would not put down its own drain."
+        },
+        {
+          "q": "My guests overloaded the system \u2014 what now?",
+          "a": "Stop water use, get the tank pumped down, and have the cause diagnosed rather than assuming it was a one-off. Repeated overloading damages the drain field, and a field replacement in Middle Tennessee runs $7,000\u2013$15,000 and up. If the underlying issue is that occupancy exceeds the permitted design, pumping is a holding action, not a solution."
+        }
+      ],
+      "relatedServices": [
+        "rental-property-septic-pumping",
+        "septic-tank-inspection",
+        "residential-septic-tank-pumping"
+      ],
+      "guideSlugs": [
+        "airbnb-septic-capacity-nashville",
+        "how-many-bedrooms-is-my-septic-approved-for",
+        "septic-bedroom-count-advertising-tennessee",
+        "how-often-pump-septic-tank-tennessee"
+      ]
+    },
+    {
+      "slug": "septic-pumping-for-homes-on-well-water",
+      "name": "Septic Pumping for Homes on Well Water",
+      "shortName": "Well Water Homes",
+      "primaryKeyword": "septic pumping well water home",
+      "tier": "longtail",
+      "navOrder": 27,
+      "priority": false,
+      "blurb": "When the same property both draws its drinking water and disposes of its waste underground, the separation between the two is the whole ballgame.",
+      "metaDescription": "Septic pumping for Davidson County homes on well water. Wellhead separation, groundwater protection, karst-aware assessment. Call (615) 234-9048.",
+      "heroH1": "Septic Pumping for Homes on Well Water in Nashville, TN",
+      "priceFrom": 375,
+      "priceRange": "$300\u2013$525, standard residential rates",
+      "priceBasis": "Priced as standard residential pumping. The difference is what we assess while on site, not what we charge.",
+      "symptoms": [
+        "A well and a septic system on the same parcel",
+        "Any change in water taste, odour or clarity",
+        "A septic system upslope of the wellhead",
+        "Shallow soil over rock between field and well",
+        "No record of separation distances"
+      ],
+      "whatsIncluded": [
+        "Standard full pump-out with baffles and filter inspected",
+        "Separation distance between drain field and wellhead noted",
+        "Relative elevation of field and well assessed",
+        "Soil depth over bedrock considered between the two",
+        "Karst features between field and well identified where present",
+        "Any surfacing effluent treated as urgent given the well's presence",
+        "Written record including the separation observations",
+        "Referral guidance where water testing is warranted"
+      ],
+      "process": [
+        {
+          "n": "01",
+          "title": "Locate both",
+          "body": "Before anything else we establish where the wellhead sits relative to the drain field, and which is upslope of the other."
+        },
+        {
+          "n": "02",
+          "title": "Service the tank",
+          "body": "Full pump-out and internal inspection as standard. A well-maintained tank is the first line of protection for a well on the same lot."
+        },
+        {
+          "n": "03",
+          "title": "Assess the ground between",
+          "body": "Shallow soil over fractured limestone between a field and a wellhead is the configuration that matters most here, because the filtration that treatment relies on may not be present."
+        },
+        {
+          "n": "04",
+          "title": "Report plainly",
+          "body": "You get the separation, the slope and the geology in writing. Where the picture warrants water testing, we say so \u2014 we do not test water ourselves."
+        }
+      ],
+      "faq": [
+        {
+          "q": "How far should a septic drain field be from a well?",
+          "a": "Tennessee's subsurface sewage disposal rules set minimum separation distances, and they are enforced at permitting. What matters as much as the distance is what lies between: on Middle Tennessee karst, fractured limestone can carry effluent further and faster than the same distance through intact soil. If your system predates current standards, the separation may not meet what would be required today."
+        },
+        {
+          "q": "Can a failing septic system contaminate my well?",
+          "a": "It is the risk the regulations exist to manage. Fractured limestone lets poorly treated effluent reach groundwater without the filtration a proper soil column provides \u2014 which is precisely why Tennessee regulates these systems and why county offices enforce setbacks from solution features. Surfacing effluent on a property with a well should be treated as urgent."
+        },
+        {
+          "q": "Should I test my well water?",
+          "a": "Periodic testing is sensible for any private well, and particularly worthwhile after any septic failure, surfacing event or system repair. We do not carry out water testing and will not pretend otherwise \u2014 but we will tell you when what we have seen on your lot makes testing the sensible next step."
+        },
+        {
+          "q": "Does having a well change how often I pump?",
+          "a": "It does not change the interval arithmetic, which is still capacity against flow. What it changes is the cost of getting it wrong. A neglected system on a lot with no well risks a drain field; on a lot with a well it risks your drinking water too."
+        }
+      ],
+      "relatedServices": [
+        "septic-service-for-sinkhole-and-karst-lots",
+        "residential-septic-tank-pumping",
+        "drain-field-repair"
+      ],
+      "guideSlugs": [
+        "sinkhole-near-drain-field",
+        "why-middle-tennessee-drain-fields-are-bigger",
+        "what-happens-if-you-never-pump"
+      ]
+    }
+  ]
+}

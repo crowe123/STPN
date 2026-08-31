@@ -21,11 +21,17 @@ const warn = (gate, msg) => warns.push(`[${gate}] ${msg}`);
 
 /** Visible text only — strips scripts, styles and all markup so attribute
     values like placeholder="37080" cannot trip content checks. */
-const visibleText = (html) => html
+const decodeEntities = (t) => t
+  .replace(/&nbsp;/g, ' ')
+  .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+  .replace(/&quot;/g, '"').replace(/&apos;/g, "'")
+  .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
+  .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)));
+
+const visibleText = (html) => decodeEntities(html
   .replace(/<script[\s\S]*?<\/script>/gi, ' ')
   .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-  .replace(/<[^>]+>/g, ' ')
-  .replace(/&nbsp;/g, ' ')
+  .replace(/<[^>]+>/g, ' '))
   .replace(/\s+/g, ' ');
 
 async function walk(dir, ext, acc = []) {
@@ -249,6 +255,32 @@ for (const { f, html } of pages) {
   if (!/<meta[^>]+name="viewport"/.test(html)) fail('12', `${f}: no viewport meta`);
   if (!/lang="en/.test(html)) fail('12', `${f}: no lang attribute`);
   if (!/skip-link/.test(html)) warn('12', `${f}: no skip link`);
+}
+
+/* ── GATE 13: supplied homepage article renders VERBATIM ──────────────── */
+{
+  const src = (await readFile('src/data/homepage-article.txt', 'utf8')).split('\n').filter(Boolean);
+  const home = pages.find((x) => x.f === path.join(DIST, 'index.html'));
+  if (!home) fail('13', 'homepage not built');
+  else {
+    const rendered = visibleText(home.html).replace(/\s+/g, ' ').trim();
+    let missing = 0;
+    for (const line of src) {
+      // Table rows are rendered cell by cell; compare cells individually.
+      const parts = line.includes(' | ') ? line.split(' | ') : [line];
+      for (const part of parts) {
+        const needle = part.replace(/\s+/g, ' ').trim();
+        if (!needle) continue;
+        if (!rendered.includes(needle)) {
+          missing++;
+          if (missing <= 5) fail('13', `homepage article text altered or missing: "${needle.slice(0, 90)}…"`);
+        }
+      }
+    }
+    if (missing > 5) fail('13', `${missing} homepage article segments altered or missing in total`);
+    const words = src.join(' ').split(/\s+/).length;
+    if (!fails.some((x) => x.startsWith('[13]'))) console.log(`  gate 13: homepage article renders verbatim (${words} words, ${src.length} blocks)`);
+  }
 }
 
 /* ── report ───────────────────────────────────────────────────────────── */

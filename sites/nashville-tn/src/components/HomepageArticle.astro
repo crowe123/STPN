@@ -1,0 +1,55 @@
+---
+/**
+ * Renders the operator-supplied homepage article VERBATIM.
+ *
+ * The content comes from src/data/homepage-article.json, extracted mechanically
+ * from the supplied .docx rather than re-typed. QA gate 13 diffs the rendered
+ * page against src/data/homepage-article.txt on every build and fails if a
+ * single word differs. Site chrome sits around this article, never inside it.
+ *
+ * Heading levels are taken from the document's own styles (Heading1/2/3) so the
+ * author's hierarchy is preserved exactly.
+ */
+import blocks from '../data/homepage-article.json';
+
+type Block =
+  | { type: 'p'; style: string; list: boolean; text: string }
+  | { type: 'table'; rows: string[][] };
+
+const items = blocks as Block[];
+
+/* Consecutive list paragraphs are grouped into a single <ul>. */
+type Node = { kind: 'h1' | 'h2' | 'h3' | 'p'; text: string } | { kind: 'ul'; items: string[] } | { kind: 'table'; rows: string[][] };
+const nodes: Node[] = [];
+for (const b of items) {
+  if (b.type === 'table') { nodes.push({ kind: 'table', rows: b.rows }); continue; }
+  if (b.list) {
+    const last = nodes[nodes.length - 1];
+    if (last && last.kind === 'ul') last.items.push(b.text);
+    else nodes.push({ kind: 'ul', items: [b.text] });
+    continue;
+  }
+  const kind = b.style === 'Heading1' ? 'h1' : b.style === 'Heading2' ? 'h2' : b.style === 'Heading3' ? 'h3' : 'p';
+  nodes.push({ kind, text: b.text });
+}
+---
+<article class="prose-article container-page py-12 md:py-16">
+  {nodes.map((n) => {
+    if (n.kind === 'h1') return <h1 class="text-[2.1rem] leading-[1.12] md:text-5xl lg:text-[3.3rem] mb-6">{n.text}</h1>;
+    if (n.kind === 'h2') return <h2>{n.text}</h2>;
+    if (n.kind === 'h3') return <h3>{n.text}</h3>;
+    if (n.kind === 'ul') return <ul>{n.items.map((i) => <li>{i}</li>)}</ul>;
+    if (n.kind === 'table') {
+      const [head, ...body] = n.rows;
+      return (
+        <div class="scroll-x my-8 rounded-lg border border-hairline">
+          <table class="w-full border-collapse min-w-[720px]">
+            <thead><tr>{head.map((c) => <th scope="col">{c}</th>)}</tr></thead>
+            <tbody>{body.map((r) => <tr>{r.map((c, i) => i === 0 ? <th scope="row" class="text-left">{c}</th> : <td>{c}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
+      );
+    }
+    return <p>{n.text}</p>;
+  })}
+</article>

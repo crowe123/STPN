@@ -3,11 +3,13 @@
  * Homepage. The body is the operator-supplied article, rendered VERBATIM by
  * HomepageArticle.astro and diffed against its source on every build (QA gate
  * 13). Site chrome — header, footer, sticky call bar — wraps it and never
- * appears inside it. The supplied document is the "NO_CTA" version, so no CTA
- * bands or lead-capture blocks are injected into or around the article.
+ * appears inside it. No CTA bands are injected into the article itself; the
+ * operator-requested contact form sits after it, posting to the supplied
+ * Formspree endpoint.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomepageArticle from '../components/HomepageArticle.astro';
+import LeadCaptureForm from '../components/LeadCaptureForm.astro';
 import { BRAND, SITE } from '../config';
 import { graph, organizationNode, websiteNode, webPageNode, faqNode } from '../lib/schema';
 import blocks from '../data/homepage-article.json';
@@ -44,4 +46,15 @@ const schema = graph([
 ---
 <BaseLayout title={title} description={description} path={path} schema={schema} heroPreload={heroImage}>
   <HomepageArticle heroImage={heroImage} heroAlt={heroAlt} />
+
+  <section class="section-alt border-t border-hairline">
+    <div class="container-page py-14 md:py-16">
+      <div class="max-w-2xl mx-auto">
+        <LeadCaptureForm source="homepage"
+          heading="Request septic service"
+          body="Tell us the service and your ZIP, then how to reach you. We reply with a firm price."
+          submitLabel="Request service" />
+      </div>
+    </div>
+  </section>
 </BaseLayout>

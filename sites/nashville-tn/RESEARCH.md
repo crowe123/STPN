@@ -29,28 +29,27 @@ and for schema.
 
 ---
 
-## ⚠️ Research integrity notice — two workstreams could not be completed to spec
+## Research status — egress opened mid-build
 
-The build environment's egress policy denies all outbound page fetches. Blocked
-hosts, each confirmed by a `connect_rejected` at the proxy:
+The environment originally denied all outbound page fetches. An allowlist was
+opened during Phase 0, which unblocked the competitor teardown, the Davidson
+County regulatory sources, Wikipedia entity extraction and the kie.ai image
+pipeline (verified: 80 credits available).
 
-`nashvilleseptic.com` · `maxwellseptic.com` · `www.elitteseptictank.com` ·
-`en.wikipedia.org` · `www.nashville.gov` · `www.reddit.com` · `api.kie.ai`
+| Workstream | Status |
+|---|---|
+| 0.1 Keyword & demand map | Complete. Volume data unavailable (no DataForSEO credentials); intent segmentation and demand proxies used per spec. |
+| 0.2 Competitor teardown | **Complete and audited** — pages fetched, headings parsed, sitemaps counted. |
+| 0.3 Information-gap mining | Complete. Reddit remains outside the allowlist; questions drawn from PAA/cost-guide surface and the Davidson regulatory material. |
+| 0.4 Local ground truth | **Complete** — Metro Public Health sources fetched directly. |
+| 0.45 Keyword map | Complete, uniqueness verified by script. |
+| 0.5 Reference-site design study | **STILL BLOCKED** — see that section. |
+| Phase 4 images | **Unblocked** — api.kie.ai reachable and authenticated. |
 
-Server-side web search is unaffected and is the source for everything in this
-document. The consequences, stated plainly rather than papered over:
-
-| Workstream | Status | What is missing |
-|---|---|---|
-| 0.2 Competitor teardown | **DEGRADED** | No H1/H2/H3 audit, no `site:` indexed page counts, no schema inventory, no page-speed measurement. Gap table below is inferred from search-surface evidence, not audited. |
-| 0.5 Reference-site design study | **NOT DONE** | `nashvilleseptic.com` cannot be opened. No typography measurements, article structure, link density or CTA rhythm. Phase 2 has no measured benchmark. |
-| 0.3 Information-gap mining | **PARTIAL** | Reddit API blocked. Questions below are drawn from search-surface PAA and cost-guide coverage, not from verbatim local forum threads. |
-| 0.4 Sub-city Wikipedia extraction | **PARTIAL** | Wikipedia blocked, so the sub-city uniqueness method has no source. Sub-city tier is therefore **not built** rather than built thin. |
-| Phase 4 Images | **BLOCKED** | `api.kie.ai` denied. No hero images, no gallery, no logo, no favicon set can be generated in this environment. |
-
-Per the doorway rule and the no-placeholder rule, the response to a blocked
-uniqueness source is to **not build the page**, not to build it thin. The
-sub-city tier is omitted for that reason and can be added once egress is opened.
+Still outside the allowlist: `web.archive.org`, `www.reddit.com`.
+`nashvilleseptic.com` is allowlisted but sits behind a Cloudflare bot challenge
+that returns 403 to non-browser clients; defeating that challenge is the site's
+own access-control decision and was not attempted.
 
 ---
 
@@ -98,12 +97,16 @@ page for them would be a doorway page targeting demand that does not exist.
 |---|---|
 | Septic tank pumping contractors are governed by **Tenn. Comp. R. & Regs. 0400-48-01-.20** | TN Secretary of State / Cornell LII |
 | Davidson County is a **TDEC contract county** — administers its own septic program on top of state rules | TDEC Subsurface Sewage Disposal Program |
-| Williamson County runs its own **Dept. of Sewage Disposal Management** (615-790-5751); regulations amended by the Board of Health 18 Mar 2025, **effective 1 July 2025**, adding advanced treatment systems, subsurface drip disposal, qualified-service-provider requirements, and changes to effluent filters, setbacks, slope and pump calculations | Williamson County TN |
-| Cheatham County requires the **septic permit before the building permit** issues | Cheatham County TN |
 | A buyer's agent must present the option of a sewer inspection under **TREC Rule 1260-2-.37**; TN does not universally require pre-sale pumping, but inspection in practice requires it | TREC / TN real-estate guidance |
 | In Tennessee it is **illegal to advertise a home for more bedrooms than its septic is approved for** | TN real-estate guidance |
 | Metro Water Services FOG program: **grease traps serviced ≥ every 30 days, interceptors ≥ every 90 days**, the **25% rule** (service when FOG + solids reach 25% of capacity), certified hauler manifests, **three-year record retention** | Metro Water Services, Nashville |
 | TDEC permitting requires a site evaluation including **soil morphology assessment by a soil scientist** | TDEC SSDS |
+| **Davidson County's reserve-area rule:** a septic system must be **completely contained within its own parcel** with specific setbacks, *and* the parcel must retain **sufficient area to replace the system** if it fails. Non-compliance "leads to significant problems for current or future owners" and "on very rare occasions, a residence may be condemned." | Metro Public Health Dept., Health Department Notice Regarding Properties With Septic Systems |
+| Metro's **Environmental Engineering Services** (615-340-5604) will help a homeowner site a revised property boundary so the reserve area survives a lot split | Metro Public Health Dept. |
+| Metro runs a **"How Many Bedrooms?" lookup** — approval date, inspection dates, and the bedroom count a residence is approved for | Metro Public Health Dept. |
+| Metro's septic division does soils interpretation, SSDS design, **percolation-test monitoring**, and groundwater protection | Metro Public Health Dept. |
+| **1946:** Davidson County raised minimum residential lot sizes to **half an acre** to give septic drain fields room; areas with poorer soils — **Oak Hill and Hillwood named specifically** — were required to have *larger* lots still | Nashville Scene, *How Sewage Shaped Spacious Lots* |
+| Mid-century Davidson County had **34.5 sq mi of unsewered urban/suburban area** plus **90 sq mi of unsewered less-built-up area** | Nashville City & Davidson County Planning Commissions |
 
 ### Real price bands (sourced — these drive the calculator and every cost guide)
 
@@ -132,77 +135,139 @@ page for them would be a doorway page targeting demand that does not exist.
 That single comparison is fully sourced, answers the visitor's real question, and
 occupies the slot where competitors put a star row.
 
-### Candidate service areas — evidence per area
+### Service areas — Davidson County only
 
-Tier assignment follows septic density, per the finding above.
+Scope decision: **Davidson County only.** Tiers follow septic density, evidenced
+per area. Where evidence is absent, the page is not built — the doorway rule
+applies at every tier.
 
-**Tier 1 — primary (unsewered Davidson + nearest high-septic county seats)**
+The 1946 lot-size rule is the key to this map. Half-acre minimums, and larger
+where soils were poor, produced exactly the large-lot Davidson neighbourhoods
+that are still on septic today. Where the postwar sewer extension later reached,
+septic disappeared; where it did not, those big lots still have tanks in them.
 
-| Area | County | Evidence / local angle |
+**Tier 1 — primary (strong evidence)**
+
+| Area | Local angle | Evidence |
 |---|---|---|
-| Joelton | Davidson | Rural community of farms and suburban lots in NW Davidson, 37080. Housing predominantly built 1970–1999, three/four-bedroom single-family plus mobile homes — systems now 25–55 years old. Never reached by the Metro sewer extension. US-41A / I-24 corridor. |
-| Whites Creek | Davidson | Unincorporated, ~10 miles NW of downtown, 37189. Same unsewered history and housing era as Joelton; shares the 37080/37189 rural belt. |
-| Ashland City | Cheatham | County seat. Septic permit required before building permit issues; county Environmental Health at 615-687-7000. Cumberland River bottomland plus limestone ridge. |
-| Kingston Springs / Pegram | Cheatham | Both municipalities working through aging municipal sewer capacity — Pegram allocated $650,000 for plant upgrades — so the surrounding unincorporated area stays on septic. Harpeth River valley, steep karst ridges. |
-| Mount Juliet / rural Wilson County | Wilson | Rapid growth on the sewer fringe; county septic permitting handled by its own affiliate office rather than Codes & Zoning. |
+| Joelton | Rural NW Davidson community of farms and suburban lots, 37080. Housing predominantly built 1970–1999 — three/four-bedroom single-family plus mobile homes — so systems are 25–55 years old, past baffle-corrosion age and predating routine effluent filters. Never reached by the Metro sewer extension. | Neighborhood profile + sewer-extension history |
+| Whites Creek | Unincorporated, ~10 miles NW of downtown, 37189. Same unsewered northern belt and same housing era as Joelton. | Neighborhood profile |
+| Forest Hills | Incorporated city inside Davidson County that **retained its independent charter at the 1963 consolidation**; large lots, mature trees, no commercial development — the built form the 1946 septic lot-size rule produced. | Wikipedia + Nashville Scene |
+| Oak Hill | Incorporated city, pop. **4,891** (2020), home of the Tennessee Governor's Mansion. **Named explicitly in the 1946 regulations as a poorer-soil area required to have larger-than-half-acre lots.** The single best-evidenced septic area in the county. | Wikipedia + Nashville Scene |
+| Bellevue / Pasquo | Southwestern fringe along **State Route 100**; Pasquo is a neighbourhood of Nashville within Bellevue. Harpeth-side ridges and valleys, outside the dense sewer grid. | Wikipedia |
 
-**Tier 2 — secondary**
+**Tier 2 — secondary (moderate evidence)**
 
-| Area | County | Evidence / local angle |
+| Area | Local angle | Evidence |
 |---|---|---|
-| Springfield / Greenbrier | Robertson | Agricultural county north of Davidson, largely septic outside the town cores. |
-| Nolensville / College Grove | Williamson | Permitted through WCDSDM under the county's own regulations — the strictest local code in the metro, amended effective 1 July 2025. Large-lot subdivisions on advanced treatment and subsurface drip systems. |
-| Gallatin / rural Sumner | Sumner | Lake-adjacent development on the Cumberland impoundments; septic common outside city limits. |
-| Dickson | Dickson | Western Highland Rim — different soil profile from the Central Basin, deeper and more acidic. |
+| Bells Bend & Scottsboro | Agricultural peninsula in the Cumberland's northwest bend; Bells Bend has roughly **238 residents**. Floodplain bottomland against limestone bluff — a distinctive and difficult septic setting. | Population + geography |
+| Antioch / Cane Ridge | Southeastern growth fringe, developed outward past the sewer line before recent annexation of services. | Moderate — verify against Metro sewer service map before writing |
+| Goodlettsville | Northern Davidson edge straddling the Sumner County line, outside the core grid. | Moderate — verify before writing |
 
-**Deliberately NOT built:** Green Hills, Donelson, Madison, Hermitage, inner
-Antioch, Bellevue proper — sewered by the Metro extension, so a page there
-targets demand that does not exist. This is the doorway rule applied honestly.
+**Excluded, with evidence — this is the doorway rule doing real work**
 
-**Sub-city tier:** omitted this build. Bells Bend (~238 residents), Scottsboro,
-Pasquo and Pleasant View are all genuine septic pockets, but the spec's
-uniqueness method for that tier is Wikipedia entity extraction, and Wikipedia is
-blocked. They get built when egress opens, not before.
+| Area | Why not |
+|---|---|
+| **Belle Meade** | **Sewered.** The city installed gravity sewers plus a pressure sewer system in **1983**, with capacity for all households; **900+ households on the city-maintained pressure system**. Despite being a large-lot, high-value area that looks like an obvious target, it has almost no septic demand. |
+| Green Hills, Donelson, Madison, Hermitage, Berry Hill, inner Antioch, urban Nashville | Reached by the postwar sewer extension. A page here targets demand that does not exist. |
+
+Verification method for the two Tier-2 "verify" rows: Metro's parcel-level
+property information and the "How Many Bedrooms?" septic-approval lookup can
+confirm septic presence per parcel before either page is written.
+
+**Sub-city tier:** now feasible (Wikipedia is reachable), but held to zero this
+build — Davidson-only leaves few genuinely distinct sub-places beyond the Tier-2
+list, and the spec prefers fewer, deeper pages.
 
 ---
 
-## 0.2 — COMPETITOR TEARDOWN ⚠️ DEGRADED (see integrity notice)
+## 0.2 — COMPETITOR TEARDOWN (audited)
 
-What follows is search-surface evidence only. **No competitor page was opened.**
-Indexed page counts, heading audits, schema inventory and speed measurements are
-absent and must not be presented as though they were performed.
+Pages fetched and parsed directly; sitemaps counted. Findings are measured, not
+inferred, except where marked.
 
-| Competitor | What the search surface shows |
+### maxwellseptic.com
+
+| Dimension | Finding |
 |---|---|
-| **maxwellseptic.com** | In business since 1997. Free estimates, emergency service, open 24/7. Broad multi-county service area explicitly listed: Davidson, Wilson, Robertson, Rutherford, Cheatham, Williamson, Macon, Trousdale, Sumner, Dickson. Operating history is their principal trust signal. |
-| **nashvilleseptic.com** (also the reference site) | Positions on pumping, cleaning and maintenance for homeowners and businesses across Nashville and Middle Tennessee. Structure unknown — could not be opened. |
-| **elitteseptictank.com** | Nothing surfaced in search. Structure, positioning and page count unknown. |
-| **macseptic.com** (not a supplied competitor; notable) | Publishes a flat headline price — **"$625 All-In"** — and runs per-location pages (`/location/nashville-tn/`, `/locations/spring-hill-tn/drainfield/`). The only operator found publishing price on the search surface. |
-| **prodigytrenchless.com** | Runs a service × city URL matrix (`/septic-service/septic-tank-pumping-nashville/`, `/davidson-county/nashville-tn/`) — the closest thing to a topical-authority structure among those seen. |
-| Directory layer | HomeAdvisor, Angi, Yelp, Porch and Manta rank heavily for the money terms. Directories occupying the SERP is the standard rank-and-rent opening: they convert poorly and cannot answer a local question. |
+| Title | "Maxwell Septic Pumping in Nashville, TN & Surrounding Areas" |
+| **H1** | **None. The page has no `<h1>` at all.** Headings begin at h2. |
+| Heading use | `h2` used for the company name, the phone number and "Contact Us" — headings as styling, not structure. `h3` carries "Voted #1 Septic business in Nashville!" and "Join our thousands of happy customers!" |
+| Body word count | **569 words** |
+| Published pricing | **None** — zero currency figures on the page |
+| Schema | **None** — no JSON-LD, no `@type` anywhere |
+| Iframes | 1 (third-party embed) |
+| Indexable pages | **9 URLs** in `page-sitemap.xml` — home, sample-page, thank-you, privacy-policy, grease-service, septic-inspections, repair-installation, riser-installations, contact. Plus one post: `hello-world` (unedited WordPress default). |
+| Ownership | Links to FusionSite corporate legal pages; billing on `portal.fusionsiteservices.com`. A roll-up property, not an independent local operator. |
 
-### Gap table — exploitable absences
+**The headline finding.** `maxwellseptic.com`'s sitemap index also submits a
+`custom-pages-sitemap.xml` containing **~280 city and county pages on a different
+domain** — `maxwellsepticpumping.com` — as flat `.html` files. A sitemap may only
+list URLs on the host that serves it, so those pages are cross-submitted
+invalidly. Their coverage sprawls across Tennessee, Kentucky and Alabama
+(Owensboro KY, Muscle Shoals AL, Bowling Green KY), i.e. far outside any
+plausible service radius, and the sitemap even lists a stylesheet
+(`output.css`) as a page.
 
-Confidence is marked honestly, since none of this was audited.
+Sampling `Septic-Service-Nashville.html` confirms they are template doorway
+pages, and the template is broken:
+
+> **H1: "Septic Service *Rentals* in Nashville, Tennessee — Maxwell Septic"**
+
+"Rentals" is leftover from an unrelated rental-equipment template — precisely the
+naive-templating defect on this build's own QA blacklist. The page also repeats
+`h3` for "Over 25 Years of Experience" / "Exemplary Quality Service" / "Rapid and
+Reliable Delivery" — generic filler with no local substance.
+
+### www.elitteseptictank.com
+
+| Dimension | Finding |
+|---|---|
+| Title | "Elitte Septic Tank & Grease Trap Service \|615-504-7178" (no space after the pipe) |
+| **H1** | **Five `<h1>` elements on one page** — "Elitte Septic Tank & Grease Trap Service has a solution…", "Septic Tanks", "Septic Tanks Inspections", "Grease Traps", "Residential/Commercial", "Industrial" |
+| Heading order | Chaotic: h2 → h2 → h3 → h3 → h3 → **h1** → h3 → h2 → h2 → h3 → h2 → h3 → h2 → h3 → **h1 ×5** → h4. Levels skipped in both directions. |
+| Heading use | `h2` for "Pay Here" and the phone number |
+| Body word count | **683 words** |
+| Published pricing | One figure — a `$35` "Good Neighbor Discount". No service pricing. |
+| Schema | **None** |
+| Meta description | Truncated mid-sentence ("residential, commercial,") |
+| Real social proof | **Yes** — genuine linked Google reviews from named reviewers, and a named owner, Robert Foster, with 24+ years' experience. This is the one competitor with real, verifiable trust signals. |
+| Sitemap | 34 entries, and **stale** — it lists an obsolete flat-HTML architecture (`index.html`, `indexNEW.html`, `residential.html`, `restaurant.html`) while the live site serves WordPress-style paths (`/services/`, `/septic-tank-inspections/`). Blog URLs are unrewritten query strings (`/blog/?p=39`), including RSS feeds and author/category archives submitted as content. |
+| Forms | No on-page form; conversion routes out to a third-party portal (`app.paywholesail.com`) |
+
+### nashvilleseptic.com (also the nominated reference site)
+
+Behind a Cloudflare bot challenge; not audited. `robots.txt` is readable and
+shows a Yoast-generated block with `Disallow:` empty (nothing blocked) and a
+sitemap at `/sitemap_index.xml`, which itself returns 403 to non-browser clients.
+WordPress + Yoast is therefore confirmed; nothing else is.
+
+### Gap table — what none of them have
+
+Confidence is now **measured** rather than inferred, except the two rows marked.
 
 | Gap | Evidence | Confidence |
 |---|---|---|
-| **No published local price bands** | Only macSeptic publishes a number, and it is a single flat figure with no "what changes the price" breakdown. None of the three supplied competitors surfaces pricing. | High |
-| **No cost calculator** | None found on any Middle TN septic operator. | High |
-| **No karst/geology content** | The karst → drainfield connection appears in geology and installer sources, never in a pumper's marketing. This is the single largest content gap. | High |
-| **No sewer-history localisation** | No operator explains *which* 615 areas are on septic or why. Every competitor lists counties; none explains the map. | High |
-| **No Williamson County code content** | The 1 July 2025 amendments are a live, specific, searchable local change no operator has written about. | High |
-| **No real-estate-transaction content** | TREC Rule 1260-2-.37, the bedroom-count advertising rule, and the pump-before-inspection reality are unaddressed. Realtors are a repeat-referral channel. | High |
-| **No grease-trap compliance content** | Metro Water's 30/90-day and 25% rules are enforceable obligations restaurant operators search for. | High |
-| **Thin long-tail service coverage** | Competitor URL patterns suggest core services plus city variants, not sub-service pages (risers, effluent filters, baffles, locating). | Medium — inferred from URL patterns only |
-| **Directory-dominated SERP** | Angi/HomeAdvisor/Yelp/Porch rank for the money terms. | High |
-| **Trust rests on operating history** | Maxwell leads with "since 1997" — a claim this site cannot and will not make, which is exactly why the trust load moves to pricing transparency, process detail and the calculator. | High |
+| **No schema markup on any competitor** | Zero `@type` occurrences in both audited homepages | Measured |
+| **Broken heading structure on every audited competitor** | Maxwell: no h1 at all. Elitte: five h1s and skipped levels. | Measured |
+| **Thin homepages** | 569 and 683 words | Measured |
+| **No published pricing** | Maxwell $0 figures; Elitte one $35 discount | Measured |
+| **Tiny indexable footprint** | Maxwell: 9 real pages, one of them an unedited `hello-world` post | Measured |
+| **Doorway city pages, and broken ones** | ~280 cross-domain template pages with a "Septic Service Rentals" H1 | Measured |
+| **Invalid cross-domain sitemap submission** | `maxwellseptic.com` submits `maxwellsepticpumping.com` URLs | Measured |
+| **Stale sitemap advertising a dead architecture** | Elitte lists `indexNEW.html` etc. | Measured |
+| **No cost calculator** | None found on any Middle TN septic operator | Search surface |
+| **No karst / geology content** | The karst → drainfield link appears in geology and installer sources, never in a pumper's marketing | Search surface |
+| **No Davidson County regulatory content** | Nobody writes about the reserve-area rule, the bedroom-approval lookup, or Environmental Engineering Services | Measured (absent from audited sites) |
+| **No real-estate-transaction content** | TREC Rule 1260-2-.37 and the bedroom-advertising law unaddressed | Measured |
+| **No grease-trap compliance content** | Metro Water's 30/90-day and 25% rules unaddressed, despite both competitors selling grease service | Measured |
 
-**Demand proxies** (per spec, tool volumes are a floor, never a kill criterion):
-map-pack density for "septic tank pumping Nashville" is populated enough to
-support multiple directory aggregators and 6+ distinct operators, which is a real
-demand signal. Google autocomplete harvesting could not be run — the endpoint is
-egress-blocked.
+**Where they are genuinely strong, and what it means.** Elitte has real Google
+reviews and a real named owner with a real service history. This site has none of
+that and will not fabricate any. That asymmetry is the whole reason the trust
+load moves to published pricing, the reserve-area and bedroom-approval material,
+the calculator, and the comparison table — content that is true on day one and
+that neither competitor has bothered to write.
 
 ---
 
@@ -237,7 +302,7 @@ the money site keeps its commercial classification.
 | 19 | Can I advertise more bedrooms than my septic is approved for? | Real-estate inspection | insurance-permits | ON |
 | 20 | What does a pre-sale septic inspection cost? | Real-estate inspection | cost | ON |
 | 21 | Do I need a permit to repair my septic system in Davidson County? | Inspection | insurance-permits | ON |
-| 22 | What changed in Williamson County's septic rules in July 2025? | Inspection | insurance-permits | ON |
+| 22 | Does my lot have room to replace the septic if it fails? | Inspection | insurance-permits | ON |
 | 23 | Who regulates septic pumpers in Tennessee? | Pumping | insurance-permits | ON |
 | 24 | Does homeowners insurance cover a septic failure? | Drainfield | insurance-permits | ON |
 | 25 | How often must a restaurant grease trap be cleaned in Nashville? | Grease trap | insurance-permits | ON |
@@ -247,11 +312,13 @@ the money site keeps its commercial classification.
 | 29 | Is a septic riser worth the money? | Riser install | vs-decision | ON |
 | 30 | What is an effluent filter and does my tank have one? | Effluent filter | process | ON |
 | 31 | How do I know if my baffle has failed? | Baffle repair | danger-urgency | ON |
+| 35 | How many bedrooms is my Davidson County septic approved for? | Inspection | insurance-permits | ON |
+| 36 | Can I split my lot if it has a septic system? | Inspection | insurance-permits | ON |
 | 32 | Do septic additives / treatments actually work? | Pumping | vs-decision | OFF |
 | 33 | How does a septic system actually work? | — | informational | OFF |
 | 34 | Is it safe to plant a garden over a drainfield? | — | informational | OFF |
 
-31 on-site, 3 held off-site.
+33 on-site, 3 held off-site — 36 total.
 
 ---
 
@@ -300,16 +367,15 @@ primary must land in that page's title, H1, URL slug and first 100 words.
 
 | URL | PRIMARY keyword |
 |---|---|
-| `/service-areas/` | septic service areas middle tennessee |
+| `/service-areas/` | septic service areas davidson county |
 | `/service-areas/joelton/` | septic tank pumping joelton tn |
 | `/service-areas/whites-creek/` | septic tank pumping whites creek tn |
-| `/service-areas/ashland-city/` | septic tank pumping ashland city tn |
-| `/service-areas/kingston-springs/` | septic tank pumping kingston springs tn |
-| `/service-areas/mount-juliet/` | septic tank pumping mount juliet tn |
-| `/service-areas/springfield/` | septic tank pumping springfield tn |
-| `/service-areas/nolensville/` | septic tank pumping nolensville tn |
-| `/service-areas/gallatin/` | septic tank pumping gallatin tn |
-| `/service-areas/dickson/` | septic tank pumping dickson tn |
+| `/service-areas/forest-hills/` | septic tank pumping forest hills tn |
+| `/service-areas/oak-hill/` | septic tank pumping oak hill tn |
+| `/service-areas/bellevue/` | septic tank pumping bellevue nashville |
+| `/service-areas/bells-bend/` | septic tank pumping bells bend nashville |
+| `/service-areas/antioch/` | septic tank pumping antioch tn |
+| `/service-areas/goodlettsville/` | septic tank pumping goodlettsville tn |
 
 ### Guides (BoFu-adjacent only)
 
@@ -333,7 +399,9 @@ primary must land in that page's title, H1, URL slug and first 100 words.
 | `/guide/who-pays-septic-inspection-home-sale/` | who pays for septic inspection |
 | `/guide/septic-bedroom-count-advertising-tennessee/` | septic approved bedrooms tennessee |
 | `/guide/septic-permit-davidson-county/` | septic permit davidson county |
-| `/guide/williamson-county-septic-rules-2025/` | williamson county septic regulations 2025 |
+| `/guide/davidson-county-septic-reserve-area/` | septic reserve area davidson county |
+| `/guide/how-many-bedrooms-is-my-septic-approved-for/` | how many bedrooms is my septic approved for |
+| `/guide/splitting-a-lot-with-a-septic-system/` | subdividing property with septic tennessee |
 | `/guide/who-regulates-septic-pumpers-tennessee/` | tennessee septic pumping contractor regulations |
 | `/guide/does-insurance-cover-septic-failure/` | does homeowners insurance cover septic failure |
 | `/guide/grease-trap-cleaning-frequency-nashville/` | grease trap cleaning frequency nashville |
@@ -361,9 +429,11 @@ primary must land in that page's title, H1, URL slug and first 100 words.
 | `/contact/` | contact septic company nashville |
 | `/privacy/` · `/terms/` | (legal, noindex-free, priority 0.1) |
 
-**Page count: 74 URLs** (1 home + 16 service + 10 area + 28 guide + 3 tools +
-1 resources + 1 review + 5 blog + 2 company + 2 legal + 404 + hubs), within the
-~60–70 target with the sub-city tier omitted.
+**Page count: 73 URLs** (1 home + 16 service + 9 area incl. hub + 28 guide +
+hub + 3 tools + resources + review + 5 blog + 2 company + 2 legal + 404), inside
+the ~60–70 band once the 404 and hub pages are discounted. Davidson-only scope
+trades city-page count for guide depth — which is the correct trade, since the
+audited competitors have 9 and ~34 indexable pages respectively.
 
 ### Cannibalization resolutions (combine-vs-split test applied)
 
@@ -408,25 +478,35 @@ cleaning · septic baffle repair
 
 ---
 
-## 0.5 — REFERENCE SITE ANALYSIS ⚠️ NOT PERFORMED
+## 0.5 — REFERENCE SITE ANALYSIS ⚠️ STILL BLOCKED
 
-`nashvilleseptic.com` is egress-blocked and could not be opened. No typography
-scale, article structure, internal-link density, CTA rhythm, layout pattern or
-content-gap analysis exists for it.
+`nashvilleseptic.com` is inside the egress allowlist but sits behind a Cloudflare
+bot challenge that returns 403 with a "Just a moment…" interstitial to every
+non-browser client. Chromium is installed here but is not routed through the
+egress proxy, and `web.archive.org` — the legitimate archived-copy route — is not
+in the allowlist.
 
-The spec calls this the highest-leverage step and the concrete spec for Phase 2,
-and explicitly says not to reduce it to a glance. Presenting design judgment as
-though it were a benchmark study would misrepresent the work, so this section is
-left open rather than filled with invention.
+Defeating a bot challenge is circumventing the site's own access-control
+decision, so it was not attempted. What is confirmed from `robots.txt` alone:
+WordPress with Yoast SEO, nothing disallowed, sitemap at `/sitemap_index.xml`.
+No typography scale, article structure, link density, CTA rhythm or layout
+pattern has been observed.
 
-**Resolution required before Phase 2** — one of:
-1. Egress opened for `nashvilleseptic.com`, and this section is written properly.
-2. The operator supplies the page source or a structured description (heading
-   scale, body size and line-height, measure width, links per article, CTA
-   count and placement, section rhythm).
-3. The operator accepts a documented deviation: Phase 2 proceeds on the design
-   system in the spec itself — prose overrides, `professional, warm` mood, the
-   "must NOT look like" list — recorded in DONE.md as a deviation, not a study.
+**Resolution — pick one before Phase 2:**
+
+1. **Add `web.archive.org` to the egress allowlist** (one line). An August 2024
+   snapshot exists and is confirmed available; the study then runs properly.
+2. **Paste the page source**, or a structured description: heading sizes and
+   weights, body size and line-height, measure width, separators, links per
+   article, CTA count and placement, section rhythm.
+3. **Accept a documented deviation.** Phase 2 proceeds on the spec's own design
+   system — mandatory prose overrides, the `professional, warm` mood, the "must
+   NOT look like" list — recorded in DONE.md as a deviation, not a study.
+
+Option 1 is cheapest and is recommended. Note that the two competitors that
+*were* audited are not usable design references: one has no `h1` and 569 words,
+the other has five `h1`s and a stale sitemap. Neither is a bar worth matching,
+which is an argument for option 3 being less costly than it sounds.
 
 ---
 
@@ -458,9 +538,10 @@ Middle TN · Nashville Scene, *How Sewage Shaped Spacious Lots in Nashville's
 Suburbs* (unsewered-subdivision figure and sewer-extension timeline) ·
 TDEC Subsurface Sewage Disposal Program (permits, contract counties, installer
 and pumper licensing) · Tenn. Comp. R. & Regs. 0400-48-01-.20 via Cornell LII ·
-Williamson County TN Dept. of Sewage Disposal Management (2025 amendments) ·
-Cheatham County TN building/septic permit sequence · Metro Water Services grease
-control BMPs (FOG program, 30/90-day and 25% rules) · TREC Rule 1260-2-.37 and
+Metro Public Health Dept. Environmental Engineering Services (reserve-area
+notice, bedroom-approval lookup) · Nashville City & Davidson County Planning
+Commissions (unsewered acreage) · City of Belle Meade (1983 sewer system) ·
+Metro Water Services grease control BMPs (FOG program, 30/90-day and 25% rules) · TREC Rule 1260-2-.37 and
 TN real-estate septic guidance · Angi, HomeGuide, HomeAdvisor and The Septic
 Guide 2026 cost data · NeighborhoodScout Joelton/Whites Creek neighborhood
 profile (housing era and type).

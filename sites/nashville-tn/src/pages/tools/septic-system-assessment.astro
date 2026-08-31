@@ -27,7 +27,7 @@ const schema = graph([
     </p>
   </section>
   <section class="container-page py-12 max-w-3xl">
-    <UrgencyQuiz client:visible phone={CONTACT.phoneDisplay} />
+    <UrgencyQuiz client:visible phone={CONTACT.phoneDisplay} phoneE164={CONTACT.phoneE164} />
   </section>
   <CtaBand heading="Whatever the result says, a person can tell you more in two minutes."
            body={CONTACT.hoursHuman} ctaLabel="Get a price" />

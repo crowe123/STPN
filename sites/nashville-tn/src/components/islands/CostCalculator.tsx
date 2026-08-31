@@ -3,8 +3,8 @@ import data from '../../data/calculator.json';
 
 type Sel = Record<string, string>;
 
-export default function CostCalculator({ endpoint, phone, honeypot }:
-  { endpoint: string; phone: string; honeypot: string }) {
+export default function CostCalculator({ endpoint, phone, phoneE164, honeypot }:
+  { endpoint: string; phone: string; phoneE164: string; honeypot: string }) {
   const [sel, setSel] = useState<Sel>({});
   const complete = data.inputs.every((i) => sel[i.id]);
 
@@ -73,7 +73,7 @@ export default function CostCalculator({ endpoint, phone, honeypot }:
         <div class="card p-6 md:p-8 mt-5">
           <p class="font-heading font-bold text-xl">{data.leadCapture.heading}</p>
           <p class="mt-2 text-ink-soft">{data.leadCapture.body}</p>
-          <p class="mt-3 text-[15px]">Or call <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="font-bold text-accent-dark underline underline-offset-2">{phone}</a>.</p>
+          <p class="mt-3 text-[15px]">Or call <a href={`tel:${phoneE164}`} class="font-bold text-accent-dark underline underline-offset-2">{phone}</a>.</p>
           <form action={endpoint} method="POST" class="mt-4 space-y-3">
             <input type="hidden" name="_source" value="cost-calculator" />
             <input type="hidden" name="estimate" value={result ? `$${result.low}-$${result.high}` : 'not completed'} />

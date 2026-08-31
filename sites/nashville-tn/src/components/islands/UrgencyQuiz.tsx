@@ -1,13 +1,13 @@
 import { useState } from 'preact/hooks';
 import data from '../../data/quiz.json';
 
-export default function UrgencyQuiz({ phone }: { phone: string }) {
+export default function UrgencyQuiz({ phone, phoneE164 }: { phone: string; phoneE164: string }) {
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [done, setDone] = useState(false);
   const total = Object.values(answers).reduce((a, b) => a + b, 0);
   const answered = Object.keys(answers).length;
   const result = data.results.find((r) => total >= r.min) ?? data.results[data.results.length - 1];
-  const tel = `tel:${phone.replace(/[^+\d]/g, '')}`;
+  const tel = `tel:${phoneE164}`;
 
   const tone: Record<string, string> = {
     critical: 'border-accent bg-accent/10',

@@ -9,7 +9,7 @@ import { graph, organizationNode, websiteNode, webPageNode, breadcrumbNode } fro
 
 const path = '/contact/';
 const title = `Contact ${BRAND.name} | Nashville Septic Service`;
-const description = 'Call (615) 234-9048 for septic pumping in Nashville and Davidson County. A person answers, including outside office hours for backups.';
+const description = `Call ${CONTACT.phoneDisplay} for septic pumping in Nashville and Davidson County. A person answers, including outside office hours for backups.`;
 const trail = [{ name: 'Home', href: '/' }, { name: 'Contact', href: path }];
 const schema = graph([organizationNode(), websiteNode(), webPageNode(path, title, description, SITE.lastReviewed), breadcrumbNode(path, trail)]);
 ---

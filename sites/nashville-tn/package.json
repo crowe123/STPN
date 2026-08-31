@@ -5,11 +5,12 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "icons": "node scripts/gen-icons.mjs",
+    "icons": "node scripts/gen-icons.mjs && node scripts/gen-derived-images.mjs",
     "build": "npm run icons && astro build && node scripts/gen-ai-layer.mjs && node scripts/qa.mjs",
     "build:only": "astro build",
     "qa": "node scripts/qa.mjs",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "images": "node scripts/gen-images.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.14",

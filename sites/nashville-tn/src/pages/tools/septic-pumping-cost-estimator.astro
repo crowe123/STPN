@@ -23,7 +23,7 @@ const schema = graph([
     <p class="mt-5 max-w-3xl text-lg md:text-xl text-ink-soft leading-relaxed">{calc.intro}</p>
   </section>
   <section class="container-page py-12">
-    <CostCalculator client:visible endpoint={FORMS.endpoint} phone={CONTACT.phoneDisplay} honeypot={FORMS.honeypotField} />
+    <CostCalculator client:visible endpoint={FORMS.endpoint} phone={CONTACT.phoneDisplay} phoneE164={CONTACT.phoneE164} honeypot={FORMS.honeypotField} />
   </section>
   <section class="container-page pb-14">
     <div class="prose-article">

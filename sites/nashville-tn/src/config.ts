@@ -59,7 +59,7 @@ export const SITE = {
   domain: '615septictankpumping.com',
   origin: 'https://615septictankpumping.com',
   titleSuffix: '615 Septic Tank Pumping',
-  defaultOgImage: '/images/og-default.webp',
+  defaultOgImage: '/images/og-default.jpg',
   locale: 'en_US',
   /** Drives sitemap lastmod and the "Last updated" stamp on service pages. */
   lastReviewed: '2026-08-31',

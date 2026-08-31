@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="615 Septic Tank Pumping">
+  <rect width="64" height="64" rx="14" fill="#1E4634"/>
+  <g transform="translate(12 15)">
+    <path d="M2 4a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v26a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4z" fill="none" stroke="#FAF7F1" stroke-width="3"/>
+    <rect x="6.5" y="5.5" width="27" height="5" rx="1.6" fill="#C2571A"/>
+    <rect x="6.5" y="13.5" width="27" height="6.5" rx="1.6" fill="#FAF7F1" opacity=".28"/>
+    <rect x="6.5" y="23" width="27" height="6" rx="1.6" fill="#FAF7F1"/>
+    <path d="M13 -3v5M27 -3v5" stroke="#FAF7F1" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

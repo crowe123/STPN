@@ -161,8 +161,13 @@ septic disappeared; where it did not, those big lots still have tanks in them.
 | Area | Local angle | Evidence |
 |---|---|---|
 | Bells Bend & Scottsboro | Agricultural peninsula in the Cumberland's northwest bend; Bells Bend has roughly **238 residents**. Floodplain bottomland against limestone bluff — a distinctive and difficult septic setting. | Population + geography |
-| Antioch / Cane Ridge | Southeastern growth fringe, developed outward past the sewer line before recent annexation of services. | Moderate — verify against Metro sewer service map before writing |
-| Goodlettsville | Northern Davidson edge straddling the Sumner County line, outside the core grid. | Moderate — verify before writing |
+| Goodlettsville | Northern Davidson edge straddling the Sumner County line. **Verified and built:** many homes here are on septic, and the area's sewer is split across four providers — the city's own department, White House Utility District, Madison Suburban Utility District and Metro Water Services — leaving real gaps between them. Mound systems and aerobic treatment units appear where water tables are high. | Verified |
+
+**Dropped after verification: Antioch / Cane Ridge.** The only evidence found was
+a generic statement that properties not connected to public sewer rely on septic,
+which is true everywhere and is not evidence of density. Under the doorway rule
+the page was not built. It can be added if parcel-level checking establishes real
+septic presence.
 
 **Excluded, with evidence — this is the doorway rule doing real work**
 
@@ -171,9 +176,10 @@ septic disappeared; where it did not, those big lots still have tanks in them.
 | **Belle Meade** | **Sewered.** The city installed gravity sewers plus a pressure sewer system in **1983**, with capacity for all households; **900+ households on the city-maintained pressure system**. Despite being a large-lot, high-value area that looks like an obvious target, it has almost no septic demand. |
 | Green Hills, Donelson, Madison, Hermitage, Berry Hill, inner Antioch, urban Nashville | Reached by the postwar sewer extension. A page here targets demand that does not exist. |
 
-Verification method for the two Tier-2 "verify" rows: Metro's parcel-level
-property information and the "How Many Bedrooms?" septic-approval lookup can
-confirm septic presence per parcel before either page is written.
+**Final count: 7 service-area pages** — 5 primary and 2 secondary. Verification
+method for any future addition: Metro's parcel-level property information and the
+"How Many Bedrooms?" septic-approval lookup can confirm septic presence before a
+page is written.
 
 **Sub-city tier:** now feasible (Wikipedia is reachable), but held to zero this
 build — Davidson-only leaves few genuinely distinct sub-places beyond the Tier-2
@@ -369,7 +375,7 @@ primary must land in that page's title, H1, URL slug and first 100 words.
 | `/septic-tank-cleaning/` | septic tank cleaning nashville | Transactional |
 | `/emergency-septic-service/` | emergency septic service nashville | Emergency BOFU |
 | `/septic-tank-inspection/` | septic tank inspection nashville | Transactional |
-| `/real-estate-septic-inspection/` | septic inspection for home sale tennessee | Transactional, distinct buyer |
+| `/real-estate-septic-inspection/` | real estate septic inspection nashville | Transactional, distinct buyer |
 | `/drain-field-repair/` | drain field repair nashville | Transactional |
 | `/commercial-septic-pumping/` | commercial septic pumping nashville | Transactional B2B |
 | `/grease-trap-cleaning/` | grease trap cleaning nashville | Transactional B2B |
@@ -399,7 +405,6 @@ primary must land in that page's title, H1, URL slug and first 100 words.
 | `/service-areas/oak-hill/` | septic tank pumping oak hill tn |
 | `/service-areas/bellevue/` | septic tank pumping bellevue nashville |
 | `/service-areas/bells-bend/` | septic tank pumping bells bend nashville |
-| `/service-areas/antioch/` | septic tank pumping antioch tn |
 | `/service-areas/goodlettsville/` | septic tank pumping goodlettsville tn |
 
 ### Guides (BoFu-adjacent only)
@@ -449,13 +454,13 @@ primary must land in that page's title, H1, URL slug and first 100 words.
 | `/blog/` | septic blog middle tennessee |
 | `/blog/spring-thaw-septic-checklist/` | spring septic maintenance middle tennessee |
 | `/blog/what-a-septic-pumping-job-looks-like/` | what happens during septic pumping |
-| `/blog/williamson-county-rule-change-explained/` | williamson county septic rule change |
+| `/blog/nashville-sewer-history-septic-map/` | why parts of nashville are on septic |
 | `/blog/fall-septic-preparation-tennessee/` | fall septic preparation tennessee |
 | `/about/` | about 615 septic tank pumping |
 | `/contact/` | contact septic company nashville |
 | `/privacy/` · `/terms/` | (legal, noindex-free, priority 0.1) |
 
-**Page count: 75 URLs** (1 home + 17 service + 9 area incl. hub + 29 guide +
+**Page count: 72 built pages** (verified against the build) (1 home + 17 service + 8 area incl. hub + 29 guide +
 hub + 3 tools + resources + review + 5 blog + 2 company + 2 legal + 404), inside
 the ~60–70 band once the 404 and hub pages are discounted. Davidson-only scope
 trades city-page count for guide depth — which is the correct trade, since the

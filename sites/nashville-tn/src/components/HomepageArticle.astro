@@ -12,6 +12,9 @@
  */
 import blocks from '../data/homepage-article.json';
 
+interface Props { heroImage?: string; heroAlt?: string }
+const { heroImage, heroAlt = '' } = Astro.props;
+
 type Block =
   | { type: 'p'; style: string; list: boolean; text: string }
   | { type: 'table'; rows: string[][] };
@@ -35,7 +38,16 @@ for (const b of items) {
 ---
 <article class="prose-article container-page py-12 md:py-16">
   {nodes.map((n) => {
-    if (n.kind === 'h1') return <h1 class="text-[2.1rem] leading-[1.12] md:text-5xl lg:text-[3.3rem] mb-6">{n.text}</h1>;
+    if (n.kind === 'h1') return (
+      <>
+        <h1 class="text-[2.1rem] leading-[1.12] md:text-5xl lg:text-[3.3rem] mb-6">{n.text}</h1>
+        {heroImage && (
+          <img src={heroImage} alt={heroAlt} width="1280" height="720"
+               fetchpriority="high" decoding="async" loading="eager"
+               class="w-full h-auto rounded-lg border border-hairline shadow-sm not-prose my-7" />
+        )}
+      </>
+    );
     if (n.kind === 'h2') return <h2>{n.text}</h2>;
     if (n.kind === 'h3') return <h3>{n.text}</h3>;
     if (n.kind === 'ul') return <ul>{n.items.map((i) => <li>{i}</li>)}</ul>;

@@ -33,12 +33,15 @@ if (faqStart >= 0) {
   }
 }
 
+const heroImage = '/images/home-hero.webp';
+const heroAlt = 'Septic pump truck with its hose run across a Davidson County lawn to an open concrete tank lid';
+
 const schema = graph([
   organizationNode(), websiteNode(),
   webPageNode(path, title, description, SITE.lastReviewed),
   ...(faq.length ? [faqNode(path, faq)] : []),
 ]);
 ---
-<BaseLayout title={title} description={description} path={path} schema={schema}>
-  <HomepageArticle />
+<BaseLayout title={title} description={description} path={path} schema={schema} heroPreload={heroImage}>
+  <HomepageArticle heroImage={heroImage} heroAlt={heroAlt} />
 </BaseLayout>

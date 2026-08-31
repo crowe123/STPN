@@ -126,6 +126,39 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 /* Wide content scrolls inside its own container; the page body never scrolls sideways. */
 .scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
+/* ── Full-width article variant (homepage) ───────────────────────────────
+   Uses the whole container instead of the 68ch reading measure. Type steps up
+   to match the wider column, and multi-item lists break into two columns on
+   large screens so long bullet runs do not become single very wide lines. */
+.prose-wide { max-width: none; }
+.prose-wide > p { font-size: 1.1875rem; line-height: 1.72; max-width: 92ch; }
+.prose-wide > h2 { font-size: 2.125rem; margin-top: 3.25rem; }
+.prose-wide > h3 { font-size: 1.625rem; margin-top: 2.25rem; }
+@media (min-width: 768px) {
+  .prose-wide > p { font-size: 1.25rem; line-height: 1.7; }
+  .prose-wide > h2 { font-size: 2.75rem; }
+  .prose-wide > h3 { font-size: 2rem; }
+}
+@media (min-width: 1024px) {
+  /* Bullet lists only. Ordered lists are sequences and stay in one column. */
+  .prose-wide > ul { columns: 2; column-gap: 3.5rem; }
+  .prose-wide > ul > li { break-inside: avoid; margin-top: 0; margin-bottom: 1rem; }
+}
+.prose-wide > ol.steps { counter-reset: step; list-style: none; padding-left: 0; max-width: 92ch; }
+.prose-wide > ol.steps > li {
+  counter-increment: step; position: relative; padding-left: 3.25rem; margin-top: 1.25rem;
+}
+.prose-wide > ol.steps > li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute; left: 0; top: -0.1em;
+  font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem;
+  color: var(--color-accent);
+}
+.prose-wide > ul > li { font-size: 1.125rem; }
+@media (min-width: 768px) { .prose-wide > ul > li { font-size: 1.1875rem; } }
+.prose-wide table { font-size: 1.0625rem; }
+.prose-wide th, .prose-wide td { padding: .875rem 1rem; }
+
 /* Cards: subtle border, soft shadow, hover lift. */
 @layer components {
 .card {

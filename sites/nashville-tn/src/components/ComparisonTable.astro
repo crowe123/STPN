@@ -1,0 +1,42 @@
+---
+interface Props { heading?: string }
+const { heading = 'Doing it yourself, hiring cheap, and doing it properly' } = Astro.props;
+const rows = [
+  { dim: 'Solids actually removed', diy: 'Surface liquid only — no way to remove settled sludge', cheap: 'Liquid draw-down; tank looks emptied, sludge stays', proper: 'Liquid, scum and sludge pumped, then backflushed' },
+  { dim: 'Baffles inspected', diy: 'Not visible without emptying the tank', cheap: 'Rarely — the tank is not pumped down far enough to see them', proper: 'Both baffles inspected while the tank is empty, and reported' },
+  { dim: 'Effluent filter', diy: 'Usually not known to exist', cheap: 'Left alone', proper: 'Removed, rinsed back into the tank, inspected, replaced if split' },
+  { dim: 'Interval set by', diy: 'Guesswork or a number off the internet', cheap: 'A flat three years for every customer', proper: 'Measured sludge and scum depth against your tank capacity' },
+  { dim: 'Disposal of septage', diy: 'No lawful route for a homeowner', cheap: 'Varies — ask where it goes', proper: 'Licensed disposal under Tennessee pumping contractor rules' },
+  { dim: 'What it costs', diy: 'Nothing up front', cheap: 'Slightly less than proper', proper: '$300–$525 typical' },
+  { dim: 'What it risks', diy: 'Solids reach the drain field. Field replacement $7,000–$15,000+', cheap: 'Same failure, delayed. The field pays for the saving', proper: 'The field is what you are protecting' },
+];
+---
+<section class="container-page py-16">
+  <h2 class="text-3xl md:text-4xl">{heading}</h2>
+  <p class="mt-3 max-w-3xl text-lg text-ink-soft">
+    The difference between a cheap pump-out and a proper one is not the truck. It is whether
+    anybody looked inside the tank while it was empty.
+  </p>
+  <div class="scroll-x mt-8 rounded-lg border border-hairline">
+    <table class="w-full text-[15px] border-collapse min-w-[720px]">
+      <thead>
+        <tr class="bg-surface">
+          <th scope="col" class="text-left font-heading p-3 border-b border-hairline w-48">&nbsp;</th>
+          <th scope="col" class="text-left font-heading p-3 border-b border-hairline">Doing it yourself</th>
+          <th scope="col" class="text-left font-heading p-3 border-b border-hairline">Cheapest quote</th>
+          <th scope="col" class="text-left font-heading p-3 border-b border-hairline bg-primary/5">Done properly</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr class="align-top">
+            <th scope="row" class="text-left font-semibold p-3 border-b border-hairline bg-surface/60">{r.dim}</th>
+            <td class="p-3 border-b border-hairline text-ink-soft">{r.diy}</td>
+            <td class="p-3 border-b border-hairline text-ink-soft">{r.cheap}</td>
+            <td class="p-3 border-b border-hairline bg-primary/5 font-medium">{r.proper}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>

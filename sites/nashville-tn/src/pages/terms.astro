@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { BRAND, CONTACT, SITE } from '../config';
+import { graph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../lib/schema';
+const path = '/terms/';
+const title = `Terms of Use | ${SITE.titleSuffix}`;
+const description = 'Terms governing use of the 615 Septic Tank Pumping website, including how to read the cost information published on it.';
+const trail = [{ name: 'Home', href: '/' }, { name: 'Terms', href: path }];
+const schema = graph([organizationNode(), websiteNode(), webPageNode(path, title, description), breadcrumbNode(path, trail)]);
+---
+<BaseLayout title={title} description={description} path={path} schema={schema}>
+  <div class="container-page py-12 max-w-3xl">
+    <Breadcrumbs trail={trail} />
+    <h1 class="mt-6 text-[2rem] md:text-4xl">Terms of Use</h1>
+    <div class="prose-article mt-8">
+      <h2>About the cost information on this site</h2>
+      <p>Prices published here are ranges drawn from public state and national cost data, given so you can budget before you call. <strong>They are estimates, not quotes.</strong> Your price depends on your tank's capacity, how accessible the lids are, and what is found once the tank is open. We give you a firm figure before carrying out work that differs from what was quoted.</p>
+      <h2>The tools</h2>
+      <p>The cost estimator and urgency assessment are informational. The assessment is not a diagnosis and does not replace someone looking at your system. Anything involving sewage in living space should be treated as urgent regardless of what a questionnaire returns.</p>
+      <h2>Regulatory information</h2>
+      <p>References to Tennessee regulations, Davidson County requirements and Metro Water Services rules are provided for general information and were accurate to the best of our knowledge when written. They are not legal advice. Verify current requirements with the relevant authority for your property.</p>
+      <h2>Third-party links</h2>
+      <p>Where this site links out, we are not responsible for the content of those sites.</p>
+      <h2>Contact</h2>
+      <p>{BRAND.name}, {CONTACT.address.street}, {CONTACT.address.locality}, {CONTACT.address.region} {CONTACT.address.postalCode}. {CONTACT.phoneDisplay}.</p>
+    </div>
+  </div>
+</BaseLayout>

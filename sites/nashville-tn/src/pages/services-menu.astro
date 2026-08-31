@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, CONTACT } from '../config';
+import { money } from '../lib/site';
+import { graph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../lib/schema';
+import servicesData from '../data/services.json';
+
+const path = '/services-menu/';
+const title = `All Septic Services in Nashville | ${SITE.titleSuffix}`;
+const description = 'Every septic service we offer across Davidson County, with published price ranges — pumping, cleaning, emergencies, inspections, drain fields and grease traps.';
+const trail = [{ name: 'Home', href: '/' }, { name: 'Services', href: path }];
+const schema = graph([organizationNode(), websiteNode(), webPageNode(path, title, description, SITE.lastReviewed), breadcrumbNode(path, trail)]);
+const core = servicesData.services.filter((s) => s.tier === 'core').sort((a, b) => a.navOrder - b.navOrder);
+const longtail = servicesData.services.filter((s) => s.tier === 'longtail').sort((a, b) => a.navOrder - b.navOrder);
+---
+<BaseLayout title={title} description={description} path={path} schema={schema}>
+  <section class="container-page pt-6 pb-10 border-b border-hairline">
+    <Breadcrumbs trail={trail} />
+    <h1 class="mt-6 text-[2rem] md:text-5xl leading-[1.13]">All Septic Services in Nashville</h1>
+    <p class="mt-5 max-w-3xl text-lg md:text-xl text-ink-soft leading-relaxed">
+      Every service listed with a real price range, because you should be able to budget before you
+      call. Ranges come from published Tennessee and Davidson County figures.
+    </p>
+  </section>
+  <section class="container-page py-12">
+    <h2 class="text-2xl md:text-3xl">Core services</h2>
+    <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {core.map((s) => (
+        <a href={`/${s.slug}/`} class="card card-hover p-6 flex flex-col">
+          <p class="font-heading font-bold text-xl">{s.name}</p>
+          <p class="mt-2 text-[15px] text-ink-soft flex-1">{s.blurb}</p>
+          <p class="mt-4 font-heading font-bold text-lg text-primary">from {money(s.priceFrom)}</p>
+        </a>
+      ))}
+    </div>
+    <h2 class="mt-14 text-2xl md:text-3xl">Specific situations</h2>
+    <p class="mt-2 max-w-3xl text-ink-soft">Narrower services for particular properties and problems.</p>
+    <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {longtail.map((s) => (
+        <a href={`/${s.slug}/`} class="card card-hover p-6 flex flex-col">
+          <p class="font-heading font-bold text-xl">{s.name}</p>
+          <p class="mt-2 text-[15px] text-ink-soft flex-1">{s.blurb}</p>
+          <p class="mt-4 font-heading font-bold text-lg text-primary">from {money(s.priceFrom)}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+  <CtaBand heading="Not sure which one you need?" body={`Describe what the system is doing and we will tell you. Call ${CONTACT.phoneDisplay}.`} />
+</BaseLayout>

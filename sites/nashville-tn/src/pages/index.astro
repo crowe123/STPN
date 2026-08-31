@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import TickerBar from '../components/TickerBar.astro';
+import PainGrid from '../components/PainGrid.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import WhyUs from '../components/WhyUs.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import CtaBand from '../components/CtaBand.astro';
+import PricingBand from '../components/PricingBand.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import Testimonials from '../components/Testimonials.astro';
+import StatBand from '../components/StatBand.astro';
+import LeadCaptureForm from '../components/LeadCaptureForm.astro';
+import { BRAND, CONTACT, SITE } from '../config';
+import { graph, organizationNode, websiteNode, webPageNode, faqNode } from '../lib/schema';
+import home from '../data/homepage.json';
+import citiesData from '../data/cities.json';
+import servicesData from '../data/services.json';
+
+const path = '/';
+const title = `${BRAND.name} | Septic Pumping, Cleaning & Emergency Service in Nashville`;
+const description = 'Septic tank pumping in Nashville and Davidson County with prices published upfront. Tank opened, baffles and filter inspected, interval measured. Call (615) 234-9048.';
+const heroImg = '/images/home-hero.webp';
+
+const teaserCities = citiesData.cities.filter((c) => c.tier === 1).slice(0, 5);
+const pumping = servicesData.services.find((s) => s.slug === 'residential-septic-tank-pumping')!;
+
+const schema = graph([
+  organizationNode(), websiteNode(),
+  webPageNode(path, title, description, SITE.lastReviewed),
+  faqNode(path, home.faq),
+]);
+---
+<BaseLayout title={title} description={description} path={path} schema={schema} heroPreload={heroImg}>
+  <Hero h1={home.hero.h1} sub={home.hero.sub} badge={home.hero.badge} tiles={home.hero.tiles}
+        image={heroImg} imageAlt="Septic service truck on a rural Davidson County property with the tank lids uncovered"
+        ctaSecondaryLabel="Estimate my cost" ctaSecondaryHref="/tools/septic-pumping-cost-estimator/" />
+  <TickerBar />
+
+  <section class="container-page pt-14">
+    <p class="prose-article max-w-3xl text-lg">
+      <strong>{BRAND.name}</strong> is a septic tank pumping company serving {CONTACT.serviceAreaLong}.
+      It works on the parts of the county that never came onto the Metro sewer — the northern
+      communities, the large-lot areas south and west, and the river bottoms — where the tanks
+      are frequently older than the people living over them.
+    </p>
+  </section>
+
+  <PainGrid items={home.painGrid.items} heading={home.painGrid.heading} />
+  <ServicesGrid heading="What we do" tier="core" />
+  <WhyUs />
+  <ProcessSteps steps={pumping.process} heading="How a pump-out actually runs" />
+
+  <CtaBand heading="Want a number before you talk to anyone?"
+           body="Three questions and the estimator gives you a real range. No email required."
+           ctaLabel="Open the estimator" />
+
+  <PricingBand />
+  <Testimonials />
+  <ComparisonTable />
+  <StatBand />
+
+  <section class="section-alt">
+    <div class="container-page py-16">
+      <h2 class="text-3xl md:text-4xl">Where we work</h2>
+      <p class="mt-3 max-w-3xl text-lg text-ink-soft">
+        Septic in Davidson County is not evenly spread. Metro's sewer extension ran from just after
+        the 1963 consolidation into the early 1990s, working outward from the built-up core — so the
+        areas still on septic are the ones it never reached.
+      </p>
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        {teaserCities.map((c) => (
+          <a href={`/service-areas/${c.slug}/`} class="card card-hover p-5">
+            <p class="font-heading font-bold text-lg">{c.name}</p>
+            <p class="mt-1 text-[14px] text-ink-soft">{c.county}</p>
+          </a>
+        ))}
+      </div>
+      <a href="/service-areas/" class="inline-block mt-7 font-semibold text-accent-dark underline underline-offset-2">All service areas →</a>
+    </div>
+  </section>
+
+  <section class="container-page py-16">
+    <div class="grid gap-10 lg:grid-cols-[1fr_26rem] lg:items-start">
+      <div>
+        <h2 class="text-3xl md:text-4xl">Two free tools, no email required</h2>
+        <div class="mt-6 grid gap-5 sm:grid-cols-2">
+          <a href="/tools/septic-pumping-cost-estimator/" class="card card-hover p-6">
+            <p class="font-heading font-bold text-xl">Cost estimator</p>
+            <p class="mt-2 text-[15px] text-ink-soft">Three questions — tank size, access, how long since the last pump — and you get a real range built from published Tennessee price data.</p>
+          </a>
+          <a href="/tools/septic-system-assessment/" class="card card-hover p-6">
+            <p class="font-heading font-bold text-xl">Urgency assessment</p>
+            <p class="mt-2 text-[15px] text-ink-soft">Nine questions about what your system is doing, and a severity reading with what to do next before you call anyone.</p>
+          </a>
+        </div>
+      </div>
+      <LeadCaptureForm source="homepage"
+        heading="Get a price for your property"
+        body="Two steps. Tell us the service and ZIP, then how to reach you." />
+    </div>
+  </section>
+
+  <FaqAccordion faq={home.faq} heading="Septic questions people ask in Nashville" />
+  <CtaBand heading="Ready to get the tank looked at?"
+           body={CONTACT.hoursHuman} ctaLabel="Get a price" variant="accent" />
+</BaseLayout>

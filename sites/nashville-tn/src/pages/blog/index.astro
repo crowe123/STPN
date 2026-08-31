@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SITE, CONTACT } from '../../config';
+import { fmtDate } from '../../lib/site';
+import { graph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../../lib/schema';
+const path = '/blog/';
+const title = `Septic Blog | Middle Tennessee | ${SITE.titleSuffix}`;
+const description = 'Seasonal septic advice, rule changes and what a job actually looks like — written for Davidson County properties on septic.';
+const trail = [{ name: 'Home', href: '/' }, { name: 'Blog', href: path }];
+const schema = graph([organizationNode(), websiteNode(), webPageNode(path, title, description, SITE.lastReviewed), breadcrumbNode(path, trail)]);
+const posts = (await getCollection('blog')).sort((a, b) => +new Date(b.data.datePublished) - +new Date(a.data.datePublished));
+---
+<BaseLayout title={title} description={description} path={path} schema={schema}>
+  <section class="container-page pt-6 pb-10 border-b border-hairline">
+    <Breadcrumbs trail={trail} />
+    <h1 class="mt-6 text-[2rem] md:text-5xl leading-[1.13]">Septic Blog</h1>
+    <p class="mt-5 max-w-3xl text-lg md:text-xl text-ink-soft leading-relaxed">
+      Seasonal advice, changes to the rules that affect Davidson County systems, and what the work
+      actually involves.
+    </p>
+  </section>
+  <section class="container-page py-14">
+    <div class="grid gap-6 md:grid-cols-2">
+      {posts.map((p) => (
+        <a href={`/blog/${p.id}/`} class="card card-hover p-6">
+          <p class="text-[12px] font-bold uppercase tracking-wide text-accent-dark">{p.data.category}</p>
+          <p class="mt-1.5 font-heading font-bold text-xl">{p.data.h1}</p>
+          <p class="mt-2 text-[15px] text-ink-soft">{p.data.dek}</p>
+          <p class="mt-3 text-[13.5px] text-ink-soft">{fmtDate(p.data.datePublished)}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+  <CtaBand heading="Questions about your own system?" body={`Call ${CONTACT.phoneDisplay}.`} ctaLabel="Get a price" />
+</BaseLayout>

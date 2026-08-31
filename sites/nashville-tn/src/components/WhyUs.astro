@@ -1,0 +1,26 @@
+---
+interface Props { items?: { title: string; body: string }[]; heading?: string }
+/* Differentiators that are true on day one. No review counts, no years in
+   business, no job counts — none of that exists yet and none of it is invented. */
+const defaults = [
+  { title: 'The tank gets opened and looked at', body: 'Both baffles and the effluent filter inspected while the tank is empty, and what we found written down. A pump-out where nobody looked inside is half a job.' },
+  { title: 'Your interval, measured', body: 'Sludge and scum depth recorded against your tank capacity, so the next visit is scheduled from evidence rather than a flat three years for every customer.' },
+  { title: 'Prices published before you call', body: 'Real ranges on the page and a calculator that gives you a number without a phone call. You should not have to book a visit to find out what something costs.' },
+  { title: 'A person answers the phone', body: 'Including outside office hours when a tank is backing up into the house. Septic problems do not keep business hours.' },
+];
+const { items = defaults, heading = 'Why people call us' } = Astro.props;
+---
+<section class="container-page py-16">
+  <h2 class="text-3xl md:text-4xl">{heading}</h2>
+  <div class="mt-8 grid gap-6 sm:grid-cols-2">
+    {items.map((it) => (
+      <div class="flex gap-4">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" class="text-accent shrink-0 mt-1" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <div>
+          <p class="font-heading font-bold text-lg">{it.title}</p>
+          <p class="mt-1.5 text-[15px] text-ink-soft">{it.body}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

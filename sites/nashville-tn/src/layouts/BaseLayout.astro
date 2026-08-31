@@ -1,0 +1,120 @@
+---
+import '../styles/global.css';
+import { SITE, BRAND, CONTACT, ANALYTICS, THEME } from '../config';
+import { abs } from '../lib/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyCallBar from '../components/StickyCallBar.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  schema?: object;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  /** Set only on the 404 page. Every indexable page must leave this false. */
+  noindex?: boolean;
+  heroPreload?: string;
+}
+const {
+  title, description, path, schema,
+  ogImage = SITE.defaultOgImage, ogType = 'website',
+  noindex = false, heroPreload,
+} = Astro.props;
+
+const canonical = abs(path);
+const ogAbs = abs(ogImage);
+const mdMirror = path === '/' ? '/index.md' : `${path.replace(/\/$/, '')}.md`;
+---
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, follow" />}
+
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogAbs} />
+<meta property="og:site_name" content={BRAND.name} />
+<meta property="og:locale" content={SITE.locale} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogAbs} />
+<meta name="theme-color" content={THEME.primary} />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+<link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<link rel="alternate" type="text/markdown" href={abs(mdMirror)} />
+{heroPreload && <link rel="preload" as="image" href={heroPreload} fetchpriority="high" />}
+
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+
+{ANALYTICS.provider === 'plausible' && (
+  <script defer data-domain={SITE.domain} src="https://plausible.io/js/script.js"></script>
+)}
+{ANALYTICS.provider === 'ga4' && ANALYTICS.id && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS.id}`}></script>
+    <script is:inline define:vars={{ id: ANALYTICS.id }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', id);
+    </script>
+  </>
+)}
+<script src="/agent-ready-webmcp.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<Header />
+<main id="main">
+  <slot />
+</main>
+<Footer />
+<StickyCallBar />
+<script is:inline>
+  // The only inline module behaviour on the site: header scroll shadow and the
+  // mobile menu. Everything else that moves is a Preact island on a tool page.
+  (function () {
+    var h = document.querySelector('.site-header');
+    if (h) {
+      var onScroll = function () { h.setAttribute('data-scrolled', String(window.scrollY > 8)); };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+    var btn = document.getElementById('menu-toggle');
+    var panel = document.getElementById('mobile-menu');
+    if (btn && panel) {
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        panel.hidden = open;
+      });
+    }
+    var sub = document.getElementById('services-toggle');
+    var subPanel = document.getElementById('services-submenu');
+    if (sub && subPanel) {
+      sub.addEventListener('click', function (e) {
+        e.preventDefault();
+        var open = sub.getAttribute('aria-expanded') === 'true';
+        sub.setAttribute('aria-expanded', String(!open));
+        subPanel.hidden = open;
+      });
+    }
+  })();
+</script>
+</body>
+</html>

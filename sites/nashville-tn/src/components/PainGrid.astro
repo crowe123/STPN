@@ -1,0 +1,15 @@
+---
+interface Props { items: { title: string; body: string }[]; heading?: string }
+const { items, heading } = Astro.props;
+---
+<section class="container-page py-16">
+  {heading && <h2 class="text-3xl md:text-4xl mb-8">{heading}</h2>}
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    {items.map((it) => (
+      <div class="card p-6 border-l-4 border-l-accent">
+        <p class="font-heading font-bold text-lg">{it.title}</p>
+        <p class="mt-2 text-[15px] text-ink-soft">{it.body}</p>
+      </div>
+    ))}
+  </div>
+</section>

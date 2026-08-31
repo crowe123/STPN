@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { BRAND, CONTACT, SITE, FORMS } from '../config';
+import { graph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../lib/schema';
+const path = '/leave-a-review/';
+const title = `Leave a Review | ${SITE.titleSuffix}`;
+const description = 'Used us? A short honest review helps other Davidson County homeowners find someone who opens the tank properly.';
+const trail = [{ name: 'Home', href: '/' }, { name: 'Leave a review', href: path }];
+const schema = graph([organizationNode(), websiteNode(), webPageNode(path, title, description), breadcrumbNode(path, trail)]);
+---
+<BaseLayout title={title} description={description} path={path} schema={schema}>
+  <div class="container-page py-12 max-w-2xl">
+    <Breadcrumbs trail={trail} />
+    <h1 class="mt-6 text-[2rem] md:text-4xl">Leave a review</h1>
+    <p class="mt-5 text-lg text-ink-soft leading-relaxed">
+      If we have pumped, inspected or repaired a system for you, a short honest review genuinely
+      helps the next person. One tap gets you there.
+    </p>
+    <div class="mt-8 space-y-4">
+      <a href="/#" class="btn btn-accent w-full text-lg py-4" data-review-destination>Leave a Google review</a>
+      <p class="text-[14px] text-ink-soft">
+        Operator: replace the link above with your Google review URL once the Business Profile is
+        live. Until then this button is intentionally inert rather than pointing somewhere wrong.
+      </p>
+    </div>
+
+    <div class="mt-12 card p-6 md:p-7">
+      <p class="font-heading font-bold text-xl">Rather write it here?</p>
+      <p class="mt-2 text-ink-soft">
+        Send it to us directly. If you tick the box we may publish it on this site, exactly as you
+        wrote it apart from trimming for length.
+      </p>
+      <form action={FORMS.endpoint} method="POST" class="mt-5 space-y-4">
+        <input type="hidden" name="_source" value="leave-a-review" />
+        <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;">
+          <input type="text" name={FORMS.honeypotField} tabindex="-1" autocomplete="off" />
+        </div>
+        <label class="block"><span class="block font-semibold mb-1.5">Your name</span>
+          <input name="name" required class="w-full min-h-[44px] border border-hairline rounded-md px-3 py-2.5" /></label>
+        <label class="block"><span class="block font-semibold mb-1.5">Your area</span>
+          <input name="city" placeholder="Joelton, Oak Hill…" class="w-full min-h-[44px] border border-hairline rounded-md px-3 py-2.5" /></label>
+        <label class="block"><span class="block font-semibold mb-1.5">How did it go?</span>
+          <textarea name="review" rows="5" required class="w-full border border-hairline rounded-md px-3 py-2.5"></textarea></label>
+        <label class="flex items-start gap-3 text-[15px]">
+          <input type="checkbox" name="permission_to_publish" value="yes" class="mt-1 w-[18px] h-[18px] accent-[#C2571A]" />
+          <span>You may publish this on your website with my first name, last initial and area.</span>
+        </label>
+        <button type="submit" class="btn btn-accent w-full">Send it</button>
+      </form>
+      <p class="mt-4 text-[13.5px] text-ink-soft">
+        We do not offer discounts, gifts or anything else in exchange for a review, and we do not
+        edit what people write beyond trimming length. Only genuinely received reviews are ever
+        published or marked up on this site.
+      </p>
+    </div>
+    <p class="mt-8 text-[15px] text-ink-soft">
+      Something went wrong instead? Tell us directly on
+      <a href={`tel:${CONTACT.phoneE164}`} class="font-bold text-accent-dark underline underline-offset-2">{CONTACT.phoneDisplay}</a>
+      and we will put it right. That is more use to us than a star rating.
+    </p>
+  </div>
+</BaseLayout>

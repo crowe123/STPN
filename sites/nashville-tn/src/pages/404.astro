@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT } from '../config';
+import { tel } from '../lib/site';
+import servicesData from '../data/services.json';
+const top = servicesData.services.filter((s) => s.priority).slice(0, 4);
+---
+<BaseLayout title="Page not found | 615 Septic Tank Pumping" description="That page does not exist. Here is where to go instead." path="/404/" noindex={true}>
+  <section class="container-page py-20 md:py-28 text-center">
+    <p class="font-heading font-bold text-6xl md:text-7xl text-accent/25">404</p>
+    <h1 class="mt-4 text-[2rem] md:text-4xl">That page is not here</h1>
+    <p class="mt-4 max-w-xl mx-auto text-lg text-ink-soft">
+      The link may be out of date, or the address slightly off. If your septic system needs
+      attention right now, skip the browsing and call.
+    </p>
+    <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+      <a href={tel} class="btn btn-accent text-lg px-7">Call {CONTACT.phoneDisplay}</a>
+      <a href="/" class="btn btn-ghost text-primary text-lg px-7">Back to the homepage</a>
+    </div>
+    <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-left">
+      {top.map((s) => (
+        <a href={`/${s.slug}/`} class="card card-hover p-5">
+          <p class="font-heading font-bold">{s.name}</p>
+          <p class="mt-1.5 text-[14px] text-ink-soft">{s.blurb.slice(0, 90)}…</p>
+        </a>
+      ))}
+    </div>
+    <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 justify-center text-[15px]">
+      <a href="/services-menu/" class="underline underline-offset-2 hover:text-accent-dark">All services</a>
+      <a href="/service-areas/" class="underline underline-offset-2 hover:text-accent-dark">Service areas</a>
+      <a href="/guide/" class="underline underline-offset-2 hover:text-accent-dark">Guides</a>
+      <a href="/tools/septic-pumping-cost-estimator/" class="underline underline-offset-2 hover:text-accent-dark">Cost estimator</a>
+      <a href="/contact/" class="underline underline-offset-2 hover:text-accent-dark">Contact</a>
+    </div>
+  </section>
+</BaseLayout>

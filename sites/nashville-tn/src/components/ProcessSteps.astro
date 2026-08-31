@@ -1,0 +1,18 @@
+---
+interface Props { steps: { n: string; title: string; body: string }[]; heading?: string }
+const { steps, heading = 'How the job runs' } = Astro.props;
+---
+<section class="section-alt">
+  <div class="container-page py-16">
+    <h2 class="text-3xl md:text-4xl">{heading}</h2>
+    <ol class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {steps.map((s) => (
+        <li class="card p-6">
+          <p class="font-heading font-bold text-4xl text-accent/25 leading-none">{s.n}</p>
+          <p class="mt-3 font-heading font-bold text-lg">{s.title}</p>
+          <p class="mt-2 text-[15px] text-ink-soft">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

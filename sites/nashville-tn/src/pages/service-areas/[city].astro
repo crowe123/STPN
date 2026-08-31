@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PainGrid from '../../components/PainGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import NeighborhoodChips from '../../components/NeighborhoodChips.astro';
+import LandmarkList from '../../components/LandmarkList.astro';
+import StaticMap from '../../components/StaticMap.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import LeadCaptureForm from '../../components/LeadCaptureForm.astro';
+import WhyUs from '../../components/WhyUs.astro';
+import { BRAND, CONTACT, SITE } from '../../config';
+import { abs, tel } from '../../lib/site';
+import { graph, organizationNode, websiteNode, webPageNode, breadcrumbNode, faqNode, locationNode } from '../../lib/schema';
+import citiesData from '../../data/cities.json';
+import servicesData from '../../data/services.json';
+import home from '../../data/homepage.json';
+
+export function getStaticPaths() {
+  return citiesData.cities.filter((c) => c.slug).map((c) => ({ params: { city: c.slug }, props: { city: c } }));
+}
+const { city: c } = Astro.props;
+const path = `/service-areas/${c.slug}/`;
+const title = `Septic Tank Pumping ${c.name} ${c.state} | Upfront Pricing | ${SITE.titleSuffix}`;
+const trail = [{ name: 'Home', href: '/' }, { name: 'Service Areas', href: '/service-areas/' }, { name: c.name, href: path }];
+const svc = c.priorityServices.map((s: string) => servicesData.services.find((x) => x.slug === s)).filter(Boolean) as any[];
+const nearby = c.nearbyCities.map((n: string) => citiesData.cities.find((x) => x.slug === n)).filter(Boolean) as any[];
+const pumping = servicesData.services.find((s) => s.slug === 'residential-septic-tank-pumping')!;
+const schema = graph([
+  organizationNode(), websiteNode(), webPageNode(path, title, c.metaDescription, SITE.lastReviewed),
+  breadcrumbNode(path, trail), locationNode(c), faqNode(path, c.cityFaq),
+]);
+const heroImg = `/images/areas/${c.slug}-hero.webp`;
+---
+<BaseLayout title={title} description={c.metaDescription} path={path} schema={schema} heroPreload={heroImg}>
+  <section class="border-b border-hairline">
+    <div class="container-page pt-6 pb-12">
+      <Breadcrumbs trail={trail} />
+      <div class="mt-6 grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+        <div>
+          <h1 class="text-[2rem] leading-[1.13] md:text-5xl">{c.heroH1}</h1>
+          <p class="mt-5 text-lg md:text-xl leading-relaxed text-ink-soft">{c.metaDescription}</p>
+          <div class="mt-7 flex flex-col sm:flex-row gap-3">
+            <a href={tel} class="btn btn-accent text-lg px-7">Call {CONTACT.phoneDisplay}</a>
+            <a href="/tools/septic-pumping-cost-estimator/" class="btn btn-ghost text-primary text-lg px-7">Estimate the cost</a>
+          </div>
+          <p class="mt-5 text-[15px] text-ink-soft">{c.responseTime}</p>
+        </div>
+        <img src={heroImg} alt={`Septic service on a property in ${c.name}, ${c.state}`}
+             width="1280" height="720" fetchpriority="high" decoding="async" loading="eager"
+             class="w-full h-auto rounded-lg border border-hairline shadow-sm" />
+      </div>
+    </div>
+  </section>
+
+  <PainGrid items={home.painGrid.items} heading={`What brings ${c.name} calls in`} />
+
+  <section class="container-page py-14">
+    <div class="grid gap-12 lg:grid-cols-[1fr_20rem]">
+      <article class="prose-article">
+        <h2>Septic in {c.name}, and why it is the way it is</h2>
+        <p>
+          <a href="/">{BRAND.name}</a> is a septic tank pumping company serving {CONTACT.serviceArea},
+          and {c.name} is part of its routed service area.
+        </p>
+        {c.localAngle.map((p: string) => <p>{p}</p>)}
+      </article>
+      <aside class="lg:sticky lg:top-28 space-y-5 self-start">
+        <div class="card p-6 bg-primary text-white">
+          <p class="font-heading font-bold text-lg">{c.name} septic emergency?</p>
+          <p class="mt-2 text-[15px] text-white/85">{CONTACT.hoursHuman}</p>
+          <a href={tel} class="btn bg-white text-primary-dark hover:bg-white/90 w-full mt-4">Call {CONTACT.phoneDisplay}</a>
+        </div>
+        <LeadCaptureForm source={`area-${c.slug}`} compact
+          heading={`Get a ${c.name} price`} body="Two steps, and we reply with a firm number." />
+      </aside>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="container-page py-14">
+      <h2 class="text-2xl md:text-3xl">What we are most often called for in {c.name}</h2>
+      <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {svc.map((s) => (
+          <a href={`/${s.slug}/`} class="card card-hover p-5">
+            <p class="font-heading font-bold text-lg">{s.name}</p>
+            <p class="mt-2 text-[14.5px] text-ink-soft">{s.blurb}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSteps steps={pumping.process} heading={`How we handle a ${c.name} job`} />
+
+  <section class="container-page py-14 grid gap-10 lg:grid-cols-2 lg:items-start">
+    <div class="space-y-8">
+      <NeighborhoodChips items={c.neighborhoods} label={`Areas of ${c.name} we cover`} />
+      <LandmarkList landmarks={c.landmarks} routes={c.routes} cityName={c.name} responseTime={c.responseTime} />
+    </div>
+    <StaticMap cityName={c.name} neighborhoods={c.neighborhoods} />
+  </section>
+
+  <WhyUs heading={`Why ${c.name} homeowners call us`} />
+  <FaqAccordion faq={c.cityFaq} heading={`Septic questions from ${c.name}`} />
+
+  <section class="container-page pb-14">
+    <h2 class="text-2xl md:text-3xl">Nearby areas we also cover</h2>
+    <div class="mt-6 grid gap-5 sm:grid-cols-3">
+      {nearby.map((n) => (
+        <a href={`/service-areas/${n.slug}/`} class="card card-hover p-5">
+          <p class="font-heading font-bold text-lg">{n.name}</p>
+          <p class="mt-1 text-[14px] text-ink-soft">{n.county}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <CtaBand heading={`Septic tank pumping in ${c.name}`} body={c.responseTime} ctaLabel={`Get a ${c.name} price`} />
+</BaseLayout>

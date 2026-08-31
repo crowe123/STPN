@@ -1,0 +1,82 @@
+---
+import { FORMS, CONTACT } from '../config';
+import { tel } from '../lib/site';
+import servicesData from '../data/services.json';
+interface Props { heading?: string; body?: string; submitLabel?: string; source: string; compact?: boolean }
+const { heading = 'Get a price for your property', body, submitLabel = 'Get my price', source, compact = false } = Astro.props;
+const id = `lf-${source.replace(/[^a-z0-9]/gi, '-')}`;
+/* Multi-step: step 1 is trivial (service + zip), step 2 asks for contact details.
+   13.9% vs 4.5% conversion against a single-step form. Honeypot is positioned
+   off-screen, tabindex -1, aria-hidden. Posts to FORM_ENDPOINT from config. */
+---
+<div class={`card p-6 md:p-7 ${compact ? '' : 'md:p-8'}`}>
+  <p class="font-heading font-bold text-xl md:text-2xl">{heading}</p>
+  {body && <p class="mt-2 text-ink-soft">{body}</p>}
+
+  <p class="mt-4 text-[15px]">
+    Prefer to talk? <a href={tel} class="font-bold text-accent-dark underline underline-offset-2">Call {CONTACT.phoneDisplay}</a> — a person answers.
+  </p>
+
+  <form id={id} action={FORMS.endpoint} method="POST" class="mt-5 space-y-4" data-multistep>
+    <input type="hidden" name="_source" value={source} />
+    <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;">
+      <label>Leave this empty
+        <input type="text" name={FORMS.honeypotField} tabindex="-1" autocomplete="off" />
+      </label>
+    </div>
+
+    <div data-step="1" class="space-y-4">
+      <div>
+        <label class="block font-semibold mb-1.5" for={`${id}-service`}>What do you need?</label>
+        <select id={`${id}-service`} name="service" required class="w-full min-h-[44px] border border-hairline rounded-md px-3 py-2.5 bg-white">
+          <option value="">Choose a service…</option>
+          {servicesData.services.filter((s) => s.tier === 'core').map((s) => <option value={s.name}>{s.name}</option>)}
+          <option value="Not sure">Not sure — help me work it out</option>
+        </select>
+      </div>
+      <div>
+        <label class="block font-semibold mb-1.5" for={`${id}-zip`}>Property ZIP code</label>
+        <input id={`${id}-zip`} name="zip" required inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="37080" class="w-full min-h-[44px] border border-hairline rounded-md px-3 py-2.5" />
+      </div>
+      <button type="button" class="btn btn-accent w-full" data-next>Continue</button>
+    </div>
+
+    <div data-step="2" hidden class="space-y-4">
+      <div>
+        <label class="block font-semibold mb-1.5" for={`${id}-name`}>Your name</label>
+        <input id={`${id}-name`} name="name" required autocomplete="name" class="w-full min-h-[44px] border border-hairline rounded-md px-3 py-2.5" />
+      </div>
+      <div>
+        <label class="block font-semibold mb-1.5" for={`${id}-phone`}>Phone</label>
+        <input id={`${id}-phone`} name="phone" required type="tel" autocomplete="tel" class="w-full min-h-[44px] border border-hairline rounded-md px-3 py-2.5" />
+      </div>
+      <div>
+        <label class="block font-semibold mb-1.5" for={`${id}-msg`}>Anything we should know? <span class="font-normal text-ink-soft">(optional)</span></label>
+        <textarea id={`${id}-msg`} name="message" rows="3" class="w-full border border-hairline rounded-md px-3 py-2.5"></textarea>
+      </div>
+      <div class="flex gap-3">
+        <button type="button" class="btn btn-ghost text-primary" data-back>Back</button>
+        <button type="submit" class="btn btn-accent flex-1">{submitLabel}</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script is:inline define:vars={{ id }}>
+  (function () {
+    var form = document.getElementById(id);
+    if (!form) return;
+    var s1 = form.querySelector('[data-step="1"]');
+    var s2 = form.querySelector('[data-step="2"]');
+    form.querySelector('[data-next]').addEventListener('click', function () {
+      var ok = true;
+      s1.querySelectorAll('[required]').forEach(function (el) { if (!el.reportValidity()) ok = false; });
+      if (!ok) return;
+      s1.hidden = true; s2.hidden = false;
+      var f = s2.querySelector('input'); if (f) f.focus();
+    });
+    form.querySelector('[data-back]').addEventListener('click', function () {
+      s2.hidden = true; s1.hidden = false;
+    });
+  })();
+</script>

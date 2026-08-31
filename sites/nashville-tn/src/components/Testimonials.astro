@@ -1,0 +1,23 @@
+---
+import proof from '../data/proof.json';
+/* DORMANT. Renders nothing at all when testimonials[] is empty — no section,
+   no heading, no "coming soon". Activates only on real, received reviews. */
+const items = proof.testimonials ?? [];
+---
+{items.length > 0 && (
+  <section class="section-alt">
+    <div class="container-page py-16">
+      <h2 class="text-3xl md:text-4xl mb-8">What customers say</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        {items.map((t: any) => (
+          <figure class="card p-6">
+            <blockquote class="text-lg">{t.text}</blockquote>
+            <figcaption class="mt-4 text-[15px] text-ink-soft">
+              {t.name} — {t.city}<span class="block text-[13px]">via {t.source}, {t.date}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

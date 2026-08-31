@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { BRAND, CONTACT, SITE } from '../config';
+import { graph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../lib/schema';
+const path = '/privacy/';
+const title = `Privacy Policy | ${SITE.titleSuffix}`;
+const description = 'How 615 Septic Tank Pumping handles the information you send through this website.';
+const trail = [{ name: 'Home', href: '/' }, { name: 'Privacy', href: path }];
+const schema = graph([organizationNode(), websiteNode(), webPageNode(path, title, description), breadcrumbNode(path, trail)]);
+---
+<BaseLayout title={title} description={description} path={path} schema={schema}>
+  <div class="container-page py-12 max-w-3xl">
+    <Breadcrumbs trail={trail} />
+    <h1 class="mt-6 text-[2rem] md:text-4xl">Privacy Policy</h1>
+    <div class="prose-article mt-8">
+      <h2>What we collect</h2>
+      <p>When you submit a form on this site we collect what you type into it: your name, phone number, property ZIP code, the service you selected, and any message you add. The cost estimator also passes along the answers you selected and the estimate shown, so we can quote accurately.</p>
+      <h2>Why we collect it</h2>
+      <p>To respond to your enquiry and quote the work. That is the only reason.</p>
+      <h2>What we do not do</h2>
+      <p>We do not sell your information, rent it, or pass it to third-party marketing lists.</p>
+      <h2>Form processing</h2>
+      <p>Form submissions are processed by Formspree, which delivers them to us by email. Their handling of the data in transit is governed by their own privacy terms.</p>
+      <h2>Analytics</h2>
+      <p>This site may use a privacy-respecting analytics tag to count visits and see which pages are read. It is not used to build advertising profiles.</p>
+      <h2>Cookies</h2>
+      <p>This site sets no advertising or tracking cookies of its own.</p>
+      <h2>Your information</h2>
+      <p>Ask us to delete what you have sent and we will. Contact {BRAND.name} at <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> or {CONTACT.phoneDisplay}.</p>
+    </div>
+  </div>
+</BaseLayout>

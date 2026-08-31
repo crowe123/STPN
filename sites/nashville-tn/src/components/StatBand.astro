@@ -1,0 +1,17 @@
+---
+import proof from '../data/proof.json';
+/* DORMANT until real, verifiable operating figures exist. */
+const items = proof.stats ?? [];
+---
+{items.length > 0 && (
+  <section class="bg-primary text-white">
+    <div class="container-page py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-center">
+      {items.map((s: any) => (
+        <div>
+          <p class="font-heading font-bold text-4xl">{s.value}</p>
+          <p class="mt-1 text-white/80">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+)}

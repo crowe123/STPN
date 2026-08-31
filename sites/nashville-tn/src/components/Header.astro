@@ -1,0 +1,59 @@
+---
+import { CONTACT } from '../config';
+import { tel } from '../lib/site';
+import Logo from './Logo.astro';
+import servicesData from '../data/services.json';
+
+const coreServices = servicesData.services.filter((s) => s.tier === 'core').sort((a, b) => a.navOrder - b.navOrder);
+const links = [
+  { label: 'Service Areas', href: '/service-areas/' },
+  { label: 'Guides', href: '/guide/' },
+  { label: 'Free Tools', href: '/tools/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Contact', href: '/contact/' },
+];
+---
+<header class="site-header sticky top-0 z-50 bg-white border-b border-hairline">
+  <div class="container-page flex items-center gap-4 py-3">
+    <a href="/" class="shrink-0" aria-label="615 Septic Tank Pumping — home"><Logo /></a>
+
+    <nav class="hidden lg:flex items-center gap-1 ml-auto" aria-label="Primary">
+      <div class="relative group">
+        <a href="/services-menu/" class="tap px-3 py-2 font-semibold hover:text-accent-dark">Services</a>
+        <div class="absolute left-0 top-full hidden group-hover:block group-focus-within:block bg-white border border-hairline rounded-lg shadow-lg p-2 w-80">
+          {coreServices.map((s) => (
+            <a href={`/${s.slug}/`} class="block px-3 py-2 rounded hover:bg-surface text-[15px]">{s.name}</a>
+          ))}
+          <a href="/services-menu/" class="block px-3 py-2 rounded hover:bg-surface text-[15px] font-semibold text-accent-dark">All services →</a>
+        </div>
+      </div>
+      {links.map((l) => <a href={l.href} class="tap px-3 py-2 font-semibold hover:text-accent-dark">{l.label}</a>)}
+    </nav>
+
+    <div class="hidden md:flex items-center gap-3 ml-auto lg:ml-4">
+      <a href={tel} class="font-heading font-bold text-lg text-primary hover:text-accent-dark whitespace-nowrap">{CONTACT.phoneDisplay}</a>
+      <a href="/contact/" class="btn btn-accent">Get a Price</a>
+    </div>
+
+    <button id="menu-toggle" class="tap lg:hidden ml-auto md:ml-0 px-2" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" hidden class="lg:hidden border-t border-hairline bg-white">
+    <div class="container-page py-3 flex flex-col">
+      <a href="/" class="tap justify-start py-3 font-semibold border-b border-hairline">Home</a>
+      <button id="services-toggle" class="tap justify-between py-3 font-semibold border-b border-hairline w-full" aria-expanded="false" aria-controls="services-submenu">
+        <span>Services</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div id="services-submenu" hidden class="pl-3 border-b border-hairline">
+        {servicesData.services.sort((a, b) => a.navOrder - b.navOrder).map((s) => (
+          <a href={`/${s.slug}/`} class="tap justify-start py-2.5 text-[15px]">{s.name}</a>
+        ))}
+      </div>
+      {links.map((l) => <a href={l.href} class="tap justify-start py-3 font-semibold border-b border-hairline">{l.label}</a>)}
+      <a href={tel} class="btn btn-accent mt-4 mb-2">Call {CONTACT.phoneDisplay}</a>
+    </div>
+  </div>
+</header>

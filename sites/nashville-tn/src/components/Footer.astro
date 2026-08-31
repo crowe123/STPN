@@ -1,0 +1,70 @@
+---
+import { BRAND, CONTACT, SITE } from '../config';
+import { tel, napLine } from '../lib/site';
+import Logo from './Logo.astro';
+import servicesData from '../data/services.json';
+import citiesData from '../data/cities.json';
+
+/* Footer is deliberately NOT an exhaustive link mesh — top services plus company
+   links only. Long-tail service and area pages are reached via hubs, contextual
+   links and the sitemap. Column labels are <p>, never headings. */
+const topServices = servicesData.services.filter((s) => s.priority).slice(0, 5);
+const topCities = citiesData.cities.filter((c) => c.tier === 1).slice(0, 5);
+const year = new Date().getFullYear();
+---
+<footer class="bg-primary-dark text-white/90 mt-20">
+  <div class="container-page py-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <Logo variant="footer" class="mb-4" />
+      <address class="not-italic text-[15px] leading-relaxed">
+        <span class="block font-semibold text-white">{BRAND.name}</span>
+        <span class="block">{CONTACT.address.street}</span>
+        <span class="block">{CONTACT.address.locality}, {CONTACT.address.region} {CONTACT.address.postalCode}</span>
+        <a href={tel} class="block mt-2 font-heading font-bold text-xl text-white hover:text-accent">{CONTACT.phoneDisplay}</a>
+        <a href={`mailto:${CONTACT.email}`} class="block mt-1 underline underline-offset-2 break-words">{CONTACT.email}</a>
+      </address>
+      <p class="mt-4 text-[14px] text-white/70">{CONTACT.hoursHuman}</p>
+    </div>
+
+    <div>
+      <p class="font-heading font-bold text-white mb-3">Services</p>
+      <ul class="space-y-2 text-[15px]">
+        {topServices.map((s) => <li><a href={`/${s.slug}/`} class="hover:text-accent underline-offset-2 hover:underline">{s.name}</a></li>)}
+        <li><a href="/services-menu/" class="hover:text-accent font-semibold">All services →</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="font-heading font-bold text-white mb-3">Service Areas</p>
+      <ul class="space-y-2 text-[15px]">
+        {topCities.map((c) => <li><a href={`/service-areas/${c.slug}/`} class="hover:text-accent underline-offset-2 hover:underline">{c.name}</a></li>)}
+        <li><a href="/service-areas/" class="hover:text-accent font-semibold">All areas →</a></li>
+      </ul>
+      <p class="mt-4 text-[14px] text-white/70">Serving {CONTACT.serviceAreaLong}.</p>
+    </div>
+
+    <div>
+      <p class="font-heading font-bold text-white mb-3">Company</p>
+      <ul class="space-y-2 text-[15px]">
+        <li><a href="/about/" class="hover:text-accent underline-offset-2 hover:underline">About</a></li>
+        <li><a href="/contact/" class="hover:text-accent underline-offset-2 hover:underline">Contact</a></li>
+        <li><a href="/guide/" class="hover:text-accent underline-offset-2 hover:underline">Guides</a></li>
+        <li><a href="/blog/" class="hover:text-accent underline-offset-2 hover:underline">Blog</a></li>
+        <li><a href="/tools/" class="hover:text-accent underline-offset-2 hover:underline">Free tools</a></li>
+        <li><a href="/resources/" class="hover:text-accent underline-offset-2 hover:underline">Free checklist</a></li>
+        <li><a href="/leave-a-review/" class="hover:text-accent underline-offset-2 hover:underline">Leave a review</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/15">
+    <div class="container-page py-6 text-[13px] text-white/65 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <p>© {year} {BRAND.name}. Serving {CONTACT.serviceArea}.</p>
+      <p class="md:max-w-xl">Cost figures on this site are published ranges from state and national sources, given so you can budget. They are not quotes, and your price depends on your tank, your access and what we find.</p>
+      <p class="flex gap-4">
+        <a href="/privacy/" class="hover:text-accent underline underline-offset-2">Privacy</a>
+        <a href="/terms/" class="hover:text-accent underline underline-offset-2">Terms</a>
+      </p>
+    </div>
+  </div>
+</footer>

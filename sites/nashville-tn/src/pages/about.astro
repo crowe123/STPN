@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import TeamGrid from '../components/TeamGrid.astro';
+import CredentialList from '../components/CredentialList.astro';
+import { BRAND, CONTACT, SITE } from '../config';
+import { graph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../lib/schema';
+
+const path = '/about/';
+const title = `About ${BRAND.name} | Nashville Septic Service`;
+const description = 'What we do, the standards the work follows, where we work and how we price it. No founding story, because the work is the point.';
+const trail = [{ name: 'Home', href: '/' }, { name: 'About', href: path }];
+const schema = graph([organizationNode(), websiteNode(), webPageNode(path, title, description, SITE.lastReviewed), breadcrumbNode(path, trail)]);
+/* Written about the work, not a backstory. No founding year, no invented owner,
+   no team photos, no "since 20XX". Every sentence here is true. */
+---
+<BaseLayout title={title} description={description} path={path} schema={schema}>
+  <section class="container-page pt-6 pb-10 border-b border-hairline">
+    <Breadcrumbs trail={trail} />
+    <h1 class="mt-6 text-[2rem] md:text-5xl leading-[1.13]">About {BRAND.name}</h1>
+  </section>
+
+  <section class="container-page py-14">
+    <article class="prose-article">
+      <p>
+        <strong>{BRAND.name}</strong> is a septic tank pumping company serving {CONTACT.serviceAreaLong}.
+        It pumps, cleans and inspects residential and commercial septic systems, services grease traps
+        and interceptors, and diagnoses drain fields that have stopped accepting.
+      </p>
+
+      <h2>What we actually do on a visit</h2>
+      <p>
+        Both tank lids are located and opened — hand-dug where they are buried, which on wooded and
+        large-lot Davidson County properties is most of the time. Sludge and scum depths are measured
+        against the tank's capacity before anything is pumped, because that measurement is what tells
+        you whether your interval is right. The tank is then pumped completely: liquid, floating scum
+        and settled sludge, followed by a backflush. A liquid-only draw-down leaves behind exactly the
+        material that threatens your drain field, and makes a tank look serviced while the problem
+        stays where it was.
+      </p>
+      <p>
+        With the tank empty, the inlet baffle, the outlet baffle and the effluent filter are inspected
+        — the three components that fail quietly and take a drain field with them. You get told what
+        was found, not just that the tank was emptied.
+      </p>
+
+      <h2>The standards this work follows</h2>
+      <p>
+        Septic tank pumping contractors in Tennessee are governed by Tenn. Comp. R. &amp; Regs.
+        0400-48-01-.20. Subsurface sewage disposal systems fall under TDEC's Subsurface Sewage
+        Disposal Program, and Davidson County administers its own septic program as a TDEC contract
+        county, with Metro Public Health's Environmental Engineering Services handling soils
+        interpretation, system design, percolation-test monitoring and groundwater protection.
+      </p>
+      <p>
+        Grease work follows Metro Water Services' FOG program: traps serviced at least every 30 days,
+        interceptors at least every 90, service whenever fats, oils, grease and settled solids reach
+        25% of the unit's capacity, certified hauler manifests, and three-year record retention.
+      </p>
+
+      <h2>Where we work, and why it is that shape</h2>
+      <p>
+        {CONTACT.serviceArea}. Septic in this county is concentrated in the areas the postwar sewer
+        extension never reached — a project that began soon after the 1963 consolidation and ran into
+        the early 1990s — plus the large-lot areas shaped by the county's 1946 decision to require
+        half-acre minimum lots, and larger where soils were poor, expressly to give drain fields room.
+      </p>
+      <p>
+        We build a service-area page only where there is something real to say about septic there. If
+        an area came onto mains sewer, we do not claim to serve its septic systems, because it does
+        not have any.
+      </p>
+
+      <h2>How we price it</h2>
+      <p>
+        Ranges are published on this site and there is a
+        <a href="/tools/septic-pumping-cost-estimator/">cost estimator</a> that gives you a number from
+        three questions without an email address or a phone call. You get a band before we come out
+        and a firm figure before we do anything that changes it. If the tank is opened and something
+        needs doing that was not in the quote — compacted sludge, a corroded baffle, a split effluent
+        filter — you are told what it costs and you decide.
+      </p>
+
+      <h2>What you will not find on this site</h2>
+      <p>
+        There are no reviews, star ratings, testimonials or customer counts here, and no claims about
+        years in business or jobs completed. That is deliberate. This is a new operation, none of
+        those things exist yet, and inventing them would be both dishonest and, under the FTC's rules
+        on fabricated reviews, unlawful.
+      </p>
+      <p>
+        What stands in their place is everything that is true on day one: published pricing, the
+        actual regulations the work follows, the specific local geology and history that shape septic
+        in this county, a calculator that answers your first question without a sales call, and a
+        straight comparison of what a cheap pump-out leaves behind. When real reviews exist, they will
+        appear here — and not one word before.
+      </p>
+      <p>
+        If you have used us and are willing to say so, the <a href="/leave-a-review/">review page</a>
+        explains how.
+      </p>
+    </article>
+    <div class="mt-10 max-w-md"><CredentialList /></div>
+  </section>
+
+  <TeamGrid />
+  <CtaBand heading="Questions about your system?" body={`Call ${CONTACT.phoneDisplay}. ${CONTACT.hoursHuman}`} ctaLabel="Get a price" />
+</BaseLayout>

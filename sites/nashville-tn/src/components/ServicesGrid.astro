@@ -1,0 +1,22 @@
+---
+import servicesData from '../data/services.json';
+interface Props { heading?: string; tier?: 'core' | 'all'; limit?: number; exclude?: string }
+const { heading = 'What we do', tier = 'core', limit, exclude } = Astro.props;
+let list = servicesData.services.filter((s) => (tier === 'all' ? true : s.tier === 'core'));
+if (exclude) list = list.filter((s) => s.slug !== exclude);
+list = list.sort((a, b) => a.navOrder - b.navOrder);
+if (limit) list = list.slice(0, limit);
+---
+<section class="container-page py-16">
+  <h2 class="text-3xl md:text-4xl">{heading}</h2>
+  <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {list.map((s) => (
+      <a href={`/${s.slug}/`} class="card card-hover p-6 flex flex-col">
+        {s.priority && <p class="text-[12px] font-bold uppercase tracking-wide text-accent-dark mb-2">Most requested</p>}
+        <p class="font-heading font-bold text-xl">{s.name}</p>
+        <p class="mt-2 text-[15px] text-ink-soft flex-1">{s.blurb}</p>
+        <p class="mt-4 font-semibold text-accent-dark">Learn more →</p>
+      </a>
+    ))}
+  </div>
+</section>

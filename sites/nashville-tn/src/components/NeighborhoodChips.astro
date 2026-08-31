@@ -1,0 +1,10 @@
+---
+interface Props { items: string[]; label: string }
+const { items, label } = Astro.props;
+---
+<div>
+  <p class="font-heading font-bold text-lg">{label}</p>
+  <ul class="mt-3 flex flex-wrap gap-2">
+    {items.map((n) => <li class="rounded-full border border-hairline bg-surface px-3.5 py-1.5 text-[14px]">{n}</li>)}
+  </ul>
+</div>

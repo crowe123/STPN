@@ -1,0 +1,11 @@
+---
+/** Real brand mark, not a monogram placeholder. Generated in Phase 4 and shipped as SVG. */
+interface Props { variant?: 'header' | 'footer' | 'mark'; class?: string }
+const { variant = 'header', class: cls = '' } = Astro.props;
+const src = variant === 'footer' ? '/images/logo-light.svg'
+  : variant === 'mark' ? '/images/logo-mark.svg'
+  : '/images/logo.svg';
+const w = variant === 'mark' ? 44 : 208;
+const h = variant === 'mark' ? 44 : 46;
+---
+<img src={src} alt="615 Septic Tank Pumping" width={w} height={h} class={cls} decoding="async" />

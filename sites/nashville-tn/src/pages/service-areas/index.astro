@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { BRAND, CONTACT, SITE } from '../../config';
+import { graph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../../lib/schema';
+import citiesData from '../../data/cities.json';
+
+const path = '/service-areas/';
+const title = `Septic Service Areas in Davidson County | ${SITE.titleSuffix}`;
+const description = 'Where septic still exists in Davidson County, and why. Joelton, Whites Creek, Forest Hills, Oak Hill, Bellevue, Bells Bend and Goodlettsville.';
+const trail = [{ name: 'Home', href: '/' }, { name: 'Service Areas', href: path }];
+const schema = graph([organizationNode(), websiteNode(), webPageNode(path, title, description, SITE.lastReviewed), breadcrumbNode(path, trail)]);
+const t1 = citiesData.cities.filter((c) => c.tier === 1);
+const t2 = citiesData.cities.filter((c) => c.tier === 2);
+---
+<BaseLayout title={title} description={description} path={path} schema={schema}>
+  <section class="container-page pt-6 pb-10 border-b border-hairline">
+    <Breadcrumbs trail={trail} />
+    <h1 class="mt-6 text-[2rem] md:text-5xl leading-[1.13]">Septic Service Areas in Davidson County</h1>
+    <div class="prose-article mt-6">
+      <p>
+        <a href="/">{BRAND.name}</a> is a septic tank pumping company serving {CONTACT.serviceAreaLong}.
+        Septic here is not evenly spread, and knowing why tells you a great deal about the system
+        in your own yard.
+      </p>
+      <p>
+        By the mid-1950s roughly 150,000 Davidson County residents lived in unsewered subdivisions.
+        The countywide project to extend sewers through the suburbs began soon after the 1963
+        consolidation and ran into the early 1990s, working outward from the built-up core. Where it
+        arrived, septic disappeared. Where it did not, those systems are still in the ground — and
+        many of them are now 25 to 55 years old.
+      </p>
+      <p>
+        There is an older rule underneath that one. In 1946 the county raised minimum residential lot
+        sizes to half an acre specifically to give septic drain fields room over Davidson County's
+        shallow limestone base, and required larger lots still where soils were poor — naming Oak Hill
+        among them. The large-lot character of several areas below is a direct consequence.
+      </p>
+      <p>
+        We build a page for an area when there is something real to say about septic there. Areas the
+        sewer extension reached are not listed, because a page about septic in a neighbourhood on
+        mains sewer would be worthless to you.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page py-14">
+    <h2 class="text-2xl md:text-3xl">Primary service areas</h2>
+    <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {t1.map((c) => (
+        <a href={`/service-areas/${c.slug}/`} class="card card-hover p-6">
+          <p class="font-heading font-bold text-xl">{c.name}</p>
+          <p class="mt-1 text-[14px] text-ink-soft">{c.county} · {c.zip}</p>
+          <p class="mt-3 text-[15px] text-ink-soft">{c.localAngle[0].slice(0, 168)}…</p>
+          <p class="mt-4 font-semibold text-accent-dark">Septic in {c.name} →</p>
+        </a>
+      ))}
+    </div>
+
+    <h2 class="mt-14 text-2xl md:text-3xl">Also covered</h2>
+    <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {t2.map((c) => (
+        <a href={`/service-areas/${c.slug}/`} class="card card-hover p-6">
+          <p class="font-heading font-bold text-xl">{c.name}</p>
+          <p class="mt-1 text-[14px] text-ink-soft">{c.county} · {c.zip}</p>
+          <p class="mt-3 text-[15px] text-ink-soft">{c.localAngle[0].slice(0, 168)}…</p>
+          <p class="mt-4 font-semibold text-accent-dark">Septic in {c.name} →</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <CtaBand heading={`Not sure whether you are on septic or sewer?`}
+           body="It is a common question in Bellevue and Goodlettsville especially. Call and we will help you work it out before anyone drives anywhere." />
+</BaseLayout>

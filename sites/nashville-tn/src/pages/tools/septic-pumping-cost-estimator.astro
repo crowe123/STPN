@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import CostCalculator from '../../components/islands/CostCalculator';
+import { SITE, CONTACT, FORMS } from '../../config';
+import { graph, organizationNode, websiteNode, webPageNode, breadcrumbNode, webApplicationNode } from '../../lib/schema';
+import calc from '../../data/calculator.json';
+const path = '/tools/septic-pumping-cost-estimator/';
+const title = `Septic Pumping Cost Estimator | Nashville Prices | ${SITE.titleSuffix}`;
+const description = 'Estimate septic pumping cost in Nashville from three questions. Built on published Tennessee and Davidson County price data. No email required.';
+const trail = [{ name: 'Home', href: '/' }, { name: 'Free Tools', href: '/tools/' }, { name: 'Cost Estimator', href: path }];
+const schema = graph([
+  organizationNode(), websiteNode(), webPageNode(path, title, description, SITE.lastReviewed),
+  breadcrumbNode(path, trail),
+  webApplicationNode(path, 'Septic Pumping Cost Estimator', description),
+]);
+---
+<BaseLayout title={title} description={description} path={path} schema={schema}>
+  <section class="container-page pt-6 pb-8 border-b border-hairline">
+    <Breadcrumbs trail={trail} />
+    <h1 class="mt-6 text-[2rem] md:text-5xl leading-[1.13]">Septic Pumping Cost Estimator</h1>
+    <p class="mt-5 max-w-3xl text-lg md:text-xl text-ink-soft leading-relaxed">{calc.intro}</p>
+  </section>
+  <section class="container-page py-12">
+    <CostCalculator client:visible endpoint={FORMS.endpoint} phone={CONTACT.phoneDisplay} honeypot={FORMS.honeypotField} />
+  </section>
+  <section class="container-page pb-14">
+    <div class="prose-article">
+      <h2>How this estimate is calculated</h2>
+      <ol>{calc.formula.steps.map((s) => <li>{s}</li>)}</ol>
+      <h2>Where the numbers come from</h2>
+      <p>
+        Septic pumping in Tennessee runs <strong>$275–$525</strong>, and Davidson County homeowners
+        have reported figures spanning <strong>$199–$796</strong>. The national average sits at
+        <strong>$428</strong>, with most people paying between $292 and $564. Difficult access — a
+        buried lid, landscaping, frozen ground — adds <strong>$50–$200</strong>.
+      </p>
+      <p>
+        The comparison figures are drawn the same way. Drain field replacement in Tennessee runs
+        <strong>$7,000–$15,000+</strong>, and Nashville-area drain field repair has been reported from
+        $2,000 to above $10,000. Middle Tennessee fields sit at the large end of the sizing range
+        because the region's soils drain slowly over fractured limestone, which pushes local
+        replacement costs above national averages.
+      </p>
+      <p>
+        Read the full breakdown in
+        <a href="/guide/septic-tank-pumping-cost-nashville/">what septic pumping costs in Nashville</a>,
+        or <a href="/guide/why-is-septic-pumping-so-expensive/">why the price varies as much as it does</a>.
+      </p>
+    </div>
+  </section>
+  <CtaBand heading="Want the exact number instead of the range?" body="Tell us the property and we will give you a firm price before we come out." ctaLabel="Get a firm price" />
+</BaseLayout>

@@ -1,0 +1,32 @@
+{
+  "_operatorNote": "AWAITING OPERATOR COPY. The operator is supplying the homepage body. Everything in this file is factual, sourced from RESEARCH.md, and safe to ship as-is — it contains no invented claims, no social proof and no placeholder text. Replace the values here with the supplied copy and rebuild; index.astro reads this file and needs no edits. The sections built from services.json and cities.json (services grid, pricing band, comparison table, area teaser) are already final and are not affected.",
+  "suppliedByOperator": false,
+  "hero": {
+    "h1": "Septic Tank Pumping in Nashville, TN",
+    "badge": "A person answers, including out of hours",
+    "sub": "A pump-out costs a few hundred dollars. A drain field that fails because nobody pumped runs $7,000 to $15,000 and up — and more here, because Middle Tennessee's slow-draining karst soils need bigger fields. We publish our prices, open the tank, and tell you what we found.",
+    "tiles": [
+      "Upfront price ranges published on this site",
+      "Serving Nashville and Davidson County",
+      "Both baffles and the filter inspected, every visit",
+      "Your pumping interval measured, not guessed"
+    ]
+  },
+  "painGrid": {
+    "heading": "What brings most people to this page",
+    "items": [
+      { "title": "Every drain slowed at once", "body": "One blocked fixture is a plumbing problem. Everything slowing together points at the tank, the outlet or the field — and it is the earliest cheap moment to act." },
+      { "title": "Sewage backing up indoors", "body": "Stop all water use immediately and call. Every gallon you send makes it worse, and sewage in living space is a biohazard as well as a failure." },
+      { "title": "Wet ground or a greener patch", "body": "Grass over the tank or field growing faster than the rest of the lawn means effluent is surfacing. On fractured limestone that is a groundwater concern too." },
+      { "title": "No records, no idea", "body": "You bought a house with a septic system and nobody can tell you where the tank is or when it was last emptied. That is a normal starting point, not an embarrassing one." }
+    ]
+  },
+  "faq": [
+    { "q": "How much does septic tank pumping cost in Nashville?", "a": "Expect $300 to $525 for a typical residential tank. Tennessee figures run $275 to $525 and Davidson County homeowner-reported costs span $199 to $796, with the spread driven mostly by access — hand-digging a buried lid adds $50 to $200 — and by tank capacity. Our cost estimator gives you a number from three questions without a phone call." },
+    { "q": "How often should a septic tank be pumped in Davidson County?", "a": "Every three to five years for most households, and every two to three where there is a garbage disposal, a larger household or a smaller tank. Rather than applying a flat interval, we measure sludge and scum depth against your tank's capacity on each visit and give you an interval based on what is actually accumulating." },
+    { "q": "Which parts of Nashville are still on septic?", "a": "Mostly the areas the postwar sewer extension never reached. Metro's countywide sewer project ran from just after the 1963 consolidation into the early 1990s, working outward from the built-up core, so north Davidson — Joelton, Whites Creek, Bells Bend — and large-lot areas like Forest Hills and Oak Hill remain heavily on septic, while inner neighbourhoods were connected." },
+    { "q": "What happens if a septic tank is never pumped?", "a": "Solids accumulate until they reach the outlet and carry into the drain field, where they seal the soil interface. The tank keeps working long after that damage begins, which is why the failure is usually invisible until the field stops accepting. A field replacement in Tennessee runs $7,000 to $15,000 and up; the pump-out that prevents it is a few hundred." },
+    { "q": "Do you handle emergencies outside office hours?", "a": "Yes. Office hours are Monday to Friday 7am to 6pm and Saturday 8am to 2pm, and septic backups are answered outside those hours. When you call we will tell you what to stop doing immediately while we are on the way, which frequently matters more in the first ten minutes than anything else." },
+    { "q": "Is my septic system big enough for a short-term rental?", "a": "It was permitted for a specific bedroom count, and Metro Public Health will tell you that number. Nashville short-term rentals routinely sleep more guests than the system was designed for, which shows up first as weekend slow drains. Tennessee also makes it illegal to advertise a property for more bedrooms than its septic is approved for, so it is worth knowing the figure." }
+  ]
+}

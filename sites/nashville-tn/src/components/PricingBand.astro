@@ -1,0 +1,33 @@
+---
+import { money } from '../lib/site';
+import servicesData from '../data/services.json';
+interface Props { slugs?: string[]; heading?: string }
+const { slugs = ['residential-septic-tank-pumping', 'septic-tank-inspection', 'drain-field-repair'], heading = 'What this actually costs' } = Astro.props;
+const picks = slugs.map((s) => servicesData.services.find((x) => x.slug === s)).filter(Boolean) as any[];
+---
+<section class="section-alt">
+  <div class="container-page py-16">
+    <h2 class="text-3xl md:text-4xl">{heading}</h2>
+    <p class="mt-3 max-w-3xl text-lg text-ink-soft">
+      Most septic companies will not put a number on a page. These are real published ranges,
+      given so you can budget before you call. Your price depends on tank size, how buried the
+      lids are, and what we find once the tank is open — and we tell you before doing the work,
+      not after.
+    </p>
+    <div class="mt-8 grid gap-5 md:grid-cols-3">
+      {picks.map((s) => (
+        <div class="card p-6 flex flex-col">
+          <p class="font-heading font-bold text-lg">{s.name}</p>
+          <p class="mt-3 font-heading font-bold text-3xl text-primary">from {money(s.priceFrom)}</p>
+          <p class="mt-1 text-[15px] text-ink-soft">{s.priceRange}</p>
+          <p class="mt-4 text-[14px] text-ink-soft border-t border-hairline pt-4 flex-1">{s.priceBasis}</p>
+          <a href={`/${s.slug}/`} class="mt-4 font-semibold text-accent-dark underline underline-offset-2">{s.name} details →</a>
+        </div>
+      ))}
+    </div>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/tools/septic-pumping-cost-estimator/" class="btn btn-accent">Estimate my cost in 3 questions</a>
+      <a href="/guide/septic-tank-pumping-cost-nashville/" class="btn btn-ghost text-primary">Read the full cost breakdown</a>
+    </div>
+  </div>
+</section>

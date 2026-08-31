@@ -1,0 +1,19 @@
+---
+import servicesData from '../data/services.json';
+interface Props { slugs: string[]; heading?: string }
+const { slugs, heading = 'Related services' } = Astro.props;
+const list = slugs.map((s) => servicesData.services.find((x) => x.slug === s)).filter(Boolean) as any[];
+---
+{list.length > 0 && (
+  <section class="container-page py-14">
+    <h2 class="text-2xl md:text-3xl">{heading}</h2>
+    <div class="mt-6 grid gap-5 sm:grid-cols-3">
+      {list.map((s) => (
+        <a href={`/${s.slug}/`} class="card card-hover p-5">
+          <p class="font-heading font-bold text-lg">{s.name}</p>
+          <p class="mt-2 text-[15px] text-ink-soft">{s.blurb}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

@@ -1,0 +1,19 @@
+---
+interface Props { faq: { q: string; a: string }[]; heading?: string; headingLevel?: 2 | 3 }
+const { faq, heading = 'Questions people actually ask', headingLevel = 2 } = Astro.props;
+const H = `h${headingLevel}`;
+---
+<section class="container-page py-16">
+  <H class={headingLevel === 2 ? 'text-3xl md:text-4xl' : 'text-2xl md:text-3xl'}>{heading}</H>
+  <div class="mt-8 max-w-3xl divide-y divide-hairline border-t border-b border-hairline">
+    {faq.map((f, i) => (
+      <details class="group py-4" open={i === 0}>
+        <summary class="cursor-pointer list-none flex items-start justify-between gap-4 font-heading font-bold text-lg md:text-xl tap justify-start">
+          <span>{f.q}</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" class="shrink-0 mt-1 transition-transform group-open:rotate-45 text-accent" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <p class="mt-3 text-lg leading-relaxed text-ink-soft">{f.a}</p>
+      </details>
+    ))}
+  </div>
+</section>

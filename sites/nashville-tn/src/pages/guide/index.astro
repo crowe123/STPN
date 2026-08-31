@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SITE, CONTACT } from '../../config';
+import { graph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../../lib/schema';
+import servicesData from '../../data/services.json';
+
+const path = '/guide/';
+const title = `Septic Guides for Davidson County Homeowners | ${SITE.titleSuffix}`;
+const description = 'Straight answers on septic costs, Davidson County rules, urgency and repair-or-replace decisions — with real numbers and named sources.';
+const trail = [{ name: 'Home', href: '/' }, { name: 'Guides', href: path }];
+const schema = graph([organizationNode(), websiteNode(), webPageNode(path, title, description, SITE.lastReviewed), breadcrumbNode(path, trail)]);
+
+// Must call getCollection — never a hardcoded array left over from scaffolding.
+const guides = await getCollection('guides');
+const byService = servicesData.services
+  .map((s) => ({ service: s, items: guides.filter((g) => g.data.parentService === s.slug) }))
+  .filter((g) => g.items.length > 0);
+---
+<BaseLayout title={title} description={description} path={path} schema={schema}>
+  <section class="container-page pt-6 pb-10 border-b border-hairline">
+    <Breadcrumbs trail={trail} />
+    <h1 class="mt-6 text-[2rem] md:text-5xl leading-[1.13]">Septic Guides for Davidson County</h1>
+    <p class="mt-5 max-w-3xl text-lg md:text-xl text-ink-soft leading-relaxed">
+      {guides.length} guides on what septic work costs here, what Davidson County actually requires,
+      and how to tell an inconvenience from an emergency. Every number on these pages comes from a
+      published source, and every source is named.
+    </p>
+  </section>
+
+  {byService.map(({ service, items }) => (
+    <section class="container-page py-10 border-b border-hairline last:border-0">
+      <h2 class="text-2xl md:text-3xl">
+        <a href={`/${service.slug}/`} class="underline underline-offset-4 decoration-2 decoration-accent/40 hover:text-accent-dark">{service.name}</a>
+      </h2>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((g) => (
+          <a href={`/guide/${g.id}/`} class="card card-hover p-5">
+            <p class="text-[12px] font-bold uppercase tracking-wide text-accent-dark">{g.data.badge}</p>
+            <p class="mt-1.5 font-heading font-bold text-lg">{g.data.h1}</p>
+            <p class="mt-2 text-[15px] text-ink-soft">{g.data.dek}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <CtaBand heading="Read enough? Get a real number for your property."
+           body={`Call ${CONTACT.phoneDisplay}, or use the three-question estimator.`} ctaLabel="Get a price" />
+</BaseLayout>

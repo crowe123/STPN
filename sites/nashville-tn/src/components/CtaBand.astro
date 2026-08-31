@@ -1,0 +1,20 @@
+---
+import { CONTACT } from '../config';
+import { tel } from '../lib/site';
+interface Props { heading: string; body?: string; ctaLabel?: string; variant?: 'primary' | 'accent' }
+const { heading, body, ctaLabel = 'Get a price', variant = 'primary' } = Astro.props;
+/* Banner text is a <p>, never a heading tag — headings are structural. */
+const bg = variant === 'accent' ? 'bg-accent' : 'bg-primary';
+---
+<section class={`${bg} text-white`}>
+  <div class="container-page py-12 md:py-14 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+    <div class="max-w-2xl">
+      <p class="font-heading font-bold text-2xl md:text-3xl leading-tight text-white">{heading}</p>
+      {body && <p class="mt-2 text-white/85 text-lg">{body}</p>}
+    </div>
+    <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+      <a href={tel} class="btn bg-white text-primary-dark hover:bg-white/90">Call {CONTACT.phoneDisplay}</a>
+      <a href="/contact/" class="btn btn-ghost text-white">{ctaLabel}</a>
+    </div>
+  </div>
+</section>

@@ -111,6 +111,40 @@ violating build cannot ship.
 
 ---
 
+## Visual verification (performed, not assumed)
+
+A green build says nothing about whether pages render. Every page type was opened
+in headless Chromium at 375px and 1280px and checked with assertions rather than
+by eye alone.
+
+**Verified working:** no broken images on any page type; no horizontal scroll at
+375px; no console or page errors; guides render as formatted HTML with tables,
+not raw markdown; the guide and blog indexes list every entry; every standalone
+tap target clears 44px; no low-contrast text except the `aria-hidden` breadcrumb
+separator.
+
+**Functionally tested, not just rendered:**
+
+| Test | Result |
+|---|---|
+| Cost calculator: 1,000-gal + buried lids + 6–10 years | `$505–$645`, matching the hand-computed 375+125+75 ±12% |
+| Urgency quiz, all-clear answers | "Nothing here suggests a problem." |
+| Urgency quiz, worst answers | "This needs attention today." |
+| Multi-step form | Advances to step 2 on valid input |
+| Form endpoint | Posts to the supplied Formspree URL |
+
+**Three real defects were found by this pass and fixed** — none would have been
+caught by the build:
+
+1. **The hamburger menu showed on desktop.** The custom `.tap` class sat outside Tailwind's cascade layers, and unlayered CSS outranks layered CSS, so it beat `lg:hidden`.
+2. **The emergency sidebar button rendered white-on-white with invisible text.** Same root cause: an unlayered `a { color: inherit }` overrode Tailwind's `text-primary-dark`. Both fixed by moving base and component styles into `@layer base` / `@layer components`.
+3. **Standalone CTA links were 21–28px tall on mobile**, under the 44px requirement. Fixed with a mobile-scoped `.tap-link`. Links inline within a sentence keep their natural line height, which WCAG 2.5.8 exempts.
+
+Outstanding and accepted: one inline phone link inside a sentence on the
+calculator page measures under 44px. It is inline in running text and exempt.
+
+---
+
 ## Post-launch checklist
 
 - [ ] Analytics provider + ID set in `src/config.ts`, verified firing with a real-time hit

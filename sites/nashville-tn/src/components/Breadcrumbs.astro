@@ -9,7 +9,7 @@ const { trail } = Astro.props;
         {i > 0 && <span aria-hidden="true" class="text-hairline">/</span>}
         {i === trail.length - 1
           ? <span aria-current="page" class="text-ink">{t.name}</span>
-          : <a href={t.href} class="underline underline-offset-2 hover:text-accent-dark">{t.name}</a>}
+          : <a href={t.href} class="tap-link underline underline-offset-2 hover:text-accent-dark">{t.name}</a>}
       </li>
     ))}
   </ol>

@@ -21,7 +21,7 @@ const picks = slugs.map((s) => servicesData.services.find((x) => x.slug === s)).
           <p class="mt-3 font-heading font-bold text-3xl text-primary">from {money(s.priceFrom)}</p>
           <p class="mt-1 text-[15px] text-ink-soft">{s.priceRange}</p>
           <p class="mt-4 text-[14px] text-ink-soft border-t border-hairline pt-4 flex-1">{s.priceBasis}</p>
-          <a href={`/${s.slug}/`} class="mt-4 font-semibold text-accent-dark underline underline-offset-2">{s.name} details →</a>
+          <a href={`/${s.slug}/`} class="tap-link mt-2 font-semibold text-accent-dark underline underline-offset-2">{s.name} details →</a>
         </div>
       ))}
     </div>

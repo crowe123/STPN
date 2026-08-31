@@ -1,0 +1,45 @@
+---
+/** Renders a run of parsed article blocks. Used twice by HomepageArticle: once
+    for the lead (beside the form) and once for the remainder below it. */
+import type { Node } from '../lib/article';
+
+interface Props { nodes: Node[]; heroImage?: string; heroAlt?: string }
+const { nodes, heroImage, heroAlt = '' } = Astro.props;
+---
+{nodes.map((n) => (
+  <>
+    {n.kind === 'h1' && (
+      <>
+        <h1 class="text-[2.2rem] leading-[1.08] md:text-5xl lg:text-[3.6rem] mb-7">{n.text}</h1>
+        {heroImage && (
+          <img src={heroImage} alt={heroAlt} width="1600" height="900"
+               srcset={`${heroImage.replace('.webp', '-800.webp')} 800w, ${heroImage} 1600w`}
+               sizes="(min-width: 1024px) 60vw, 100vw"
+               fetchpriority="high" decoding="async" loading="eager"
+               class="w-full h-auto rounded-xl border border-hairline shadow-md not-prose my-8" />
+        )}
+      </>
+    )}
+    {n.kind === 'h2' && <h2>{n.text}</h2>}
+    {n.kind === 'h3' && <h3>{n.text}</h3>}
+    {n.kind === 'p' && <p>{n.text}</p>}
+    {n.kind === 'list' && n.ordered && (
+      <ol class="steps">{n.items.map((i) => <li>{i}</li>)}</ol>
+    )}
+    {n.kind === 'list' && !n.ordered && (
+      <ul>{n.items.map((i) => <li>{i}</li>)}</ul>
+    )}
+    {n.kind === 'table' && (
+      <div class="scroll-x my-8 rounded-lg border border-hairline">
+        <table class="w-full border-collapse min-w-[860px]">
+          <thead><tr>{n.rows[0].map((c) => <th scope="col">{c}</th>)}</tr></thead>
+          <tbody>
+            {n.rows.slice(1).map((r) => (
+              <tr>{r.map((c, i) => i === 0 ? <th scope="row" class="text-left">{c}</th> : <td>{c}</td>)}</tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )}
+  </>
+))}

@@ -45,16 +45,10 @@ const schema = graph([
 ]);
 ---
 <BaseLayout title={title} description={description} path={path} schema={schema} heroPreload={heroImage}>
-  <HomepageArticle heroImage={heroImage} heroAlt={heroAlt} />
-
-  <section class="section-alt border-t border-hairline">
-    <div class="container-page py-14 md:py-16">
-      <div class="max-w-2xl mx-auto">
-        <LeadCaptureForm source="homepage"
-          heading="Request septic service"
-          body="Tell us the service and your ZIP, then how to reach you. We reply with a firm price."
-          submitLabel="Request service" />
-      </div>
-    </div>
-  </section>
+  <HomepageArticle heroImage={heroImage} heroAlt={heroAlt}>
+    <LeadCaptureForm slot="aside" source="homepage" compact
+      heading="Request septic service"
+      body="Tell us the service and your ZIP, then how to reach you. We reply with a firm price."
+      submitLabel="Request service" />
+  </HomepageArticle>
 </BaseLayout>

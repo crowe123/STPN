@@ -158,6 +158,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .prose-wide > ul > li { font-size: 1.125rem; }
 @media (min-width: 768px) { .prose-wide > ul > li { font-size: 1.1875rem; } }
 .prose-wide > img { max-width: var(--measure); }
+.prose-lead > img, .prose-lead > p { max-width: none; }
+.prose-lead > h1 { max-width: 16ch; }
 .prose-wide table { font-size: 1.0625rem; }
 .prose-wide th, .prose-wide td { padding: .875rem 1rem; }
 

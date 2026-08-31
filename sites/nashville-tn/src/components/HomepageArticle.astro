@@ -2,79 +2,36 @@
 /**
  * Renders the operator-supplied homepage article VERBATIM.
  *
- * The content comes from src/data/homepage-article.json, extracted mechanically
+ * Content comes from src/data/homepage-article.json, extracted mechanically
  * from the supplied .docx rather than re-typed. QA gate 13 diffs the rendered
  * page against src/data/homepage-article.txt on every build and fails if a
  * single word differs. Site chrome sits around this article, never inside it.
  *
- * Heading levels are taken from the document's own styles (Heading1/2/3) so the
- * author's hierarchy is preserved exactly.
+ * Layout: everything before the first H2 (the H1, hero image and intro
+ * paragraphs) sits in a two-column lead beside the `aside` slot, which carries
+ * the contact form. The rest of the article runs beneath at full width.
  */
+import ArticleBlocks from './ArticleBlocks.astro';
+import { toNodes, type Block } from '../lib/article';
 import blocks from '../data/homepage-article.json';
 
 interface Props { heroImage?: string; heroAlt?: string }
 const { heroImage, heroAlt = '' } = Astro.props;
 
-type Block =
-  | { type: 'p'; style: string; list: boolean; ordered?: boolean; text: string }
-  | { type: 'table'; rows: string[][] };
+const nodes = toNodes(blocks as Block[]);
 
-const items = blocks as Block[];
-
-/* Consecutive list paragraphs are grouped into a single <ul>. */
-type Node =
-  | { kind: 'h1' | 'h2' | 'h3' | 'p'; text: string }
-  | { kind: 'list'; ordered: boolean; items: string[] }
-  | { kind: 'table'; rows: string[][] };
-const nodes: Node[] = [];
-for (const b of items) {
-  if (b.type === 'table') { nodes.push({ kind: 'table', rows: b.rows }); continue; }
-  if (b.list) {
-    const ordered = b.ordered === true;
-    const last = nodes[nodes.length - 1];
-    if (last && last.kind === 'list' && last.ordered === ordered) last.items.push(b.text);
-    else nodes.push({ kind: 'list', ordered, items: [b.text] });
-    continue;
-  }
-  const kind = b.style === 'Heading1' ? 'h1' : b.style === 'Heading2' ? 'h2' : b.style === 'Heading3' ? 'h3' : 'p';
-  nodes.push({ kind, text: b.text });
-}
+const firstH2 = nodes.findIndex((n) => n.kind === 'h2');
+const lead = firstH2 === -1 ? nodes : nodes.slice(0, firstH2);
+const rest = firstH2 === -1 ? [] : nodes.slice(firstH2);
 ---
-<article class="prose-article prose-wide container-page py-10 md:py-14">
-  {nodes.map((n) => {
-    if (n.kind === 'h1') return (
-      <>
-        <h1 class="text-[2.3rem] leading-[1.08] md:text-6xl lg:text-[4.2rem] mb-7 max-w-[20ch]">{n.text}</h1>
-        {heroImage && (
-          <img src={heroImage} alt={heroAlt} width="1600" height="900"
-               srcset={`${heroImage.replace('.webp', '-800.webp')} 800w, ${heroImage} 1600w`}
-               sizes="(min-width: 1280px) 1216px, 100vw"
-               fetchpriority="high" decoding="async" loading="eager"
-               class="w-full h-auto rounded-xl border border-hairline shadow-md not-prose my-9" />
-        )}
-      </>
-    );
-    if (n.kind === 'h2') return <h2>{n.text}</h2>;
-    if (n.kind === 'h3') return <h3>{n.text}</h3>;
-    if (n.kind === 'list') {
-      /* Numbered lists in the source are sequences (the scheduling steps), so
-         they stay single-column to preserve reading order. Bullet lists run in
-         two columns on wide screens. */
-      return n.ordered
-        ? <ol class="steps">{n.items.map((i) => <li>{i}</li>)}</ol>
-        : <ul>{n.items.map((i) => <li>{i}</li>)}</ul>;
-    }
-    if (n.kind === 'table') {
-      const [head, ...body] = n.rows;
-      return (
-        <div class="scroll-x my-8 rounded-lg border border-hairline">
-          <table class="w-full border-collapse min-w-[860px]">
-            <thead><tr>{head.map((c) => <th scope="col">{c}</th>)}</tr></thead>
-            <tbody>{body.map((r) => <tr>{r.map((c, i) => i === 0 ? <th scope="row" class="text-left">{c}</th> : <td>{c}</td>)}</tr>)}</tbody>
-          </table>
-        </div>
-      );
-    }
-    return <p>{n.text}</p>;
-  })}
+<div class="container-page pt-8 md:pt-10">
+  <div class="grid gap-8 lg:gap-12 lg:grid-cols-[minmax(0,1fr)_23rem] lg:items-start">
+    <div class="prose-article prose-wide prose-lead">
+      <ArticleBlocks nodes={lead} heroImage={heroImage} heroAlt={heroAlt} />
+    </div>
+    <aside class="lg:sticky lg:top-28"><slot name="aside" /></aside>
+  </div>
+</div>
+<article class="prose-article prose-wide container-page pb-12 md:pb-16">
+  <ArticleBlocks nodes={rest} />
 </article>

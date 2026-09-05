@@ -79,15 +79,16 @@ export const SITE = {
 export const FORMS = {
   /**
    * POST URL for every lead form on the site.
-   * Placeholder — replace with the LocusPilot submit URL or Formspree endpoint.
+   * Formspree project endpoint. Honeypot uses Formspree's reserved _gotcha name
+   * so their spam filter drops bot submissions server-side.
    */
-  endpoint: 'https://REPLACE-ME.example.com/f/615-septic',
+  endpoint: 'https://formspree.io/f/xljegqlz',
   /**
    * While false, forms render with their fields disabled and a short notice
    * instead of silently posting nowhere. Flip to true once `endpoint` is real.
    */
-  enabled: false,
-  honeypotName: '_website_url',
+  enabled: true,
+  honeypotName: '_gotcha',
 } as const;
 
 export const ANALYTICS = {

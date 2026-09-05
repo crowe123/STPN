@@ -1,6 +1,7 @@
 ---
 title: "Septic Tank Pumping Cost in Nashville (2026) | 615 Septic Tank Pumping"
 h1: "How Much Does Septic Tank Pumping Cost in Nashville?"
+cardTitle: "What a Standard Pump-Out Costs in Nashville"
 description: "Septic tank pumping cost in Nashville, TN for 2026 — $275 to $525 for a standard pump-out, what moves the price, and when it goes higher. Cited figures."
 dek: "The published range, the four things that actually move it, and the point at which a pump-out stops being a pump-out and becomes a clean-out."
 answer: "Septic tank pumping in Nashville costs $275 to $525 for a standard residential pump-out, based on published Tennessee pricing. Davidson County jobs have been reported from $199 to $796. Tank capacity, lid access, and years since the last service are what move a specific property within that range."

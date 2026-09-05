@@ -1,6 +1,7 @@
 ---
 title: "How Often to Pump a Septic Tank in Nashville | 615 Septic Tank Pumping"
 h1: "How Often Does a Nashville Septic Tank Need Pumping?"
+cardTitle: "How Often Should a Nashville Tank Be Emptied?"
 description: "How often to pump a septic tank in Nashville, TN. The 3-5 year rule, why household size matters more than tank size, and how to get a real interval."
 dek: "Three to five years is the rule of thumb. Here is what actually decides where a specific Nashville system falls in that range — and how to replace the guess with a date."
 answer: "Most Nashville septic tanks need pumping every 3 to 5 years. A household of four on a 1,000-gallon tank sits at the short end; a couple on a 1,500-gallon tank sits at the long end. The reliable number comes from measured sludge depth at the last service, not from the rule of thumb."

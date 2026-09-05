@@ -2,10 +2,14 @@
 /**
  * HOMEPAGE.
  *
- * The body of this page is the supplied article, rendered VERBATIM from
- * src/data/homepage-article.json — mechanically extracted from the source .docx
- * by scripts/extract-article.mjs, never re-typed. No word, heading level, list
- * item or table cell is changed, added, removed or reordered.
+ * The body of this page renders from src/data/homepage-article.json, originally
+ * extracted from the source .docx by scripts/extract-article.mjs.
+ *
+ * DEVIATION FROM THE SOURCE .docx (AIO/M retrieval tuning, operator-approved):
+ * the H1, the opening paragraph and six subheadings were edited. The article no
+ * longer matches the supplied .docx; homepage-article.json and .txt were changed
+ * in lockstep so the verbatim gate below still passes. Everything else — heading
+ * levels, list items, table cells, block order — is untouched.
  *
  * `npm run qa` diffs the text rendered inside <article data-verbatim-article>
  * against src/data/homepage-article.txt and fails the build on any difference.

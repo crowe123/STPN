@@ -138,10 +138,10 @@ section('4. KEYWORD MAP RECONCILIATION');
   const services = JSON.parse(readFileSync(resolve(root, 'src/data/services.json'), 'utf8'));
   const cities = JSON.parse(readFileSync(resolve(root, 'src/data/cities.json'), 'utf8'));
   const map = [
-    // The homepage H1 is the supplied article's H1 and cannot be edited; the
-    // primary keyword is carried by the title, URL and first 100 words instead.
-    // This exception is recorded in RESEARCH.md and DONE.md.
-    { route: '/', kw: 'septic tank pumping nashville', skipH1: true },
+    // The homepage H1 now carries the primary keyword directly (it was edited
+    // for AIO/M retrieval — see the DEVIATION note in src/pages/index.astro), so
+    // the former skipH1 exception no longer applies and the gate enforces it.
+    { route: '/', kw: 'septic tank pumping nashville' },
     ...services.map((s) => ({ route: `/${s.slug}/`, kw: s.primaryKeyword.toLowerCase() })),
     ...cities.map((c) => ({ route: `/service-areas/${c.slug}/`, kw: c.primaryKeyword.toLowerCase() })),
   ];

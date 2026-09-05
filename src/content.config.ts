@@ -17,6 +17,13 @@ const guides = defineCollection({
     title: z.string(),
     /** The literal search question — becomes the page H1. */
     h1: z.string(),
+    /**
+     * Optional heading used on guide cards elsewhere on the site. Lets a card
+     * avoid restacking the same search words the host page's own headings
+     * already carry, without touching this guide's H1 (which its keyword gate
+     * pins). Falls back to h1 when absent.
+     */
+    cardTitle: z.string().optional(),
     description: z.string(),
     /** Standfirst under the H1. */
     dek: z.string(),

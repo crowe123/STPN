@@ -14,9 +14,9 @@ interface Props {
 const {
   heading,
   body,
-  callLabel = `Call ${CONTACT.phoneDisplay}`,
+  callLabel = CONTACT.phoneDisplay,
   secondaryHref = '/contact/',
-  secondaryLabel = 'Get a Free Estimate',
+  secondaryLabel = 'Send property details',
   tone = 'primary',
 } = Astro.props;
 ---

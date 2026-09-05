@@ -58,7 +58,7 @@ for (let i = faqStart + 1; i < blocks.length; i++) {
 const path = '/';
 const title = 'Septic Tank Pumping Nashville TN | Licensed Full Pump-Out | 615 Septic';
 const description =
-  'Licensed septic tank pumping in Nashville, TN. Full pump-out of 1,000-1,500 gallon tanks across Davidson County, $275-$525 typical. Free estimates. Call 24/7.';
+  'Licensed septic tank pumping in Nashville, TN. Full pump-out of 1,000-1,500 gallon tanks across Davidson County, $275-$525 typical. Call 24/7.';
 
 const schema = graph([
   organization(),
@@ -98,9 +98,9 @@ const schema = graph([
     <div class="container-site pb-12 lg:pb-14">
       <div class="flex flex-col gap-3 sm:flex-row">
         <a href={tel} class="btn btn-accent" data-cta="hero-call">
-          <Icon name="phone" size={22} /> Call {CONTACT.phoneDisplay}
+          <Icon name="phone" size={22} /> {CONTACT.phoneDisplay}
         </a>
-        <a href="/contact/" class="btn btn-outline">Get a Free Estimate</a>
+        <a href="/contact/" class="btn btn-outline">Send property details</a>
         <a href="/tools/septic-pumping-cost-estimator/" class="btn btn-outline">
           <Icon name="calc" size={20} /> Estimate the cost
         </a>
@@ -241,9 +241,8 @@ const schema = graph([
   </section>
 
   <CtaBand
-    heading={`A full tank will not wait. Call ${CONTACT.phoneDisplay}.`}
+    heading={`A full tank will not wait. ${CONTACT.phoneDisplay}.`}
     body={`${BRAND.name} covers ${CONTACT.serviceArea}. Backups get priority dispatch; routine pump-outs are usually same-day or next-day.`}
-    callLabel="Call now"
     secondaryLabel="Book a pump-out"
   />
 

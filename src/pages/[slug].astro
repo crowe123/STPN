@@ -70,7 +70,7 @@ const priceLine =
         <p class="mt-6 max-w-2xl text-xl leading-relaxed text-ink">{service.blurb}</p>
         <div class="mt-7 flex flex-col gap-3 sm:flex-row">
           <a href={tel} class="btn btn-accent" data-cta="service-hero-call">
-            <Icon name="phone" size={22} /> Call {CONTACT.phoneDisplay}
+            <Icon name="phone" size={22} /> {CONTACT.phoneDisplay}
           </a>
           <a href="#book" class="btn btn-outline">Book this service</a>
         </div>
@@ -231,7 +231,7 @@ const priceLine =
         />
         <div class="mt-7 flex flex-col gap-3 sm:flex-row">
           <a href={tel} class="btn btn-accent" data-cta="service-book-call">
-            <Icon name="phone" size={22} /> Call {CONTACT.phoneDisplay}
+            <Icon name="phone" size={22} /> {CONTACT.phoneDisplay}
           </a>
           <a href="/contact/" class="btn btn-outline">Contact page</a>
         </div>
@@ -246,7 +246,6 @@ const priceLine =
   <CtaBand
     heading={`${service.name} in ${CONTACT.address.locality} — get it scheduled`}
     body={`Covering ${CONTACT.serviceArea}. Backups take priority; routine work is usually same-day or next-day.`}
-    callLabel={`Call ${CONTACT.phoneDisplay}`}
     secondaryLabel="Send property details"
     secondaryHref="#book"
   />

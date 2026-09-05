@@ -76,7 +76,7 @@ export default function CostEstimator({ formEndpoint, formEnabled, phoneDisplay,
           </p>
           <p class="mt-3 text-[1.0625rem] leading-relaxed text-ink-soft">{config.disclaimer}</p>
           <a href={telHref} class="btn btn-accent mt-5 w-full" data-cta="calculator-call">
-            Call {phoneDisplay} to confirm
+            {phoneDisplay} to confirm
           </a>
         </div>
 

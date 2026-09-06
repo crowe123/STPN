@@ -1,0 +1,73 @@
+---
+/**
+ * Outbound citations to the bodies that actually govern and document septic
+ * work in Davidson County.
+ *
+ * Linking out is not a leak. Pages that link to no other website at all carry a
+ * measured retrieval penalty, and the gain lands once a page cites at least
+ * five distinct external sites — it is one of the strongest on-page effects in
+ * the whole factor set. Every link here is nofollow by operator preference;
+ * nothing in the measured data distinguishes rel values, so the signal is the
+ * same and no equity leaves the site.
+ *
+ * Rules for this list: five different domains (the threshold counts sites, not
+ * links), every one a regulator, agency or professional body rather than a
+ * competitor or a directory, and every URL verified to resolve before it ships.
+ * scripts/qa.mjs fails the build if the homepage drops below five domains.
+ */
+const SOURCES = [
+  {
+    href: 'https://www.epa.gov/septic',
+    name: 'US EPA — SepticSmart',
+    note: 'The federal homeowner guidance on how a septic system works and what maintenance it actually needs.',
+  },
+  {
+    href: 'https://www.tn.gov/environment/program-areas/wr-water-resources.html',
+    name: 'TDEC — Division of Water Resources',
+    note: 'The Tennessee regulator for subsurface sewage disposal. Permits, system standards and installer licensing sit here.',
+  },
+  {
+    href: 'https://www.nashville.gov/departments/health',
+    name: 'Metro Public Health Department, Nashville & Davidson County',
+    note: 'The local authority for septic permitting and health complaints inside Davidson County.',
+  },
+  {
+    href: 'https://www.usgs.gov/special-topics/water-science-school/science/septic-systems-waste-treatment',
+    name: 'USGS — Septic systems and groundwater',
+    note: 'How effluent moves through soil into groundwater. Directly relevant on well-water and karst lots.',
+  },
+  {
+    href: 'https://www.neha.org/onsite-wastewater',
+    name: 'National Environmental Health Association — Onsite wastewater',
+    note: 'The professional body for onsite wastewater practice and credentialing.',
+  },
+];
+---
+<section class="section section-alt" aria-labelledby="sources-heading">
+  <div class="container-site">
+    <h2 id="sources-heading" class="font-display text-2xl text-primary-dark sm:text-3xl">
+      Where these rules and figures come from
+    </h2>
+    <p class="mt-3 max-w-3xl text-[1.0625rem] leading-relaxed text-ink-soft">
+      Septic work in Davidson County is governed by state and county rules, not by whoever answers the phone. These are
+      the primary sources behind the intervals, permits and costs described on this page.
+    </p>
+    <ul class="mt-7 grid gap-4 sm:grid-cols-2">
+      {
+        SOURCES.map((s) => (
+          <li class="card p-5">
+            <a
+              href={s.href}
+              target="_blank"
+              rel="nofollow noopener external"
+              class="font-display text-base font-bold uppercase tracking-wide text-primary-light hover:text-accent-dark"
+            >
+              {s.name}
+            </a>
+            <p class="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">{s.note}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

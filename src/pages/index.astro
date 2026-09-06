@@ -11,6 +11,12 @@
  * in lockstep so the verbatim gate below still passes. Everything else — heading
  * levels, list items, table cells, block order — is untouched.
  *
+ * The H1 deliberately does NOT carry "septic tank pumping nashville". That phrase
+ * lives in the title tag and in exactly one H2. Measured AIO/M setups: the phrase
+ * in title+H1+H2 cites at 2.4% and never holds position 1-5, while the phrase in
+ * the title with H1/H2 worded differently cites at 7.1%. scripts/qa.mjs encodes
+ * this as skipH1 + h2Once for '/' — do not "fix" the H1 by adding the phrase back.
+ *
  * `npm run qa` diffs the text rendered inside <article data-verbatim-article>
  * against src/data/homepage-article.txt and fails the build on any difference.
  *
@@ -28,15 +34,88 @@ import LeadCaptureForm from '../components/LeadCaptureForm.astro';
 import Testimonials from '../components/Testimonials.astro';
 import StatBand from '../components/StatBand.astro';
 import RelatedGuides from '../components/RelatedGuides.astro';
+import MapEmbed from '../components/MapEmbed.astro';
+import AuthoritySources from '../components/AuthoritySources.astro';
 import { BRAND, CONTACT, SITE, tel } from '../config';
 import { primaryCities, secondaryCities } from '../lib/data';
 import { graph, organization, website, webPage, faqPage } from '../lib/schema';
 import article from '../data/homepage-article.json';
 
+// Explanatory figures, keyed by the heading they belong under. Each one only
+// draws numbers the copy beneath it already states, so the artwork and the text
+// cannot drift apart. Keys must match the article headings exactly — the
+// homepage image-count gate in scripts/qa.mjs fails the build if a rename here
+// silently drops a figure.
+const SECTION_FIGURES: Record<string, { src: string; alt: string; w: number; h: number }> = {
+  'How Often Does a Nashville Septic System Need Pumping?': {
+    src: '/images/septic-tank-pumping-interval-nashville.svg',
+    alt: 'Scale of septic pumping intervals from three to five years. A household of four on a 1,000-gallon tank sits at the three-year end; a household of two on a 1,500-gallon tank reaches five years.',
+    w: 800,
+    h: 320,
+  },
+  'Signs a Tank Needs Pumping Right Now': {
+    src: '/images/septic-tank-warning-signs.svg',
+    alt: 'Five signs a septic tank needs pumping now: toilets flushing slowly or gurgling, sewage odor indoors or in the yard, wet spongy grass over the drain field, multiple slow drains through the house, and more than five years since the last pump-out.',
+    w: 800,
+    h: 420,
+  },
+  'Septic Tank Pumping Cost: What to Expect in Davidson County': {
+    src: '/images/septic-pumping-cost-vs-drain-field-replacement.svg',
+    alt: 'A routine pump-out at $275 to $525 shown to scale beside a drain field replacement at $10,000 to $20,000. The pump-out bar is a sliver of the replacement it prevents.',
+    w: 800,
+    h: 400,
+  },
+  'How to Schedule Service, Step by Step': {
+    src: '/images/septic-pumping-service-steps.svg',
+    alt: 'The five steps of a service call: call with the address and any symptoms, confirm a set date and time, technician arrives and locates the tank, pump and inspect with findings explained, and leave knowing when the next pump-out is due.',
+    w: 900,
+    h: 300,
+  },
+};
+
 type Block =
   | { type: 'h1' | 'h2' | 'h3' | 'p'; text: string }
-  | { type: 'ul'; items: string[] }
+  | { type: 'ul' | 'ol'; items: string[] }
   | { type: 'table'; head: string[]; rows: string[][] };
+
+// Figures worth bolting the eye to on a skim: what it costs, how often, how
+// long, and what it costs if you skip it. Deliberately no keyword in this list
+// — bolding "septic tank pumping Nashville" would be emphasis aimed at a
+// crawler rather than a reader, and it buys nothing measurable either way.
+// Longest first so "every 3 to 5 years" wins over "3 to 5 years".
+const EMPHASIS = [
+  'within 90 days of closing',
+  '1,000 to 1,500 gallon',
+  '$10,000 and $20,000',
+  '$10,000 to $20,000',
+  'every 3 to 5 years',
+  'Every 3 to 5 years',
+  'one to two hours',
+  '$15,000 or more',
+  '$275 to $525',
+  '3 to 5 years',
+].sort((a, b) => b.length - a.length);
+
+// Single left-to-right scan, so a phrase can never be wrapped twice and the
+// output cannot nest <strong> inside <strong>. Everything not matched is
+// escaped, so article text stays inert when it is handed to set:html.
+const escapeHtml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+function emphasize(text: string): string {
+  let out = '';
+  let i = 0;
+  outer: while (i < text.length) {
+    for (const phrase of EMPHASIS) {
+      if (text.startsWith(phrase, i)) {
+        out += '<strong>' + escapeHtml(phrase) + '</strong>';
+        i += phrase.length;
+        continue outer;
+      }
+    }
+    out += escapeHtml(text[i]);
+    i += 1;
+  }
+  return out;
+}
 
 const blocks = article as Block[];
 
@@ -56,7 +135,7 @@ for (let i = faqStart + 1; i < blocks.length; i++) {
 }
 
 const path = '/';
-const title = 'Septic Tank Pumping Nashville TN | Licensed Full Pump-Out | 615 Septic';
+const title = 'Septic Tank Pumping Nashville TN: Licensed Full Pump-Out';
 const description =
   'Licensed septic tank pumping in Nashville, TN. Full pump-out of 1,000-1,500 gallon tanks across Davidson County, $275-$525 typical. Free estimates. Call 24/7.';
 
@@ -80,9 +159,10 @@ const schema = graph([
                 {b.text}
               </h1>
             ) : (
-              <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink first-of-type:text-xl first-of-type:text-ink">
-                {b.text}
-              </p>
+              <p
+                class="mt-5 max-w-2xl text-lg leading-relaxed text-ink first-of-type:text-xl first-of-type:text-ink"
+                set:html={emphasize(b.text)}
+              />
             )
           )
         }
@@ -117,17 +197,32 @@ const schema = graph([
       <article class="prose-site mx-auto max-w-3xl" data-verbatim-article="part-2">
         {
           bodyBlocks.map((b) => {
-            if (b.type === 'h2') return <h2>{b.text}</h2>;
-            if (b.type === 'h3') return <h3>{b.text}</h3>;
-            if (b.type === 'p') return <p>{b.text}</p>;
-            if (b.type === 'ul')
+            if (b.type === 'h2' || b.type === 'h3') {
+              const fig = SECTION_FIGURES[b.text];
               return (
-                <ul>
-                  {b.items.map((i) => (
-                    <li>{i}</li>
-                  ))}
-                </ul>
+                <>
+                  {b.type === 'h2' ? <h2>{b.text}</h2> : <h3>{b.text}</h3>}
+                  {fig && (
+                    <figure class="my-7">
+                      <img
+                        src={fig.src}
+                        alt={fig.alt}
+                        width={fig.w}
+                        height={fig.h}
+                        class="h-auto w-full rounded border border-line"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </figure>
+                  )}
+                </>
               );
+            }
+            if (b.type === 'p') return <p set:html={emphasize(b.text)} />;
+            if (b.type === 'ul' || b.type === 'ol') {
+              const items = b.items.map((i) => <li set:html={emphasize(i)} />);
+              return b.type === 'ol' ? <ol>{items}</ol> : <ul>{items}</ul>;
+            }
             return (
               <div class="table-scroll">
                 <table>
@@ -142,7 +237,7 @@ const schema = graph([
                     {b.rows.map((r) => (
                       <tr>
                         {r.map((c, ci) =>
-                          ci === 0 ? <th scope="row">{c}</th> : <td>{c}</td>
+                          ci === 0 ? <th scope="row" set:html={emphasize(c)} /> : <td set:html={emphasize(c)} />
                         )}
                       </tr>
                     ))}
@@ -182,7 +277,17 @@ const schema = graph([
       <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {
           primaryCities.map((c) => (
-            <a href={`/service-areas/${c.slug}/`} class="card card-hover block p-6">
+            <a href={`/service-areas/${c.slug}/`} class="card card-hover block overflow-hidden p-0">
+              <img
+                src={`/images/coverage/${c.slug}.svg`}
+                alt={`Map of the septic service coverage area around ${c.name}, ${c.state}, with the neighborhoods served marked`}
+                width="400"
+                height="260"
+                class="h-auto w-full border-b border-line"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="p-6">
               <h3 class="text-xl text-primary-dark">
                 {c.name}, {c.state}
               </h3>
@@ -190,9 +295,13 @@ const schema = graph([
                 ZIP {c.zips.join(', ')}
               </p>
               <p class="mt-2 text-[1.0625rem] leading-relaxed text-ink-soft">{c.localAngle[0].split('. ')[0]}.</p>
+              <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                Pins mark {c.neighborhoods.slice(0, 6).join(', ')}.
+              </p>
               <p class="mt-3 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-widest text-primary-light">
                 {c.name} septic service <Icon name="arrow" size={16} />
               </p>
+              </div>
             </a>
           ))
         }
@@ -208,6 +317,11 @@ const schema = graph([
         }
         <a href="/service-areas/" class="btn btn-outline ml-auto">All service areas</a>
       </p>
+      <MapEmbed
+        class="mt-8"
+        query="Davidson County, Tennessee"
+        title="Map of Davidson County, Tennessee, the septic tank pumping service area for 615 Septic Tank Pumping"
+      />
     </div>
   </section>
 
@@ -239,6 +353,8 @@ const schema = graph([
       />
     </div>
   </section>
+
+  <AuthoritySources />
 
   <CtaBand
     heading={`A full tank will not wait. Call ${CONTACT.phoneDisplay}.`}

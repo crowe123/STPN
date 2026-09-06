@@ -43,7 +43,11 @@ const decode = (s) =>
    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n))
    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
    .replace(/&#0?39;|&apos;|&#x27;/g, "'").replace(/&amp;/g, '&');
-const strip = (s) => decode(s.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+// Inline formatting is zero-width: <strong>x</strong>, must read as "x," not
+// "x ,". Only block-level tags create a word boundary.
+const stripInline = (s) =>
+  s.split('<strong>').join('').split('</strong>').join('').split('<em>').join('').split('</em>').join('');
+const strip = (s) => decode(stripInline(s).replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
 
 const pages = htmlFiles.map((f) => {
   const html = readFileSync(f, 'utf8');
@@ -138,10 +142,12 @@ section('4. KEYWORD MAP RECONCILIATION');
   const services = JSON.parse(readFileSync(resolve(root, 'src/data/services.json'), 'utf8'));
   const cities = JSON.parse(readFileSync(resolve(root, 'src/data/cities.json'), 'utf8'));
   const map = [
-    // The homepage H1 now carries the primary keyword directly (it was edited
-    // for AIO/M retrieval — see the DEVIATION note in src/pages/index.astro), so
-    // the former skipH1 exception no longer applies and the gate enforces it.
-    { route: '/', kw: 'septic tank pumping nashville' },
+    // The homepage deliberately keeps the exact phrase OUT of its H1. Measured
+    // AIO/M setups: phrase in title+H1+H2 cites at 2.4% and never holds pos 1-5,
+    // while phrase in the title with H1/H2 phrased differently cites at 7.1%.
+    // The phrase stays in the title and in exactly one H2 (see the h2Once check
+    // below), so the H1 gate is skipped here by design, not by oversight.
+    { route: '/', kw: 'septic tank pumping nashville', skipH1: true, h2Once: true },
     ...services.map((s) => ({ route: `/${s.slug}/`, kw: s.primaryKeyword.toLowerCase() })),
     ...cities.map((c) => ({ route: `/service-areas/${c.slug}/`, kw: c.primaryKeyword.toLowerCase() })),
   ];
@@ -161,9 +167,15 @@ section('4. KEYWORD MAP RECONCILIATION');
     if (!m.skipH1 && !inAll(h1)) problems.push(`${m.route}: "${m.kw}" not in h1`);
     const first100 = p.text.split(/\s+/).slice(0, 100).join(' ');
     if (!inAll(first100)) problems.push(`${m.route}: "${m.kw}" not in first 100 words`);
+    // Where the H1 is exempt, the phrase must still land in exactly one
+    // subheading: two or more carrying it scores -134 on the AIO/M factor set.
+    if (m.h2Once) {
+      const hits = p.headings.filter((h) => h.level >= 2 && inAll(h.text)).length;
+      if (hits !== 1) problems.push(`${m.route}: "${m.kw}" must be in exactly one H2-H6, found ${hits}`);
+    }
   }
   problems.length === 0
-    ? pass('Every primary keyword appears in title, H1 and first 100 words')
+    ? pass('Every primary keyword appears in title and first 100 words, H1 per policy')
     : fail('Keyword placement', problems.join('\n          '));
 }
 
@@ -339,6 +351,55 @@ section('9. DEFECT BLACKLIST');
     }
   }
   imgIssues.length === 0 ? pass('Every <img> carries alt, width and height') : fail('Image attributes', imgIssues.slice(0, 6).join('\n          '));
+
+  // A page with no images at all takes a measured AIO/M retrieval penalty, and
+  // the gain only lands at ten or more. The homepage figures are keyed by
+  // heading text in src/pages/index.astro, so a heading rename would silently
+  // drop one — this gate is what catches that.
+  const HOME_MIN_IMAGES = 10;
+  const homeImgs = pages.find((pg) => pg.route === '/').html.split('<img').length - 1;
+  homeImgs >= HOME_MIN_IMAGES
+    ? pass(`Homepage carries ${homeImgs} images  — floor is ${HOME_MIN_IMAGES}`)
+    : fail('Homepage image count', `${homeImgs} <img> on / — expected at least ${HOME_MIN_IMAGES}. A section figure was probably dropped by a heading rename.`);
+
+  const noImg = contentPages.filter((pg) => !pg.html.includes('<img')).map((pg) => pg.route);
+  noImg.length === 0
+    ? pass('Every content page carries at least one image')
+    : warn('Pages with no images', `${noImg.length}: ${noImg.slice(0, 8).join(', ')}`);
+
+  // Outbound citations. A page linking to no other website carries a measured
+  // retrieval penalty; the gain lands at five DIFFERENT external sites, so the
+  // floor counts domains, not links. rel is the operator's call, not the
+  // measurement's — nothing in the factor set distinguishes nofollow — but the
+  // stated preference is nofollow everywhere, so drift is worth catching.
+  const MIN_EXTERNAL_DOMAINS = 5;
+  const homePage = pages.find((pg) => pg.route === '/');
+  const extDomains = new Set();
+  const followed = [];
+  for (const m of homePage.html.matchAll(/<a[^>]*href="(https?:[^"]+)"[^>]*>/g)) {
+    extDomains.add(new URL(m[1]).hostname.replace(/^www[.]/, ''));
+    if (!m[0].includes('nofollow')) followed.push(m[1]);
+  }
+  extDomains.size >= MIN_EXTERNAL_DOMAINS
+    ? pass(`Homepage cites ${extDomains.size} external domains  — floor is ${MIN_EXTERNAL_DOMAINS}`)
+    : fail('Outbound citations', `${extDomains.size} external domains on / — expected at least ${MIN_EXTERNAL_DOMAINS}.`);
+  followed.length === 0
+    ? pass('Every outbound link on / is nofollow')
+    : fail('Followed outbound links', followed.join(', '));
+
+  // An embedded video or iframe is one of the strongest measured on-page
+  // signals. The homepage carries exactly one, lazy-loaded, below the fold.
+  homePage.html.includes('<iframe')
+    ? pass('Homepage carries an embedded map iframe')
+    : fail('Missing embed', 'No <iframe> on / — the Davidson County map embed was dropped.');
+
+  // The opening paragraph is built to clear the 120-word retrieval threshold.
+  const MIN_OPENING_WORDS = 120;
+  const openingWords = JSON.parse(readFileSync(resolve(root, 'src/data/homepage-article.json'), 'utf8'))
+    .filter((b) => b.type === 'p')[0].text.trim().split(' ').filter(Boolean).length;
+  openingWords >= MIN_OPENING_WORDS
+    ? pass(`Opening paragraph is ${openingWords} words  — floor is ${MIN_OPENING_WORDS}`)
+    : fail('Short opening paragraph', `${openingWords} words — expected at least ${MIN_OPENING_WORDS}.`);
 
   // Manifest and <head> icon paths must resolve on disk.
   const manifest = JSON.parse(readFileSync(resolve(dist, 'site.webmanifest'), 'utf8'));

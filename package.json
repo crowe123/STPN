@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "astro dev",
     "icons": "node scripts/gen-icons.mjs",
-    "build": "npm run icons && astro build && node scripts/gen-ai-layer.mjs && node scripts/qa.mjs",
+    "maps": "node scripts/gen-maps.mjs",
+    "build": "npm run icons && npm run maps && astro build && node scripts/gen-ai-layer.mjs && node scripts/qa.mjs",
     "build:only": "astro build",
     "qa": "node scripts/qa.mjs",
     "preview": "astro preview",

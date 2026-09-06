@@ -43,6 +43,7 @@ const allZips = [...new Set(cities.flatMap((c) => c.zips))].sort();
         </p>
       </div>
       <StaticMap
+        slug="nashville"
         cityName={CONTACT.address.locality}
         neighborhoods={primaryCities.map((c) => c.name)}
         routes={['I-40', 'I-24', 'Briley Parkway']}

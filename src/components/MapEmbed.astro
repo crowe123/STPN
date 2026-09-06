@@ -1,0 +1,37 @@
+---
+/**
+ * A real Google Maps iframe for the service area.
+ *
+ * StaticMap.astro deliberately avoids one, and that reasoning still holds for
+ * the per-city coverage art: a third-party iframe on all 16 city pages would be
+ * the heaviest thing on each. This component is the single page-level exception,
+ * added because an embedded video or iframe is one of the strongest measured
+ * AIO/M retrieval signals available on-page. It is used once, below the fold,
+ * and lazy-loaded, so it costs nothing until the visitor scrolls to it.
+ *
+ * No API key: the `output=embed` form of the classic Maps URL is public. That
+ * keeps the embed from depending on a billable key that could silently expire.
+ */
+interface Props {
+  query: string;
+  title: string;
+  class?: string;
+  height?: number;
+  /** Maps zoom level. 10 frames Davidson County; the default fit is far wider. */
+  zoom?: number;
+}
+const { query, title, class: className = '', height = 420, zoom = 10 } = Astro.props;
+const src = `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=${zoom}&output=embed`;
+---
+<div class={`overflow-hidden rounded border border-line bg-white shadow-card ${className}`}>
+  <iframe
+    src={src}
+    title={title}
+    width="1200"
+    height={height}
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    style={`display:block;width:100%;height:${height}px;border:0`}
+    allowfullscreen
+  ></iframe>
+</div>

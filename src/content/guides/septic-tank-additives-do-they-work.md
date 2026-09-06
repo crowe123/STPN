@@ -1,5 +1,5 @@
 ---
-title: "Do Septic Tank Additives Work?: 615 Septic Tank Pumping"
+title: "Do Septic Tank Additives Work? | 615 Septic Tank Pumping"
 h1: "Do Septic Tank Additives Actually Work?"
 description: "Do septic tank additives work? What the biological and chemical products do, what they cannot do, and why some of them damage the drain field."
 dek: "The honest answer on the products sold to help a septic system — including the ones that actively make things worse."

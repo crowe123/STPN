@@ -1,5 +1,5 @@
 ---
-title: "How Often to Pump a Septic Tank in Nashville: 615 Septic Tank Pumping"
+title: "How Often to Pump a Septic Tank in Nashville | 615 Septic Tank Pumping"
 h1: "How Often Does a Nashville Septic Tank Need Pumping?"
 cardTitle: "How Often Should a Nashville Tank Be Emptied?"
 description: "How often to pump a septic tank in Nashville, TN. The 3-5 year rule, why household size matters more than tank size, and how to get a real interval."

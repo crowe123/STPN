@@ -1,5 +1,5 @@
 ---
-title: "Drain Field Replacement Cost in Nashville (2026): 615 Septic Tank Pumping"
+title: "Drain Field Replacement Cost in Nashville (2026) | 615 Septic Tank Pumping"
 h1: "How Much Does Drain Field Replacement Cost in Nashville?"
 description: "Drain field replacement cost in Nashville, TN — $6,000 to $10,000 typical in Middle Tennessee. What drives it, and how to confirm the field has actually failed."
 dek: "The five-figure number that routine pumping exists to prevent — what it covers, what moves it, and the cheaper findings worth ruling out first."

@@ -1,5 +1,5 @@
 ---
-title: "Is a Septic Inspection Required to Sell a House in Tennessee?: 615 Septic"
+title: "Is a Septic Inspection Required to Sell a House in Tennessee? | 615 Septic"
 h1: "Is a Septic Inspection Required to Sell a House in Tennessee?"
 description: "Septic inspection when selling a Nashville home. What Tennessee requires, what buyers and lenders ask for anyway, and why sellers inspect before listing."
 dek: "There is no blanket state requirement. There is, in practice, a buyer's agent who will ask — and the timing of when you find out is worth real money."

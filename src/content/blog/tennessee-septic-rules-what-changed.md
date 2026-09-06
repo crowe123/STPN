@@ -1,5 +1,5 @@
 ---
-title: "Tennessee Septic Rules: What Homeowners Should Know in 2026: 615 Septic"
+title: "Tennessee Septic Rules: What Homeowners Should Know in 2026 | 615 Septic"
 h1: "Tennessee Septic Rules: What Homeowners Should Know in 2026"
 description: "A plain-language summary of the Tennessee septic rules that affect homeowners in 2026 — permits, installer licensing, hauler permits and karst setbacks."
 dek: "A plain-language summary of the parts of Tennessee's subsurface sewage disposal framework that actually reach a homeowner."

@@ -1,5 +1,5 @@
 ---
-title: "Signs a Septic Tank Needs Pumping Right Now: 615 Septic Tank Pumping"
+title: "Signs a Septic Tank Needs Pumping Right Now | 615 Septic Tank Pumping"
 h1: "What Are the Signs a Septic Tank Needs Pumping?"
 description: "The warning signs a Nashville septic tank needs pumping now — slow drains, gurgling, odour, wet drain field — ranked by urgency. What to do about each."
 dek: "Six signals, ranked from watch-it to stop-using-water. Most of them mean the same thing, and the ranking is about how much time you have."

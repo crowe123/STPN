@@ -1,5 +1,5 @@
 ---
-title: "Grease Trap Cleaning Cost in Nashville (2026): 615 Septic Tank Pumping"
+title: "Grease Trap Cleaning Cost in Nashville (2026) | 615 Septic Tank Pumping"
 h1: "How Much Does Grease Trap Cleaning Cost in Nashville?"
 description: "Grease trap cleaning cost in Nashville, TN. How interceptor size and interval drive the price, the quarter-full rule, and why enzymes cost more than they save."
 dek: "Priced by capacity and interval rather than from a published band — and the interval is the part most kitchens get wrong."

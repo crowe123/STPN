@@ -1,5 +1,5 @@
 ---
-title: "Septic Permits in Davidson County TN: What You Need: 615 Septic Tank Pumping"
+title: "Septic Permits in Davidson County TN: What You Need | 615 Septic Tank Pumping"
 h1: "Do I Need a Permit for Septic Work in Davidson County?"
 description: "Septic permits in Davidson County, TN. Which work needs a construction permit, what the application involves, and how karst affects the review. 2026 guidance."
 dek: "Pumping does not need a permit. Almost everything else that opens the ground does — and Davidson County is one of the contract counties with an extra layer."

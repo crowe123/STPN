@@ -1,5 +1,5 @@
 ---
-title: "Does Homeowners Insurance Cover Septic Failure? | 615 Septic Tank Pumping"
+title: "Does Homeowners Insurance Cover Septic Failure?: 615 Septic Tank Pumping"
 h1: "Does Homeowners Insurance Cover Septic System Failure?"
 description: "Does homeowners insurance cover septic failure in Tennessee? What sudden-and-accidental means, why maintenance records decide claims, and what to document."
 dek: "The answer turns on one distinction insurers apply consistently — and on whether you can prove which side of it you are on."

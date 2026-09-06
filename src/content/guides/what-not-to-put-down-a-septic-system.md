@@ -1,5 +1,5 @@
 ---
-title: "What Not to Put Down a Septic System | 615 Septic Tank Pumping"
+title: "What Not to Put Down a Septic System: 615 Septic Tank Pumping"
 h1: "What Should Never Go Down a Septic System?"
 description: "What not to flush or pour into a septic system. The short list that causes most avoidable failures in Nashville, and what each one actually does to the tank."
 dek: "A short list, and every item on it is avoidable. Most first-time septic owners in Nashville have never been told any of it."

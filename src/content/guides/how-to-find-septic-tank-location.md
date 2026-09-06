@@ -1,5 +1,5 @@
 ---
-title: "How to Find a Septic Tank on Your Property | 615 Septic Tank Pumping"
+title: "How to Find a Septic Tank on Your Property: 615 Septic Tank Pumping"
 h1: "How Do I Find Where My Septic Tank Is Buried?"
 description: "How to find a buried septic tank in Nashville, TN. County records, the building drain trick, surface signs and probing — in the order that saves the most digging."
 dek: "Records first, ground second, shovel last. Done in that order most Davidson County tanks are found in under an hour with almost no disturbance."

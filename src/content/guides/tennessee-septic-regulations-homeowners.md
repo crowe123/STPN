@@ -1,5 +1,5 @@
 ---
-title: "Tennessee Septic Regulations for Homeowners | 615 Septic Tank Pumping"
+title: "Tennessee Septic Regulations for Homeowners: 615 Septic Tank Pumping"
 h1: "What Do Tennessee Septic Regulations Require of Homeowners?"
 description: "Tennessee septic regulations explained for Nashville homeowners — tank sizing, installer licensing, hauler permits and what the county enforces. 2026 guidance."
 dek: "The parts of Chapter 0400-48-01 that actually affect a homeowner, in plain terms, with the rule numbers so you can check them."

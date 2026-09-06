@@ -1,5 +1,5 @@
 ---
-title: "Septic Pumping vs Cleaning: What Is the Difference? | 615 Septic Tank Pumping"
+title: "Septic Pumping vs Cleaning: What Is the Difference?: 615 Septic Tank Pumping"
 h1: "Septic Tank Pumping vs Cleaning: What Is the Difference?"
 description: "Septic pumping vs septic cleaning explained. What each removes, when a tank needs the deeper job, and how to tell which one you actually paid for."
 dek: "The two words get used interchangeably by companies that only do one of them. The difference is what is left on the tank floor."

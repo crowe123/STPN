@@ -1,5 +1,5 @@
 ---
-title: "Septic Tank Inspection Cost in Nashville (2026) | 615 Septic Tank Pumping"
+title: "Septic Tank Inspection Cost in Nashville (2026): 615 Septic Tank Pumping"
 h1: "How Much Does a Septic Tank Inspection Cost in Nashville?"
 description: "Septic tank inspection cost in Nashville, TN. Why it is quoted with a pump-out, what a real inspection covers, and what a cheap visual check leaves out."
 dek: "Inspection is priced against pumping for one reason: almost nothing worth finding is visible until the tank is empty."

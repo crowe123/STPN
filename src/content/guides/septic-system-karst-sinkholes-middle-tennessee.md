@@ -1,5 +1,5 @@
 ---
-title: "Septic Systems on Karst and Sinkhole Ground in Middle Tennessee | 615 Septic"
+title: "Septic Systems on Karst and Sinkhole Ground in Middle Tennessee: 615 Septic"
 h1: "How Does Karst Ground Affect a Septic System in Middle Tennessee?"
 description: "Karst, sinkholes and septic systems in Middle Tennessee. Why fast drainage can be a warning sign, what setbacks apply, and what it means for replacement."
 dek: "Fractured limestone under a thin soil mantle is the defining ground condition across Davidson County, and it changes both how a system fails and where a new one can go."

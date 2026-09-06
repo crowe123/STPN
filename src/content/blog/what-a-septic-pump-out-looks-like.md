@@ -1,5 +1,5 @@
 ---
-title: "What a Septic Pump-Out Looks Like, Start to Finish | 615 Septic Tank Pumping"
+title: "What a Septic Pump-Out Looks Like, Start to Finish: 615 Septic Tank Pumping"
 h1: "What a Septic Pump-Out Looks Like, Start to Finish"
 description: "An illustrative walkthrough of a typical Nashville septic pump-out — arrival to written findings — so homeowners know what should happen and what should not."
 dek: "An illustrative walkthrough of a typical job, written so a first-time septic owner knows what a thorough visit looks like — and what a rushed one leaves out."

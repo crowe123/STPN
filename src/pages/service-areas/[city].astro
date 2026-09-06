@@ -87,7 +87,7 @@ const localProcess = [
         </p>
         <div class="mt-7 flex flex-col gap-3 sm:flex-row">
           <a href={tel} class="btn btn-accent" data-cta="city-hero-call">
-            <Icon name="phone" size={22} /> {CONTACT.phoneDisplay}
+            <Icon name="phone" size={22} /> Call {CONTACT.phoneDisplay}
           </a>
           <a href="#book" class="btn btn-outline">Book in {city.name}</a>
         </div>
@@ -280,6 +280,7 @@ const localProcess = [
   <CtaBand
     heading={`Septic tank pumping in ${city.name} — get on the schedule`}
     body={`${city.responseTime}. Price confirmed before any work starts.`}
+    callLabel={`Call ${CONTACT.phoneDisplay}`}
     secondaryLabel={`Book in ${city.name}`}
     secondaryHref="#book"
   />

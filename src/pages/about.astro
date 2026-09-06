@@ -138,7 +138,7 @@ const schema = graph([organization(), website(), webPage({ path, title, descript
           </address>
           <p class="mt-3 text-sm text-ink-soft">{CONTACT.hoursHuman}</p>
           <a href={tel} class="btn btn-accent mt-4 w-full" data-cta="about-call">
-            <Icon name="phone" size={20} /> {CONTACT.phoneDisplay}
+            <Icon name="phone" size={20} /> Call now
           </a>
         </div>
         <div class="card mt-6 p-5">
@@ -172,7 +172,7 @@ const schema = graph([organization(), website(), webPage({ path, title, descript
   </section>
 
   <CtaBand
-    heading={CONTACT.phoneDisplay}
+    heading={`Call ${CONTACT.phoneDisplay}`}
     body={`${BRAND.name} covers ${CONTACT.serviceArea}. A person answers and takes the details.`}
     secondaryLabel="Send property details"
   />

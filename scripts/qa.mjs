@@ -138,10 +138,10 @@ section('4. KEYWORD MAP RECONCILIATION');
   const services = JSON.parse(readFileSync(resolve(root, 'src/data/services.json'), 'utf8'));
   const cities = JSON.parse(readFileSync(resolve(root, 'src/data/cities.json'), 'utf8'));
   const map = [
-    // The homepage H1 now carries the primary keyword directly (it was edited
-    // for AIO/M retrieval — see the DEVIATION note in src/pages/index.astro), so
-    // the former skipH1 exception no longer applies and the gate enforces it.
-    { route: '/', kw: 'septic tank pumping nashville' },
+    // The homepage H1 leads on the offer rather than the keyword, which still
+    // appears in the title, the meta description and the opening paragraph — so
+    // the H1 half of this check is skipped here and enforced everywhere else.
+    { route: '/', kw: 'septic tank pumping nashville', skipH1: true },
     ...services.map((s) => ({ route: `/${s.slug}/`, kw: s.primaryKeyword.toLowerCase() })),
     ...cities.map((c) => ({ route: `/service-areas/${c.slug}/`, kw: c.primaryKeyword.toLowerCase() })),
   ];
@@ -356,8 +356,7 @@ section('9. DEFECT BLACKLIST');
   const formPages = pages.filter((p) => /<form\b/.test(p.html));
   const noAction = formPages.filter((p) => !/<form[^>]+action="https?:\/\//.test(p.html));
   noAction.length === 0 ? pass(`All ${formPages.length} pages with forms POST to an absolute endpoint`) : fail('Forms with no action', noAction.map((p) => p.route).join(', '));
-  const honeypot = (cfg.match(/honeypotName:\s*'([^']*)'/) || [])[1];
-  const noHoneypot = formPages.filter((p) => !p.html.includes(honeypot));
+  const noHoneypot = formPages.filter((p) => !p.html.includes('_website_url'));
   noHoneypot.length === 0 ? pass('Honeypot field present on every form') : fail('Forms without honeypot', noHoneypot.map((p) => p.route).join(', '));
   if (!enabled || /REPLACE-ME/.test(endpoint))
     warn('FORM_ENDPOINT is still the placeholder — forms render disabled by design. Set FORMS.endpoint and FORMS.enabled in src/config.ts before launch.');

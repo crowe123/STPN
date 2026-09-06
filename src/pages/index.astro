@@ -40,6 +40,35 @@ type Block =
 
 const blocks = article as Block[];
 
+// Primary sources for the regulatory and cost claims on this page.
+const SOURCES = [
+  {
+    name: 'US EPA — SepticSmart',
+    href: 'https://www.epa.gov/septic',
+    note: 'The federal homeowner guidance on how a septic system works and what maintenance it actually needs.',
+  },
+  {
+    name: 'TDEC — Division of Water Resources',
+    href: 'https://www.tn.gov/environment/program-areas/wr-water-resources.html',
+    note: 'The Tennessee regulator for subsurface sewage disposal. Permits, system standards and installer licensing sit here.',
+  },
+  {
+    name: 'Metro Public Health Department, Nashville & Davidson County',
+    href: 'https://www.nashville.gov/departments/health',
+    note: 'The local authority for septic permitting and health complaints inside Davidson County.',
+  },
+  {
+    name: 'USGS — Septic systems and groundwater',
+    href: 'https://www.usgs.gov/special-topics/water-science-school/science/septic-systems-waste-treatment',
+    note: 'How effluent moves through soil into groundwater. Directly relevant on well-water and karst lots.',
+  },
+  {
+    name: 'National Environmental Health Association — Onsite wastewater',
+    href: 'https://www.neha.org/onsite-wastewater',
+    note: 'The professional body for onsite wastewater practice and credentialing.',
+  },
+] as const;
+
 // Hero takes the article's H1 and the two paragraphs beneath it; the remainder
 // renders in document order below. Nothing is skipped and nothing is reordered.
 const heroBlocks = blocks.slice(0, 3);
@@ -58,7 +87,7 @@ for (let i = faqStart + 1; i < blocks.length; i++) {
 const path = '/';
 const title = 'Septic Tank Pumping Nashville TN: Licensed Full Pump-Out';
 const description =
-  'Licensed septic tank pumping in Nashville, TN. Full pump-out of 1,000-1,500 gallon tanks across Davidson County, $275-$525 typical. Call 24/7.';
+  'Licensed septic tank pumping in Nashville, TN. Full pump-out of 1,000-1,500 gallon tanks across Davidson County, $275-$525 typical. Free estimates. Call 24/7.';
 
 const schema = graph([
   organization(),
@@ -80,9 +109,10 @@ const schema = graph([
                 {b.text}
               </h1>
             ) : (
-              <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink first-of-type:text-xl first-of-type:text-ink">
-                {b.text}
-              </p>
+              <p
+                class="mt-5 max-w-2xl text-lg leading-relaxed text-ink first-of-type:text-xl first-of-type:text-ink"
+                set:html={b.text}
+              />
             )
           )
         }
@@ -98,9 +128,9 @@ const schema = graph([
     <div class="container-site pb-12 lg:pb-14">
       <div class="flex flex-col gap-3 sm:flex-row">
         <a href={tel} class="btn btn-accent" data-cta="hero-call">
-          <Icon name="phone" size={22} /> {CONTACT.phoneDisplay}
+          <Icon name="phone" size={22} /> Call {CONTACT.phoneDisplay}
         </a>
-        <a href="/contact/" class="btn btn-outline">Send property details</a>
+        <a href="/contact/" class="btn btn-outline">Get a Free Estimate</a>
         <a href="/tools/septic-pumping-cost-estimator/" class="btn btn-outline">
           <Icon name="calc" size={20} /> Estimate the cost
         </a>
@@ -182,17 +212,31 @@ const schema = graph([
       <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {
           primaryCities.map((c) => (
-            <a href={`/service-areas/${c.slug}/`} class="card card-hover block p-6">
-              <h3 class="text-xl text-primary-dark">
-                {c.name}, {c.state}
-              </h3>
-              <p class="mt-1 text-sm font-semibold uppercase tracking-wide text-accent-dark">
-                ZIP {c.zips.join(', ')}
-              </p>
-              <p class="mt-2 text-[1.0625rem] leading-relaxed text-ink-soft">{c.localAngle[0].split('. ')[0]}.</p>
-              <p class="mt-3 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-widest text-primary-light">
-                {c.name} septic service <Icon name="arrow" size={16} />
-              </p>
+            <a href={`/service-areas/${c.slug}/`} class="card card-hover block overflow-hidden p-0">
+              <img
+                src={`/images/coverage/${c.slug}.svg`}
+                alt={`Map of the septic service coverage area around ${c.name}, ${c.state}, with the neighborhoods served marked`}
+                width="400"
+                height="260"
+                class="h-auto w-full border-b border-line"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="p-6">
+                <h3 class="text-xl text-primary-dark">
+                  {c.name}, {c.state}
+                </h3>
+                <p class="mt-1 text-sm font-semibold uppercase tracking-wide text-accent-dark">
+                  ZIP {c.zips.join(', ')}
+                </p>
+                <p class="mt-2 text-[1.0625rem] leading-relaxed text-ink-soft">{c.localAngle[0].split('. ')[0]}.</p>
+                <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  Pins mark {c.neighborhoods.slice(0, 6).join(', ')}.
+                </p>
+                <p class="mt-3 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-widest text-primary-light">
+                  {c.name} septic service <Icon name="arrow" size={16} />
+                </p>
+              </div>
             </a>
           ))
         }
@@ -240,9 +284,41 @@ const schema = graph([
     </div>
   </section>
 
+  {/* The intervals, permits and costs quoted above are not house opinion — this
+      names the bodies they come from so a reader can check any of them. */}
+  <section class="section section-alt" aria-labelledby="sources-heading">
+    <div class="container-site">
+      <h2 id="sources-heading" class="font-display text-2xl text-primary-dark sm:text-3xl">
+        Where these rules and figures come from
+      </h2>
+      <p class="mt-3 max-w-3xl text-[1.0625rem] leading-relaxed text-ink-soft">
+        Septic work in Davidson County is governed by state and county rules, not by whoever answers the phone. These are
+        the primary sources behind the intervals, permits and costs described on this page.
+      </p>
+      <ul class="mt-7 grid gap-4 sm:grid-cols-2">
+        {
+          SOURCES.map((s) => (
+            <li class="card p-5">
+              <a
+                href={s.href}
+                target="_blank"
+                rel="nofollow noopener external"
+                class="font-display text-base font-bold uppercase tracking-wide text-primary-light hover:text-accent-dark"
+              >
+                {s.name}
+              </a>
+              <p class="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">{s.note}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
   <CtaBand
-    heading={`A full tank will not wait. ${CONTACT.phoneDisplay}.`}
+    heading={`A full tank will not wait. Call ${CONTACT.phoneDisplay}.`}
     body={`${BRAND.name} covers ${CONTACT.serviceArea}. Backups get priority dispatch; routine pump-outs are usually same-day or next-day.`}
+    callLabel="Call now"
     secondaryLabel="Book a pump-out"
   />
 

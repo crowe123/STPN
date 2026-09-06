@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300" role="img" aria-labelledby="steps-t steps-d" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif">
+  <title id="steps-t">The five steps of a septic pumping service call</title>
+  <desc id="steps-d">One: call and give the address, the approximate tank size if known, and any current symptoms. Two: the appointment is confirmed with a set date and time, not a vague arrival window. Three: the technician arrives, locates the tank and connects the truck, with no digging or prep required from the homeowner. Four: the tank is pumped, the components are inspected and the findings are explained in plain language. Five: the homeowner leaves the call knowing exactly when the next pump-out is due.</desc>
+
+  <rect width="900" height="300" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="900" height="76" fill="#14432F"/>
+  <text x="40" y="44" font-size="21" font-weight="700" fill="#FFFFFF">What a service call looks like, start to finish</text>
+  <text x="40" y="65" font-size="13.5" fill="#B9CFC2">Five steps, with the appointment time confirmed up front</text>
+
+  <path d="M90 140 H810" stroke="#DFDCD3" stroke-width="3"/>
+
+  <g>
+    <circle cx="90" cy="140" r="24" fill="#14432F"/>
+    <text x="90" y="147" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFFFF">1</text>
+    <text x="90" y="192" text-anchor="middle" font-size="14" font-weight="700" fill="#0D2C1F">Call</text>
+    <text x="90" y="212" text-anchor="middle" font-size="12.5" fill="#47564E">Address, tank size</text>
+    <text x="90" y="228" text-anchor="middle" font-size="12.5" fill="#47564E">if known, symptoms</text>
+  </g>
+  <g>
+    <circle cx="270" cy="140" r="24" fill="#14432F"/>
+    <text x="270" y="147" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFFFF">2</text>
+    <text x="270" y="192" text-anchor="middle" font-size="14" font-weight="700" fill="#0D2C1F">Confirm</text>
+    <text x="270" y="212" text-anchor="middle" font-size="12.5" fill="#47564E">A set date and time,</text>
+    <text x="270" y="228" text-anchor="middle" font-size="12.5" fill="#47564E">no vague windows</text>
+  </g>
+  <g>
+    <circle cx="450" cy="140" r="24" fill="#14432F"/>
+    <text x="450" y="147" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFFFF">3</text>
+    <text x="450" y="192" text-anchor="middle" font-size="14" font-weight="700" fill="#0D2C1F">Locate</text>
+    <text x="450" y="212" text-anchor="middle" font-size="12.5" fill="#47564E">Tank found, truck</text>
+    <text x="450" y="228" text-anchor="middle" font-size="12.5" fill="#47564E">connected, no prep</text>
+  </g>
+  <g>
+    <circle cx="630" cy="140" r="24" fill="#E4700D"/>
+    <text x="630" y="147" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFFFF">4</text>
+    <text x="630" y="192" text-anchor="middle" font-size="14" font-weight="700" fill="#B75505">Pump and inspect</text>
+    <text x="630" y="212" text-anchor="middle" font-size="12.5" fill="#47564E">All waste removed,</text>
+    <text x="630" y="228" text-anchor="middle" font-size="12.5" fill="#47564E">components checked</text>
+  </g>
+  <g>
+    <circle cx="810" cy="140" r="24" fill="#256B4A"/>
+    <text x="810" y="147" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFFFF">5</text>
+    <text x="810" y="192" text-anchor="middle" font-size="14" font-weight="700" fill="#256B4A">Briefed</text>
+    <text x="810" y="212" text-anchor="middle" font-size="12.5" fill="#47564E">Findings explained,</text>
+    <text x="810" y="228" text-anchor="middle" font-size="12.5" fill="#47564E">next date known</text>
+  </g>
+
+  <rect x="40" y="252" width="820" height="34" rx="4" fill="#F4F2ED"/>
+  <text x="60" y="274" font-size="13" fill="#14432F">No digging or preparation is required from the homeowner at any step.</text>
+</svg>

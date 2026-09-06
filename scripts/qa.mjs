@@ -356,7 +356,8 @@ section('9. DEFECT BLACKLIST');
   const formPages = pages.filter((p) => /<form\b/.test(p.html));
   const noAction = formPages.filter((p) => !/<form[^>]+action="https?:\/\//.test(p.html));
   noAction.length === 0 ? pass(`All ${formPages.length} pages with forms POST to an absolute endpoint`) : fail('Forms with no action', noAction.map((p) => p.route).join(', '));
-  const noHoneypot = formPages.filter((p) => !p.html.includes('_website_url'));
+  const honeypot = (cfg.match(/honeypotName:\s*'([^']*)'/) || [])[1];
+  const noHoneypot = formPages.filter((p) => !p.html.includes(honeypot));
   noHoneypot.length === 0 ? pass('Honeypot field present on every form') : fail('Forms without honeypot', noHoneypot.map((p) => p.route).join(', '));
   if (!enabled || /REPLACE-ME/.test(endpoint))
     warn('FORM_ENDPOINT is still the placeholder — forms render disabled by design. Set FORMS.endpoint and FORMS.enabled in src/config.ts before launch.');
